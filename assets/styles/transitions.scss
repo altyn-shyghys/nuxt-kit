@@ -1,0 +1,136 @@
+.main {
+  &-enter-from {
+    opacity: 0;
+  }
+  &-enter-active {
+    transition: all 0.2s ease-out;
+  }
+  &-leave-to {
+    opacity: 0;
+  }
+  &-leave-active {
+    transition: all 0.2s ease-in;
+  }
+}
+
+.slide-left {
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.2s;
+  }
+
+  @media (max-width: $lg) {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(1.5rem);
+    }
+  }
+
+  @media (max-width: $md) {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+  }
+
+  @media (max-width: $zf) {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(toRem(10));
+    }
+  }
+}
+
+.slide-right {
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.2s;
+  }
+
+  @media (max-width: $lg) {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(-1.5rem);
+    }
+  }
+
+  @media (max-width: $md) {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(-1rem);
+    }
+  }
+
+  @media (max-width: $zf) {
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(toRem(-10));
+    }
+  }
+}
+
+.slide {
+  &-enter-from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  &-enter-active {
+    transition: all 0.2s ease-out;
+  }
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  &-leave-active {
+    transition: all 0.2s ease-in;
+  }
+
+  @media (max-width: $lg) {
+    &-enter-from {
+      opacity: 0;
+      transform: translateX(1.5rem);
+    }
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(-1.5rem);
+    }
+  }
+
+  @media (max-width: $md) {
+    &-enter-from {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(-1rem);
+    }
+  }
+
+  @media (max-width: $zf) {
+    &-enter-from {
+      opacity: 0;
+      transform: translateX(toRem(10));
+    }
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(toRem(-10));
+    }
+  }
+}

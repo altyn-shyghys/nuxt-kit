@@ -1,0 +1,19 @@
+@function toRem($value) {
+  @return calc($value / 16) + rem;
+}
+
+@mixin ui-styles {
+  font-family: 'Montserrat';
+  font-size: 1rem;
+  padding: 0 var(--space);
+  height: var(--ui-size);
+  border-radius: var(--br-rad);
+  transition: background-color var(--tr), border var(--tr), filter var(--tr), color var(--tr);
+}
+
+$mx: 1271px;
+$lg: 1045px;
+$md: 870px;
+$sm: 700px;
+$mob: 430px;
+$zf: 374px;

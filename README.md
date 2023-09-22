@@ -1,3 +1,3 @@
-# UI Kit for Nuxt
+# Nuxt Kit for similar projects
 
 ### Under development

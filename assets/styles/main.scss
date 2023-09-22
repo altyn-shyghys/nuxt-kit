@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import './base.scss';
+@import './transitions.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: 'Montserrat';
+  color: var(--txt-m);
+}
+
+::selection {
+  background-color: var(--m-h);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

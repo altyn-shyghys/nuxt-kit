@@ -1,0 +1,66 @@
+:root {
+  /* Colors */
+  --m: rgb(48, 213, 200);
+  --m-h: rgba(0, 255, 234, 0.7);
+  --m-tp: rgba(48, 213, 200, 0.5);
+
+  --green: rgba(0, 128, 0, 0.3);
+  --yellow: rgba(255, 255, 0, 0.3);
+  --red: rgba(255, 0, 0, 0.3);
+
+  --dark-bg: rgb(12, 12, 13);
+  --dark-tp: rgba(12, 12, 13, 0.7);
+  --dark-fg-m: rgb(24, 24, 27);
+  --dark-fg-s: rgb(39, 39, 42);
+  --dark-br: rgb(39, 39, 42);
+  --dark-txt-m: rgb(250, 250, 250);
+  --dark-txt-s: rgba(250, 250, 250, 0.7);
+  --dark-txt-b: rgba(24, 24, 27, 0.7);
+
+  --light-bg: rgb(255, 255, 255);
+  --light-tp: rgba(255, 255, 255, 0.7);
+  --light-fg-m: rgb(244, 244, 245);
+  --light-fg-s: rgb(227, 227, 240);
+  --light-br: rgb(228, 228, 231);
+  --light-txt-m: rgb(24, 24, 27);
+  --light-txt-s: rgba(24, 24, 27, 0.7);
+  --light-txt-b: rgba(250, 250, 250, 0.7);
+
+  /* Styles */
+  --space: 1rem;
+  --space-m: 0.5rem;
+  --space-l: 2rem;
+  --tr: 0.5s ease;
+  --tr-fg: background-color 0.5s ease, border 0.5s ease;
+  --br-rad: 0.75rem;
+  --ui-size: 2.5rem;
+
+  /* Header */
+  --header-height: 4.375rem;
+}
+
+.dark {
+  --bg: var(--dark-bg);
+  --tp: var(--dark-tp);
+  --fg-m: var(--dark-fg-m);
+  --fg-s: var(--dark-fg-s);
+  --btn-bg-m: var(--light-fg-m);
+  --btn-bg-s: var(--light-fg-s);
+  --br: var(--dark-br);
+  --txt-m: var(--dark-txt-m);
+  --txt-s: var(--dark-txt-s);
+  --txt-b: var(--dark-txt-b);
+}
+
+.light {
+  --bg: var(--light-bg);
+  --tp: var(--light-tp);
+  --fg-m: var(--light-fg-m);
+  --fg-s: var(--light-fg-s);
+  --btn-bg-m: var(--dark-fg-m);
+  --btn-bg-s: var(--dark-fg-s);
+  --br: var(--light-br);
+  --txt-m: var(--light-txt-m);
+  --txt-s: var(--light-txt-s);
+  --txt-b: var(--light-txt-b);
+}
