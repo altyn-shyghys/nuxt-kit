@@ -19,7 +19,32 @@ export default defineNuxtConfig({
     }
   },
   i18n: {
-    vueI18n: './languages/i18n.config.ts'
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        file: 'en.ts'
+      },
+      {
+        code: 'ru',
+        iso: 'ru-RU',
+        name: 'Русский',
+        file: 'ru.ts'
+      }
+    ],
+    lazy: true,
+    langDir: 'lang',
+    defaultLocale: 'en',
+    experimental: {
+      jsTsFormatResource: true
+    },
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: true
+    }
   },
   app: {
     head: {

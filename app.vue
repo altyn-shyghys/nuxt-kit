@@ -1,29 +1,20 @@
 <script setup lang="ts">
-// import { useStorage } from '@vueuse/core'
-// const { locale } = useI18n()
+const { locale, locales } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
 
-// // const { locale } = useI18n()
-// const lang = useStorage<string>('language', 'en')
-// locale.value = lang.value as string
-
-// watch(lang, (nLang) => {
-//   locale.value = nLang
-// })
-// const switchLocalePath = useSwitchLocalePath()
+const availableLocales = computed(() => locales.value.filter((i) => i.code !== locale.value))
 </script>
 
 <template>
   <UiSpace layout="container">
     <UiSpace layout="wrapper">
       <UiSpace display="col" :full="true">
-        <!-- <NuxtLink :to="switchLocalePath('en')">English</NuxtLink>
-        <NuxtLink :to="switchLocalePath('ru')">Ru</NuxtLink> -->
-        <form>
-          <select id="locale-select" v-model="$i18n.locale">
-            <option value="en">en</option>
-            <option value="ru">ru</option>
-          </select>
-        </form>
+        <NuxtLink
+          v-for="loc in availableLocales"
+          :key="loc.code"
+          :to="switchLocalePath(loc.code)"
+          >{{ loc.name }}</NuxtLink
+        >
         {{ $t('welcome') }}
       </UiSpace>
     </UiSpace>
