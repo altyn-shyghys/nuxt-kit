@@ -1,6 +1,5 @@
 export default defineNuxtPlugin({
   name: 'notf',
-  parallel: true,
   setup() {
     const notf = ref<string>('')
     let timeoutRef: NodeJS.Timeout | null = null

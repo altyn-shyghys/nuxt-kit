@@ -4,14 +4,22 @@
 const props = withDefaults(
   defineProps<{
     type?: 'div' | 'section' | 'nav' | 'form'
-    layout?: 'row' | 'col' | 'grid' | 'container' | 'wrapper' | 'alt-wrapper'
-    gap?: 'sm' | 'def' | 'lg' | 'min'
+    display?: 'row' | 'col' | 'grid'
+    gap?: 'sm' | 'lg' | 'min' | 'base'
     pos?: 'between' | 'left'
+    block?: 'def' | 'alt'
+    layout?: 'container' | 'wrapper' | 'screen'
     center?: boolean
-    block?: 'block' | 'alt-block'
     full?: boolean
   }>(),
-  { type: 'div', layout: undefined, gap: 'def', pos: undefined, block: undefined }
+  {
+    type: 'div',
+    display: undefined,
+    gap: 'base',
+    pos: undefined,
+    block: undefined,
+    layout: undefined
+  }
 )
 
 const slots = defineSlots<{ default(): any }>()
@@ -21,11 +29,12 @@ const Block = () =>
     props.type,
     {
       class: [
-        props.layout,
+        props.display,
         props.gap,
         props.pos,
-        props.center ? 'center' : null,
         props.block,
+        props.layout,
+        props.center ? 'center' : null,
         props.full ? 'full' : null
       ]
     },
@@ -34,6 +43,8 @@ const Block = () =>
 </script>
 
 <style scoped lang="scss">
+/* Display */
+
 .row {
   display: flex;
   align-items: center;
@@ -50,11 +61,13 @@ const Block = () =>
   gap: var(--space);
 }
 
+/* Gap */
+
 .min {
   gap: 0;
 }
 
-.def {
+.base {
   gap: var(--space);
 }
 
@@ -66,9 +79,7 @@ const Block = () =>
   gap: var(--space-l);
 }
 
-.full {
-  width: 100%;
-}
+/* Pos */
 
 .between {
   align-items: space-between;
@@ -83,29 +94,32 @@ const Block = () =>
   width: 100%;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+/* Block */
 
-@mixin wp-styles {
-  transition: var(--tr-fg), opacity var(--tr);
+@mixin block-styles {
+  height: fit-content;
+  transition:
+    var(--tr-fg),
+    opacity var(--tr),
+    height var(--tr),
+    min-height var(--tr),
+    max-height var(--tr);
   padding: var(--space);
   border-radius: var(--br-rad);
   border: toRem(1) solid var(--br);
 }
 
-.block {
-  @include wp-styles;
+.def {
+  @include block-styles;
   background-color: var(--fg-m);
 }
 
-.alt-block {
-  @include wp-styles;
+.alt {
+  @include block-styles;
   background-color: var(--bg);
 }
+
+/* Container */
 
 .container {
   max-width: 80rem;
@@ -134,13 +148,12 @@ const Block = () =>
 
 .wrapper {
   @include wrapper-styles;
-  width: 100%;
   justify-content: space-between;
   text-align: left;
   padding: 4.5rem 0 2rem 0;
 }
 
-.alt-wrapper {
+.screen {
   @include wrapper-styles;
   justify-content: center;
   width: 100dvw;
@@ -148,5 +161,20 @@ const Block = () =>
   position: relative;
   padding: var(--space);
   overflow: scroll;
+}
+
+/* Center */
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Full */
+
+.full {
+  width: 100%;
 }
 </style>

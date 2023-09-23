@@ -2,7 +2,6 @@ import { useStorage } from '@vueuse/core'
 
 export default defineNuxtPlugin({
   name: 'theme',
-  parallel: true,
   setup() {
     const scheme = usePreferredColorScheme()
     const theme = useStorage<'auto' | 'dark' | 'light'>('theme', 'auto')

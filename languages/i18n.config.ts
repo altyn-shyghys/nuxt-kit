@@ -5,23 +5,17 @@ interface LangProps {
 export default {
   en: {
     theme: {
-      auto: 'Auto',
-      dark: 'Dark',
-      light: 'Light'
+      auto: 'Auto'
     }
   },
   ru: {
     theme: {
-      auto: 'Системная',
-      dark: 'Тёмная',
-      light: 'Светлая'
+      auto: 'Системная'
     }
   },
   kz: {
     theme: {
-      auto: 'Жүйелік',
-      dark: 'Қараңғы',
-      light: 'Жарық'
+      auto: 'Жүйелік'
     }
   }
 } as LangProps

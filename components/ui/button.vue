@@ -35,7 +35,9 @@ defineEmits<{ (e: 'trigger'): void }>()
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--tr-fg), filter 0.5s ease;
+  transition:
+    var(--tr-fg),
+    filter 0.5s ease;
   background-color: var(--btn-bg-m);
   gap: var(--space-m);
   color: var(--fg-m) !important;

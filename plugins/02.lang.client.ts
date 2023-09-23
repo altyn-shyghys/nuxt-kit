@@ -3,7 +3,6 @@ import langs from '@/languages/i18n.config'
 
 export default defineNuxtPlugin({
   name: 'lang',
-  parallel: true,
   setup() {
     const { language } = useNavigatorLanguage()
     const langHandler: string = language.value?.split('-')[0] || 'en'
