@@ -97,13 +97,9 @@ const Block = () =>
 /* Block */
 
 @mixin block-styles {
-  height: fit-content;
   transition:
     var(--tr-fg),
-    opacity var(--tr),
-    height var(--tr),
-    min-height var(--tr),
-    max-height var(--tr);
+    opacity var(--tr);
   padding: var(--space);
   border-radius: var(--br-rad);
   border: toRem(1) solid var(--br);

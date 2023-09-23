@@ -1,8 +1,14 @@
 export default defineNuxtConfig({
-  modules: ['nuxt-icon', '@vueuse/nuxt', '@nuxtjs/robots'],
+  modules: [
+    'nuxt-icon',
+    '@vueuse/nuxt',
+    '@nuxtjs/robots',
+    '@formkit/auto-animate/nuxt',
+    '@nuxtjs/i18n',
+    '@nuxtjs/color-mode'
+  ],
   css: ['~/assets/styles/main.scss'],
-  ssr: false,
-  spaLoadingTemplate: false,
+  devtools: false,
   vite: {
     css: {
       preprocessorOptions: {

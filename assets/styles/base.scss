@@ -31,7 +31,6 @@
   --space-m: 0.5rem;
   --space-l: 2rem;
   --tr: 0.5s ease;
-  --tr-fg: background-color 0.5s ease, border 0.5s ease;
   --br-rad: 0.75rem;
   --ui-size: 2.5rem;
 
@@ -39,7 +38,7 @@
   --header-height: 4.375rem;
 }
 
-.dark {
+.dark-mode {
   --bg: var(--dark-bg);
   --tp: var(--dark-tp);
   --fg-m: var(--dark-fg-m);
@@ -52,7 +51,7 @@
   --txt-b: var(--dark-txt-b);
 }
 
-.light {
+.light-mode {
   --bg: var(--light-bg);
   --tp: var(--light-tp);
   --fg-m: var(--light-fg-m);
