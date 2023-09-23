@@ -1,21 +1,21 @@
-interface LangProps {
-  [key: string]: any
-}
-
-export default {
-  en: {
-    theme: {
-      auto: 'Auto'
-    }
+export default defineI18nConfig(() => ({
+  legacy: false,
+  // locale: 'en',
+  locales: ['en', 'ru'],
+  // defaultLocale: 'ru',
+  // fallbackLocale: 'en',
+  detectBrowserLanguage: {
+    useCookie: true,
+    cookieKey: 'i18nRedirected',
+    redirectOn: 'root',
+    alwaysRedirect: true
   },
-  ru: {
-    theme: {
-      auto: 'Системная'
-    }
-  },
-  kz: {
-    theme: {
-      auto: 'Жүйелік'
+  messages: {
+    en: {
+      welcome: 'Welcome'
+    },
+    ru: {
+      welcome: 'Добро пожаловать!'
     }
   }
-} as LangProps
+}))

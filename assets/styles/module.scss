@@ -8,7 +8,7 @@
   padding: 0 var(--space);
   height: var(--ui-size);
   border-radius: var(--br-rad);
-  transition: background-color var(--tr), border var(--tr), filter var(--tr), color var(--tr);
+  transition: filter var(--tr);
 }
 
 $mx: 1271px;

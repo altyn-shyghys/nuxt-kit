@@ -18,6 +18,9 @@ export default defineNuxtConfig({
       }
     }
   },
+  i18n: {
+    vueI18n: './languages/i18n.config.ts'
+  },
   app: {
     head: {
       charset: 'utf-8',
