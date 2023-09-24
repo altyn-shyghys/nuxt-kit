@@ -22,29 +22,30 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'en',
-        iso: 'en-US',
+        iso: 'en',
         name: 'English',
         file: 'en.ts'
       },
       {
         code: 'ru',
-        iso: 'ru-RU',
+        iso: 'ru',
         name: 'Русский',
         file: 'ru.ts'
       }
     ],
-    lazy: true,
-    langDir: 'lang',
     defaultLocale: 'en',
+    lazy: true,
+    langDir: 'locale',
+    strategy: 'prefix_except_default',
     experimental: {
       jsTsFormatResource: true
-    },
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root',
-      alwaysRedirect: true
     }
+    // detectBrowserLanguage: {
+    //   useCookie: true,
+    //   cookieKey: 'i18n_redirected',
+    //   redirectOn: 'root',
+    //   alwaysRedirect: true
+    // }
   },
   app: {
     head: {

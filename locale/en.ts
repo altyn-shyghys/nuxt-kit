@@ -1,5 +1,7 @@
 export default defineI18nLocale(() => {
   return {
-    welcome: 'Welcome'
+    home: 'Home',
+    hi: 'Welcome',
+    about: 'About'
   }
 })
