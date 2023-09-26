@@ -39,13 +39,13 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default',
     experimental: {
       jsTsFormatResource: true
+    },
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: true
     }
-    // detectBrowserLanguage: {
-    //   useCookie: true,
-    //   cookieKey: 'i18n_redirected',
-    //   redirectOn: 'root',
-    //   alwaysRedirect: true
-    // }
   },
   app: {
     head: {
