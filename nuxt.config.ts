@@ -18,35 +18,35 @@ export default defineNuxtConfig({
       }
     }
   },
-  i18n: {
-    locales: [
-      {
-        code: 'en',
-        iso: 'en',
-        name: 'English',
-        file: 'en.ts'
-      },
-      {
-        code: 'ru',
-        iso: 'ru',
-        name: 'Русский',
-        file: 'ru.ts'
-      }
-    ],
-    defaultLocale: 'en',
-    lazy: true,
-    langDir: 'locale',
-    strategy: 'prefix_except_default',
-    experimental: {
-      jsTsFormatResource: true
-    },
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root',
-      alwaysRedirect: true
-    }
-  },
+  // i18n: {
+  //   locales: [
+  //     {
+  //       code: 'en',
+  //       iso: 'en',
+  //       name: 'English',
+  //       file: 'en.ts'
+  //     },
+  //     {
+  //       code: 'ru',
+  //       iso: 'ru',
+  //       name: 'Русский',
+  //       file: 'ru.ts'
+  //     }
+  //   ],
+  //   defaultLocale: 'en',
+  //   lazy: true,
+  //   langDir: 'locale',
+  //   strategy: 'prefix_except_default',
+  //   experimental: {
+  //     jsTsFormatResource: true
+  //   },
+  //   detectBrowserLanguage: {
+  //     useCookie: true,
+  //     cookieKey: 'i18n_redirected',
+  //     redirectOn: 'root',
+  //     alwaysRedirect: true
+  //   }
+  // },
   app: {
     head: {
       charset: 'utf-8',

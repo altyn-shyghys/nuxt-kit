@@ -1,10 +1,10 @@
 <template>
-  <Transition name="main" mode="out-in">
+  <UiSpace v-auto-animate>
     <UiBlock v-if="isLoading" :center="true">
       <UiIcon name="eos-icons:three-dots-loading" :size="size" />
     </UiBlock>
-    <img v-else :src="src" :alt="alt" crossorigin="*" />
-  </Transition>
+    <img v-else :src="src" :alt="alt" />
+  </UiSpace>
 </template>
 
 <script setup lang="ts">

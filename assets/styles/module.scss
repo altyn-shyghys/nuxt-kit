@@ -2,6 +2,7 @@
   @return calc($value / 16) + rem;
 }
 
+/* Main UI Styles */
 @mixin ui-styles {
   font-family: 'Montserrat';
   font-size: 1rem;
@@ -11,6 +12,7 @@
   transition: filter var(--tr);
 }
 
+/* Media Breakpoints */
 $mx: 1271px;
 $lg: 1045px;
 $md: 870px;

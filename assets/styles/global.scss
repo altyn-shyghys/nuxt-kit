@@ -1,3 +1,4 @@
+/* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 * {
@@ -6,7 +7,7 @@
   text-decoration: none;
   border: none;
   outline: none;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent; // Hide highlight
 }
 
 body {
@@ -15,10 +16,12 @@ body {
   color: var(--txt-m);
 }
 
+/* Set Color when Selecting Text */
 ::selection {
   background-color: var(--m-h);
 }
 
+/* Hide Default Scrollbar Styles */
 ::-webkit-scrollbar {
   display: none;
 }
