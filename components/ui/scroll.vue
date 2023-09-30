@@ -1,5 +1,5 @@
 <template>
-  <div ref="contentTarget" :class="[direction === 'horizontal' ? 'st' : 'ed', height]">
+  <div ref="contentTarget" :class="['st', height]">
     <slot />
   </div>
 </template>
@@ -9,7 +9,7 @@ const props = withDefaults(
   defineProps<{
     direction?: 'vertical' | 'horizontal'
     trigger?: number
-    height?: 'sm' | 'md'
+    height?: 'sm' | 'lg'
   }>(),
   { direction: 'vertical', trigger: undefined, height: undefined }
 )
@@ -18,44 +18,42 @@ const mode = props.direction === 'horizontal' ? 'right' : 'bottom'
 const contentTarget = ref<HTMLDivElement | null>(null)
 const { arrivedState } = useScroll(contentTarget)
 
-const vertMaskHandler = () => {
-  if (contentTarget.value!.offsetHeight >= contentTarget.value!.scrollHeight) {
-    contentTarget.value!.classList.remove('st', 'md', 'ed')
+const maskHandler = () => {
+  let st = false
+  let md = false
+  let ed = false
+
+  if (props.direction === 'horizontal') {
+    contentTarget.value!.classList.add('horizontal')
+    if (contentTarget.value!.offsetWidth >= contentTarget.value!.scrollWidth) {
+      contentTarget.value!.classList.remove('st', 'md', 'ed')
+    } else {
+      st = arrivedState.left
+      md = !arrivedState.left && !arrivedState.right
+      ed = arrivedState.right
+    }
   } else {
     contentTarget.value!.classList.add('vertical')
-    if (arrivedState.top) {
-      contentTarget.value!.classList.remove('md', 'ed')
-      contentTarget.value!.classList.add('st')
-    } else if (!arrivedState.top && !arrivedState.bottom) {
-      contentTarget.value!.classList.remove('st', 'ed')
-      contentTarget.value!.classList.add('md')
-    } else if (arrivedState.bottom) {
-      contentTarget.value!.classList.remove('st', 'md')
-      contentTarget.value!.classList.add('ed')
+    if (contentTarget.value!.offsetHeight >= contentTarget.value!.scrollHeight) {
+      contentTarget.value!.classList.remove('st', 'md', 'ed')
+    } else {
+      st = arrivedState.top
+      md = !arrivedState.top && !arrivedState.bottom
+      ed = arrivedState.bottom
     }
   }
-}
 
-const horizMaskHandler = () => {
-  if (contentTarget.value!.offsetWidth >= contentTarget.value!.scrollWidth) {
-    contentTarget.value!.classList.remove('st', 'md', 'ed')
-  } else {
-    contentTarget.value!.classList.add('horizontal')
-    if (arrivedState.left) {
-      contentTarget.value!.classList.remove('md', 'ed')
-      contentTarget.value!.classList.add('st')
-    } else if (!arrivedState.left && !arrivedState.right) {
-      contentTarget.value!.classList.remove('st', 'ed')
-      contentTarget.value!.classList.add('md')
-    } else if (arrivedState.right) {
-      contentTarget.value!.classList.remove('st', 'md')
-      contentTarget.value!.classList.add('ed')
-    }
+  if (st) {
+    contentTarget.value!.classList.remove('md', 'ed')
+    contentTarget.value!.classList.add('st')
+  } else if (md) {
+    contentTarget.value!.classList.remove('st', 'ed')
+    contentTarget.value!.classList.add('md')
+  } else if (ed) {
+    contentTarget.value!.classList.remove('st', 'md')
+    contentTarget.value!.classList.add('ed')
   }
 }
-
-const maskHandler = () =>
-  props.direction === 'horizontal' ? horizMaskHandler() : vertMaskHandler()
 
 watch(arrivedState, () => maskHandler())
 
@@ -83,7 +81,7 @@ useResizeObserver(contentTarget, () => maskHandler())
   max-height: 20dvh;
 }
 
-.md {
+.lg {
   max-height: 50dvh;
 }
 
