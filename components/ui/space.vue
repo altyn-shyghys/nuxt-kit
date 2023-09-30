@@ -5,7 +5,7 @@ const props = withDefaults(
   defineProps<{
     type?: 'div' | 'section' | 'nav' | 'form'
     display?: 'row' | 'col' | 'grid'
-    gap?: 'sm' | 'lg' | 'min' | 'base'
+    gap?: 'min' | 'bit' | 'sm' | 'base' | 'lg'
     pos?: 'between' | 'left'
     block?: 'def' | 'alt'
     layout?: 'container' | 'wrapper' | 'screen'
@@ -67,12 +67,16 @@ const Block = () =>
   gap: 0;
 }
 
-.base {
-  gap: var(--space);
+.bit {
+  gap: 0.125rem;
 }
 
 .sm {
   gap: var(--space-m);
+}
+
+.base {
+  gap: var(--space);
 }
 
 .lg {

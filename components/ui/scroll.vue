@@ -1,40 +1,55 @@
 <template>
-  <div ref="contentTarget" :class="classHandler"><slot /></div>
+  <div ref="contentTarget" :class="[direction === 'horizontal' ? 'st' : 'ed', height]">
+    <slot />
+  </div>
 </template>
 
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
     direction?: 'vertical' | 'horizontal'
-    triggerArr?: number[] | boolean[]
+    trigger?: number
     height?: 'sm' | 'md'
   }>(),
-  { direction: 'vertical', triggerArr: undefined, height: undefined }
+  { direction: 'vertical', trigger: undefined, height: undefined }
 )
 
+const mode = props.direction === 'horizontal' ? 'right' : 'bottom'
 const contentTarget = ref<HTMLDivElement | null>(null)
 const { arrivedState } = useScroll(contentTarget)
 
 const vertMaskHandler = () => {
-  contentTarget.value!.offsetHeight >= contentTarget.value!.scrollHeight
-    ? contentTarget.value!.classList.remove('sc-t', 'sc-m', 'sc-b')
-    : contentTarget.value!.classList.add('sc-t')
+  if (contentTarget.value!.offsetHeight >= contentTarget.value!.scrollHeight) {
+    contentTarget.value!.classList.remove('st', 'md', 'ed')
+  } else {
+    contentTarget.value!.classList.add('vertical')
+    if (arrivedState.top) {
+      contentTarget.value!.classList.remove('md', 'ed')
+      contentTarget.value!.classList.add('st')
+    } else if (!arrivedState.top && !arrivedState.bottom) {
+      contentTarget.value!.classList.remove('st', 'ed')
+      contentTarget.value!.classList.add('md')
+    } else if (arrivedState.bottom) {
+      contentTarget.value!.classList.remove('st', 'md')
+      contentTarget.value!.classList.add('ed')
+    }
+  }
 }
 
 const horizMaskHandler = () => {
   if (contentTarget.value!.offsetWidth >= contentTarget.value!.scrollWidth) {
-    contentTarget.value!.classList.remove('sc-l', 'sc-c', 'sc-r')
+    contentTarget.value!.classList.remove('st', 'md', 'ed')
   } else {
     contentTarget.value!.classList.add('horizontal')
     if (arrivedState.left) {
-      contentTarget.value!.classList.remove('sc-c', 'sc-r')
-      contentTarget.value!.classList.add('sc-l')
+      contentTarget.value!.classList.remove('md', 'ed')
+      contentTarget.value!.classList.add('st')
     } else if (!arrivedState.left && !arrivedState.right) {
-      contentTarget.value!.classList.remove('sc-l', 'sc-r')
-      contentTarget.value!.classList.add('sc-c')
+      contentTarget.value!.classList.remove('st', 'ed')
+      contentTarget.value!.classList.add('md')
     } else if (arrivedState.right) {
-      contentTarget.value!.classList.remove('sc-l', 'sc-c')
-      contentTarget.value!.classList.add('sc-r')
+      contentTarget.value!.classList.remove('st', 'md')
+      contentTarget.value!.classList.add('ed')
     }
   }
 }
@@ -44,37 +59,17 @@ const maskHandler = () =>
 
 watch(arrivedState, () => maskHandler())
 
-// const setWatch = () => {
-//   watch(
-//     () => [...props.triggerArr!],
-//     () => {
-//       maskHandler()
-//     }
-//   )
-// }
-
-const classHandler = computed(() =>
-  props.direction === 'vertical'
-    ? {
-        vertical: true,
-        sm: props.height === 'sm',
-        'sc-t': arrivedState.top,
-        'sc-m': !arrivedState.top && !arrivedState.bottom,
-        'sc-b': arrivedState.bottom
-      }
-    : ''
-)
+if (props.trigger !== undefined) {
+  watch(
+    () => props.trigger,
+    () => maskHandler()
+  )
+}
 
 useResizeObserver(contentTarget, () => maskHandler())
-
-// onMounted(() => {
-//   if (props.triggerArr?.length) {
-//     setWatch()
-//   }
-// })
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .vertical {
   overflow-y: scroll;
 }
@@ -88,18 +83,22 @@ useResizeObserver(contentTarget, () => maskHandler())
   max-height: 20dvh;
 }
 
-.sc-t {
+.md {
+  max-height: 50dvh;
+}
+
+.st {
   -webkit-mask: linear-gradient(
-    to bottom,
+    to v-bind(mode),
     rgba(0, 0, 0, 1) 0%,
     rgba(0, 0, 0, 1) 80%,
     rgba(0, 0, 0, 0) 100%
   );
 }
 
-.sc-m {
+.md {
   -webkit-mask: linear-gradient(
-    to bottom,
+    to v-bind(mode),
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 1) 20%,
     rgba(0, 0, 0, 1) 80%,
@@ -107,37 +106,9 @@ useResizeObserver(contentTarget, () => maskHandler())
   );
 }
 
-.sc-b {
+.ed {
   -webkit-mask: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 20%,
-    rgba(0, 0, 0, 1) 100%
-  );
-}
-
-.sc-l {
-  -webkit-mask: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-.sc-c {
-  -webkit-mask: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 20%,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-.sc-r {
-  -webkit-mask: linear-gradient(
-    to right,
+    to v-bind(mode),
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 1) 20%,
     rgba(0, 0, 0, 1) 100%

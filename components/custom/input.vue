@@ -1,15 +1,18 @@
 <template>
-  <input
-    :id="name"
-    :name="name"
-    :type="type"
-    :value="modelValue"
-    :maxlength="length"
-    :placeholder="$t(placeholder)"
-    autocomplete="on"
-    :class="{ error: warn && modelValue.length }"
-    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-  />
+  <UiSpace display="col" gap="sm">
+    <UiText text="some" />
+    <input
+      :id="name"
+      :name="name"
+      :type="type"
+      :value="modelValue"
+      :maxlength="length"
+      :placeholder="$t(placeholder)"
+      autocomplete="on"
+      :class="{ error: warn && modelValue.length }"
+      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+    />
+  </UiSpace>
 </template>
 
 <script setup lang="ts">

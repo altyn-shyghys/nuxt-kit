@@ -1,4 +1,6 @@
-<template><Icon :name="name" class="size" /></template>
+<template>
+  <IconCSS :name="name" :size="size" />
+</template>
 
 <script setup lang="ts">
 const props = withDefaults(
@@ -24,17 +26,8 @@ const size = sizeConfig[props.size]
 </script>
 
 <style scoped lang="scss">
-.icon {
-  svg {
-    width: 100%;
-    height: 100%;
-    fill: var(--txt-m);
-  }
-
-  &.size {
-    min-width: v-bind(size);
-    width: v-bind(size);
-    height: v-bind(size);
-  }
+span {
+  min-width: v-bind(size);
+  color: var(--txt-m);
 }
 </style>

@@ -17,7 +17,9 @@ withDefaults(
   align-items: center;
   gap: var(--space-m);
   box-sizing: border-box;
-  transition: background-color var(--tr), border var(--tr), filter var(--tr), width var(--tr);
+  transition:
+    filter var(--tr),
+    width var(--tr);
 
   &,
   svg,
