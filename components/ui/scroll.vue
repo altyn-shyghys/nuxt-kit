@@ -1,5 +1,5 @@
 <template>
-  <div ref="contentTarget" :class="['st', height]">
+  <div ref="contentTarget" :class="{ st: fallback, height: height, scroll: true }">
     <slot />
   </div>
 </template>
@@ -9,40 +9,18 @@ const props = withDefaults(
   defineProps<{
     direction?: 'vertical' | 'horizontal'
     trigger?: number
-    height?: 'sm' | 'lg'
+    height?: number
+    fallback?: boolean
   }>(),
-  { direction: 'vertical', trigger: undefined, height: undefined }
+  { direction: 'vertical', trigger: undefined, height: 0, fallback: true }
 )
 
+const heightStr = props.height + 'dvh'
 const mode = props.direction === 'horizontal' ? 'right' : 'bottom'
 const contentTarget = ref<HTMLDivElement | null>(null)
-const { arrivedState } = useScroll(contentTarget)
+const { arrivedState: scState } = useScroll(contentTarget)
 
-const maskHandler = () => {
-  let st = false
-  let md = false
-  let ed = false
-
-  if (props.direction === 'horizontal') {
-    contentTarget.value!.classList.add('horizontal')
-    if (contentTarget.value!.offsetWidth >= contentTarget.value!.scrollWidth) {
-      contentTarget.value!.classList.remove('st', 'md', 'ed')
-    } else {
-      st = arrivedState.left
-      md = !arrivedState.left && !arrivedState.right
-      ed = arrivedState.right
-    }
-  } else {
-    contentTarget.value!.classList.add('vertical')
-    if (contentTarget.value!.offsetHeight >= contentTarget.value!.scrollHeight) {
-      contentTarget.value!.classList.remove('st', 'md', 'ed')
-    } else {
-      st = arrivedState.top
-      md = !arrivedState.top && !arrivedState.bottom
-      ed = arrivedState.bottom
-    }
-  }
-
+const classHandler = (st: boolean, md: boolean, ed: boolean) => {
   if (st) {
     contentTarget.value!.classList.remove('md', 'ed')
     contentTarget.value!.classList.add('st')
@@ -55,7 +33,17 @@ const maskHandler = () => {
   }
 }
 
-watch(arrivedState, () => maskHandler())
+const maskHandler = () => {
+  if (props.direction === 'horizontal') {
+    contentTarget.value!.offsetWidth >= contentTarget.value!.scrollWidth
+      ? contentTarget.value!.classList.remove('st', 'md', 'ed')
+      : classHandler(scState.left, !scState.left && !scState.right, scState.right)
+  } else {
+    contentTarget.value!.offsetHeight >= contentTarget.value!.scrollHeight
+      ? contentTarget.value!.classList.remove('st', 'md', 'ed')
+      : classHandler(scState.top, !scState.top && !scState.bottom, scState.bottom)
+  }
+}
 
 if (props.trigger !== undefined) {
   watch(
@@ -64,25 +52,17 @@ if (props.trigger !== undefined) {
   )
 }
 
+watch(scState, () => maskHandler())
 useResizeObserver(contentTarget, () => maskHandler())
 </script>
 
 <style scoped lang="scss">
-.vertical {
-  overflow-y: scroll;
+.scroll {
+  overflow: scroll;
 }
 
-.horizontal {
-  overflow-x: scroll;
-  width: 100%;
-}
-
-.sm {
-  max-height: 20dvh;
-}
-
-.lg {
-  max-height: 50dvh;
+.height {
+  max-height: v-bind(heightStr);
 }
 
 .st {

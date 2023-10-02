@@ -7,34 +7,25 @@
     <UiSpace layout="wrapper">
       <UiSpace display="col" :full="true">
         <UiScroll direction="horizontal">
-          <UiSpace display="row">
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
+          <UiSpace display="row" :full="true">
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
           </UiSpace>
         </UiScroll>
-        <UiScroll direction="vertical" height="lg">
+        <UiScroll :height="50">
           <UiSpace display="col">
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
-            <UiIcon name="icon-park-solid:hi" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
+            <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
           </UiSpace>
         </UiScroll>
       </UiSpace>
