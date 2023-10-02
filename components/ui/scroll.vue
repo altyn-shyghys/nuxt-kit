@@ -1,7 +1,5 @@
 <template>
-  <div ref="contentTarget" :class="{ st: fallback, height: height, scroll: true }">
-    <slot />
-  </div>
+  <div ref="contentTarget" :class="{ st: fallback }" :style="styles"><slot /></div>
 </template>
 
 <script setup lang="ts">
@@ -15,10 +13,10 @@ const props = withDefaults(
   { direction: 'vertical', trigger: undefined, height: 0, fallback: true }
 )
 
-const heightStr = props.height + 'dvh'
 const mode = props.direction === 'horizontal' ? 'right' : 'bottom'
 const contentTarget = ref<HTMLDivElement | null>(null)
 const { arrivedState: scState } = useScroll(contentTarget)
+const styles = `overflow: scroll; max-height: ${props.height ? props.height + 'dvh' : 'auto'}`
 
 const classHandler = (st: boolean, md: boolean, ed: boolean) => {
   if (st) {
@@ -57,14 +55,6 @@ useResizeObserver(contentTarget, () => maskHandler())
 </script>
 
 <style scoped lang="scss">
-.scroll {
-  overflow: scroll;
-}
-
-.height {
-  max-height: v-bind(heightStr);
-}
-
 .st {
   -webkit-mask: linear-gradient(
     to v-bind(mode),
