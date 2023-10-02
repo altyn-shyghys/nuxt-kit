@@ -24,13 +24,23 @@ const props = withDefaults(
 
 const slots = defineSlots<{ default(): any }>()
 
+const gapConfig = {
+  min: '0',
+  bit: '0.125rem', // 2px
+  sm: 'var(--space-m)', // see in 'assets/base.scss'
+  base: 'var(--space)', // see in 'assets/base.scss'
+  lg: 'var(--space-l)' // see in 'assets/base.scss'
+}
+
+const gap = gapConfig[props.gap]
+
 const Block = () =>
   h(
     props.type,
     {
       class: [
         props.display,
-        props.gap,
+        props.layout === undefined ? 'gap' : '',
         props.pos,
         props.block,
         props.layout,
@@ -63,24 +73,8 @@ const Block = () =>
 
 /* Gap */
 
-.min {
-  gap: 0;
-}
-
-.bit {
-  gap: 0.125rem;
-}
-
-.sm {
-  gap: var(--space-m);
-}
-
-.base {
-  gap: var(--space);
-}
-
-.lg {
-  gap: var(--space-l);
+.gap {
+  gap: v-bind(gap);
 }
 
 /* Pos */
@@ -101,9 +95,7 @@ const Block = () =>
 /* Block */
 
 @mixin block-styles {
-  transition:
-    var(--tr-fg),
-    opacity var(--tr);
+  transition: opacity var(--tr);
   padding: var(--space);
   border-radius: var(--br-rad);
   border: toRem(1) solid var(--br);
@@ -119,7 +111,7 @@ const Block = () =>
   background-color: var(--bg);
 }
 
-/* Container */
+/* Layout */
 
 .container {
   max-width: 80rem;

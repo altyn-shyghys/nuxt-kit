@@ -7,7 +7,7 @@
     <UiSpace layout="wrapper">
       <UiSpace display="col" :full="true">
         <UiScroll direction="horizontal">
-          <UiSpace display="row" :full="true">
+          <UiSpace display="row" gap="sm" :full="true">
             <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
             <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
             <UiIcon name="ic:round-auto-awesome-mosaic" size="max" />
