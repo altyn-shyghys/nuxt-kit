@@ -4,101 +4,73 @@
 const props = withDefaults(
   defineProps<{
     text: string
-    type?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'small' | 'label'
-    mode?: 'lg' | 'md' | 'sm' | 'bg' | 'wp'
+    type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'small' | 'label'
     for?: string
   }>(),
-  { type: 'small', mode: undefined, for: undefined }
+  { type: 'small', for: undefined }
 )
 
-const { $t } = useNuxtApp()
-const Text = () => h(props.type, { class: props.mode, for: props.for }, $t(props.text))
+const { t } = useI18n()
+const Text = () => h(props.type, { for: props.for }, t(props.text))
 </script>
 
 <style scoped lang="scss">
 * {
   line-height: 1;
   word-wrap: break-word;
-  transition: color var(--tr);
 }
 
 h1 {
-  font-size: toRem(72);
+  font-size: toRem(64);
 
   @media (max-width: $lg) {
-    font-size: toRem(60);
+    font-size: toRem(54);
   }
 
   @media (max-width: $md) {
-    font-size: toRem(40);
+    font-size: toRem(42);
+  }
+
+  @media (max-width: $sm) {
+    font-size: toRem(32);
   }
 }
 
 h2 {
-  &.lg {
-    font-size: toRem(48);
+  font-size: toRem(48);
 
-    @media (max-width: $lg) {
-      font-size: toRem(36);
-    }
-
-    @media (max-width: $md) {
-      font-size: toRem(30);
-    }
+  @media (max-width: $lg) {
+    font-size: toRem(40);
   }
 
-  &.md {
-    font-size: toRem(39);
-
-    @media (max-width: $lg) {
-      font-size: toRem(30);
-    }
-
-    @media (max-width: $zf) {
-      font-size: toRem(25);
-    }
+  @media (max-width: $md) {
+    font-size: toRem(32);
   }
 
-  &.sm {
+  @media (max-width: $sm) {
+    font-size: toRem(24);
+  }
+}
+
+h3 {
+  font-size: toRem(36);
+
+  @media (max-width: $lg) {
     font-size: toRem(30);
-
-    @media (max-width: $lg) {
-      font-size: toRem(24);
-    }
-
-    @media (max-width: $md) {
-      font-size: toRem(18);
-    }
-  }
-}
-
-p {
-  &.bg {
-    font-size: toRem(20);
-
-    @media (max-width: $sm) {
-      font-weight: bold;
-      font-size: toRem(16);
-    }
-
-    @media (max-width: $zf) {
-      font-weight: normal;
-    }
   }
 
-  &.wp {
+  @media (max-width: $md) {
+    font-size: toRem(24);
+  }
+
+  @media (max-width: $sm) {
     font-size: toRem(18);
-
-    @media (max-width: $md) {
-      font-size: toRem(16);
-    }
   }
 }
 
-small,
+h5,
 label {
-  font-size: smaller;
+  font-size: toRem(13);
   font-weight: bold;
-  color: var(--txt-s);
 }
 </style>

@@ -22,7 +22,15 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [{ name: 'theme-color', content: '#FFFFFF' }],
-      title: 'Nuxt Kit'
+      title: 'Nuxt Kit',
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: true },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap'
+        }
+      ]
     },
     layoutTransition: { name: 'main', mode: 'out-in' },
     pageTransition: { name: 'slide', mode: 'out-in' }

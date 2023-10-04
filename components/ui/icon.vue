@@ -1,6 +1,4 @@
-<template>
-  <IconCSS :name="name" :size="size" />
-</template>
+<template><IconCSS :name="name" :size="size" /></template>
 
 <script setup lang="ts">
 const props = withDefaults(
