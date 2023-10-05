@@ -1,25 +1,26 @@
 <template>
-  <UiBlock layout="row" block="block" pos="left">
-    <UiBlock :center="true" class="hide">
-      <UiIcon :name="ICON_INFO" size="logo" />
-    </UiBlock>
-    <UiBlock layout="col" class="tip-content">
-      <slot />
-    </UiBlock>
-  </UiBlock>
+  <UiSpace display="grid" block="def" class="tip">
+    <div class="mark"></div>
+    <UiSpace display="col" gap="sm">
+      <UiText type="h4" :text="title" />
+      <UiText :text="message" />
+    </UiSpace>
+  </UiSpace>
 </template>
 
+<script setup lang="ts">
+defineProps<{ title: string; message: string }>()
+</script>
+
 <style scoped lang="scss">
-.tip-content {
-  padding-left: var(--space);
-  transition: var(--tr-fg);
-  border-left: toRem(3) solid var(--txt-m);
-  gap: toRem(5);
+.tip {
+  grid-template-columns: toRem(5) 1fr;
 }
 
-.hide {
-  @media (max-width: $zf) {
-    display: none;
-  }
+.mark {
+  width: 100%;
+  height: 100%;
+  background-color: var(--m);
+  border-radius: var(--br-rad);
 }
 </style>

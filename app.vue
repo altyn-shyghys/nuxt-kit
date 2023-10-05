@@ -6,6 +6,9 @@
   <UiSpace layout="container">
     <UiSpace layout="wrapper">
       <!-- Some -->
+      <CustomButton title="">
+        //
+      </CustomButton>
     </UiSpace>
   </UiSpace>
 </template>

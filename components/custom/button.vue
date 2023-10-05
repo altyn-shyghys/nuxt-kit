@@ -6,7 +6,7 @@
     @click.prevent="$emit('trigger')"
   >
     <div v-if="loading" class="loading">
-      <UiIcon name="eos-icons:three-dots-loading" />
+      <UiIcon :name="ICON_LOADING" />
     </div>
     <slot />
   </button>
