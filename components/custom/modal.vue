@@ -55,7 +55,11 @@ onClickOutside(windowTarget, () => emit('update:modelValue', !props.modelValue))
 <style scoped lang="scss">
 .modal {
   background-color: var(--tp);
-  transition: background-color var(--tr), opacity var(--tr), transform var(--tr), height var(--tr);
+  transition:
+    background-color var(--tr),
+    opacity var(--tr),
+    transform var(--tr),
+    height var(--tr);
   position: fixed;
   top: 0;
   width: 100%;
@@ -68,7 +72,11 @@ onClickOutside(windowTarget, () => emit('update:modelValue', !props.modelValue))
 }
 
 .window {
-  transition: var(--tr-fg), transform var(--tr), opacity var(--tr), height var(--tr);
+  transition:
+    var(--tr-fg),
+    transform var(--tr),
+    opacity var(--tr),
+    height var(--tr);
   transition: all 0.5 ease;
   transform: translateY(toRem(500));
   opacity: 0;

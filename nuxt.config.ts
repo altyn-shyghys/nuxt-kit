@@ -17,6 +17,9 @@ export default defineNuxtConfig({
       }
     }
   },
+  imports: {
+    dirs: ['./constants']
+  },
   app: {
     head: {
       charset: 'utf-8',

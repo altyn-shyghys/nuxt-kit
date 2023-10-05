@@ -5,9 +5,9 @@
     :title="$t(title)"
     @click.prevent="$emit('trigger')"
   >
-    <UiBlock v-if="loading" :center="true" class="loading">
+    <div v-if="loading" class="loading">
       <UiIcon name="eos-icons:three-dots-loading" />
-    </UiBlock>
+    </div>
     <slot />
   </button>
 </template>

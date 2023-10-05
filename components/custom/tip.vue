@@ -1,7 +1,7 @@
 <template>
   <UiBlock layout="row" block="block" pos="left">
     <UiBlock :center="true" class="hide">
-      <UiIcon name="ep:info-filled" size="logo" />
+      <UiIcon :name="ICON_INFO" size="logo" />
     </UiBlock>
     <UiBlock layout="col" class="tip-content">
       <slot />
