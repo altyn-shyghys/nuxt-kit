@@ -5,10 +5,13 @@
     :title="$t(title)"
     @click.prevent="$emit('trigger')"
   >
-    <div v-if="loading" class="loading">
-      <UiIcon :name="ICON_LOADING" />
-    </div>
-    <slot />
+    <UiSpace :center="true" style="position: relative">
+      <UiIcon v-if="loading" :name="ICON_CIRCLE_LOADING" style="position: absolute" />
+      <UiSpace display="row" gap="sm" :class="{ hide: loading }">
+        <UiIcon v-if="icon" :size="mode === 'icon' ? 'def' : 'btn'" :name="icon" />
+        <UiText v-if="name" type="h4" :text="name" />
+      </UiSpace>
+    </UiSpace>
   </button>
 </template>
 
@@ -20,31 +23,25 @@ withDefaults(
     disabled?: boolean
     active?: boolean
     loading?: boolean
+    icon?: string
+    name?: string
   }>(),
-  { mode: 'button' }
+  { mode: 'button', icon: undefined, name: undefined }
 )
 
 defineEmits<{ (e: 'trigger'): void }>()
 </script>
 
 <style scoped lang="scss">
-@mixin button-styles {
+.button {
   @include ui-styles;
-  position: relative;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    var(--tr-fg),
-    filter 0.5s ease;
   background-color: var(--btn-bg-m);
-  gap: var(--space-m);
-  color: var(--fg-m) !important;
+  color: var(--fg-m);
   border: toRem(3) solid var(--btn-bg-m);
 
-  svg {
-    fill: var(--fg-m);
+  span {
+    color: var(--fg-m);
   }
 
   &:hover,
@@ -59,15 +56,30 @@ defineEmits<{ (e: 'trigger'): void }>()
   }
 }
 
-.button {
-  @include button-styles;
+.icon {
+  @include ui-styles;
+  background-color: transparent;
+  padding: 0;
+  color: var(--txt-m);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    span {
+      color: var(--m);
+    }
+  }
+
+  span {
+    transition:
+      filter var(--tr),
+      color var(--tr);
+    padding: 0.25rem;
+  }
 }
 
-.icon {
-  @include button-styles;
-  padding: 0;
-  width: var(--ui-size);
-  min-width: var(--ui-size);
+.hide {
+  visibility: hidden;
 }
 
 .disabled {
@@ -88,19 +100,6 @@ defineEmits<{ (e: 'trigger'): void }>()
   &:hover,
   &:focus {
     background-color: var(--m-tp);
-  }
-}
-
-.loading {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--br-rad);
-  background-color: var(--btn-bg-m);
-
-  .icon {
-    border: 0;
   }
 }
 </style>
