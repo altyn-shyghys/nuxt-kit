@@ -1,11 +1,13 @@
 <template><Block /></template>
 
 <script setup lang="ts">
+type Gap = 'min' | 'bit' | 'sm' | 'base' | 'lg'
+
 const props = withDefaults(
   defineProps<{
     type?: 'div' | 'section' | 'nav' | 'form'
     display?: 'row' | 'col' | 'grid'
-    gap?: 'min' | 'bit' | 'sm' | 'base' | 'lg'
+    gap?: Gap
     pos?: 'between' | 'left'
     block?: 'def' | 'alt'
     layout?: 'container' | 'wrapper' | 'screen'
@@ -24,7 +26,7 @@ const props = withDefaults(
 
 const slots = defineSlots<{ default(): any }>()
 
-const gapConfig = {
+const gapConfig: Record<Gap, string> = {
   min: '0',
   bit: '0.125rem', // 2px
   sm: 'var(--space-m)', // see in 'assets/base.scss'

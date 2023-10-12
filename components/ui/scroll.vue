@@ -1,44 +1,37 @@
 <template>
-  <div ref="contentTarget" :class="{ st: fallback }" :style="styles"><slot /></div>
+  <div ref="target" :class="{ st: fallback }" :style="styles"><slot /></div>
 </template>
 
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    direction?: 'vertical' | 'horizontal'
+    dir?: 'vertical' | 'horizontal'
     trigger?: number
-    height?: number
+    height?: string
     fallback?: boolean
   }>(),
-  { direction: 'vertical', trigger: undefined, height: 0, fallback: true }
+  { dir: 'vertical', trigger: undefined, height: undefined, fallback: true }
 )
 
-const mode = props.direction === 'horizontal' ? 'right' : 'bottom'
-const contentTarget = ref<HTMLDivElement | null>(null)
-const { arrivedState: scState } = useScroll(contentTarget)
+const mode = props.dir === 'horizontal' ? 'right' : 'bottom'
+const target = ref<HTMLDivElement>()
+const { arrivedState: scState } = useScroll(target)
 const styles = `overflow: scroll; max-height: ${props.height ? props.height + 'dvh' : 'auto'}`
 
 const classHandler = (st: boolean, md: boolean, ed: boolean) => {
-  if (st) {
-    contentTarget.value!.classList.remove('md', 'ed')
-    contentTarget.value!.classList.add('st')
-  } else if (md) {
-    contentTarget.value!.classList.remove('st', 'ed')
-    contentTarget.value!.classList.add('md')
-  } else if (ed) {
-    contentTarget.value!.classList.remove('st', 'md')
-    contentTarget.value!.classList.add('ed')
-  }
+  if (st) target.value!.className = 'st'
+  else if (md) target.value!.className = 'md'
+  else if (ed) target.value!.className = 'ed'
 }
 
 const maskHandler = () => {
-  if (props.direction === 'horizontal') {
-    contentTarget.value!.offsetWidth >= contentTarget.value!.scrollWidth
-      ? contentTarget.value!.classList.remove('st', 'md', 'ed')
+  if (props.dir === 'horizontal') {
+    target.value!.offsetWidth >= target.value!.scrollWidth
+      ? (target.value!.className = '')
       : classHandler(scState.left, !scState.left && !scState.right, scState.right)
   } else {
-    contentTarget.value!.offsetHeight >= contentTarget.value!.scrollHeight
-      ? contentTarget.value!.classList.remove('st', 'md', 'ed')
+    target.value!.offsetHeight >= target.value!.scrollHeight
+      ? (target.value!.className = '')
       : classHandler(scState.top, !scState.top && !scState.bottom, scState.bottom)
   }
 }
@@ -46,12 +39,12 @@ const maskHandler = () => {
 if (props.trigger !== undefined) {
   watch(
     () => props.trigger,
-    () => maskHandler()
+    () => setTimeout(() => maskHandler())
   )
 }
 
 watch(scState, () => maskHandler())
-useResizeObserver(contentTarget, () => maskHandler())
+useResizeObserver(target, () => maskHandler())
 </script>
 
 <style scoped lang="scss">
@@ -59,7 +52,7 @@ useResizeObserver(contentTarget, () => maskHandler())
   -webkit-mask: linear-gradient(
     to v-bind(mode),
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 1) 85%,
     rgba(0, 0, 0, 0) 100%
   );
 }
@@ -68,8 +61,8 @@ useResizeObserver(contentTarget, () => maskHandler())
   -webkit-mask: linear-gradient(
     to v-bind(mode),
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 20%,
-    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 1) 15%,
+    rgba(0, 0, 0, 1) 85%,
     rgba(0, 0, 0, 0) 100%
   );
 }
@@ -78,7 +71,7 @@ useResizeObserver(contentTarget, () => maskHandler())
   -webkit-mask: linear-gradient(
     to v-bind(mode),
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 15%,
     rgba(0, 0, 0, 1) 100%
   );
 }

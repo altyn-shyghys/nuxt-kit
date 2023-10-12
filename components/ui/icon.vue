@@ -1,15 +1,10 @@
 <template><IconCSS :name="name" :size="size" /></template>
 
 <script setup lang="ts">
-const props = withDefaults(
-  defineProps<{
-    name: string
-    size?: 'min' | 'sm' | 'def' | 'btn' | 'logo' | 'md' | 'lg' | 'max' | 'full'
-  }>(),
-  { size: 'def' }
-)
+type Size = 'sm' | 'def' | 'btn' | 'logo' | 'md' | 'lg' | 'max' | 'full'
+const props = withDefaults(defineProps<{ name: string; size?: Size }>(), { size: 'def' })
 
-const sizeConfig = {
+const sizeConfig: Record<Size, string> = {
   sm: '1rem', // 16px
   btn: '1.25rem', // 20px
   def: '1.5rem', // 24px

@@ -6,12 +6,14 @@ const props = withDefaults(
     text: string
     type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'small' | 'label'
     for?: string
+    gray?: boolean
   }>(),
   { type: 'small', for: undefined }
 )
 
 const { t } = useI18n()
-const Text = () => h(props.type, { for: props.for }, t(props.text))
+const Text = () =>
+  h(props.type, { for: props.for, style: props.gray ? 'color: var(--txt-s)' : null }, t(props.text))
 </script>
 
 <style scoped lang="scss">
@@ -21,56 +23,38 @@ const Text = () => h(props.type, { for: props.for }, t(props.text))
 }
 
 h1 {
-  font-size: toRem(64);
-
-  @media (max-width: $lg) {
-    font-size: toRem(54);
-  }
+  font-size: 3rem;
 
   @media (max-width: $md) {
-    font-size: toRem(42);
+    font-size: 2.5rem;
   }
 
   @media (max-width: $sm) {
-    font-size: toRem(32);
+    font-size: 2rem;
   }
 }
 
 h2 {
-  font-size: toRem(48);
-
-  @media (max-width: $lg) {
-    font-size: toRem(40);
-  }
+  font-size: 2.5rem;
 
   @media (max-width: $md) {
-    font-size: toRem(32);
+    font-size: 2rem;
   }
 
   @media (max-width: $sm) {
-    font-size: toRem(24);
+    font-size: 1.5rem;
   }
 }
 
 h3 {
-  font-size: toRem(36);
-
-  @media (max-width: $lg) {
-    font-size: toRem(30);
-  }
+  font-size: 1.875rem;
 
   @media (max-width: $md) {
-    font-size: toRem(24);
+    font-size: 1.5rem;
   }
 
   @media (max-width: $sm) {
-    font-size: toRem(18);
+    font-size: 1.125rem;
   }
-}
-
-h5,
-label {
-  font-size: toRem(13);
-  font-weight: bold;
 }
 </style>

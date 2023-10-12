@@ -6,7 +6,7 @@
     @click.prevent="$emit('trigger')"
   >
     <UiSpace :center="true" style="position: relative">
-      <UiIcon v-if="loading" :name="ICON_CIRCLE_LOADING" style="position: absolute" />
+      <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <UiSpace display="row" gap="sm" :class="{ hide: loading }">
         <UiIcon v-if="icon" :size="mode === 'icon' ? 'def' : 'btn'" :name="icon" />
         <UiText v-if="name" type="h4" :text="name" />
