@@ -7,8 +7,8 @@
   >
     <UiSpace :center="true" style="position: relative">
       <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
-      <UiSpace display="row" gap="sm" :class="{ hide: loading }">
-        <UiIcon v-if="icon" :size="mode === 'icon' ? 'def' : 'btn'" :name="icon" />
+      <UiSpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
+        <UiIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'btn'" :name="icon" />
         <UiText v-if="name" type="h4" :text="name" />
       </UiSpace>
     </UiSpace>
@@ -37,21 +37,20 @@ defineEmits<{ (e: 'trigger'): void }>()
   @include ui-styles;
   cursor: pointer;
   background-color: var(--btn-bg-m);
-  color: var(--fg-m);
-  border: toRem(3) solid var(--btn-bg-m);
 
+  &,
   span {
     color: var(--fg-m);
   }
 
   &:hover,
   &:focus {
-    border: toRem(3) solid var(--m);
+    box-shadow: 0 0 var(--space-m) var(--btn-bg-m);
   }
 
   h4 {
-    @media (max-width: $zf) {
-      font-size: 0.8rem;
+    @media (max-width: $mob) {
+      font-size: 0.875rem;
     }
   }
 }
@@ -74,12 +73,7 @@ defineEmits<{ (e: 'trigger'): void }>()
     transition:
       filter var(--tr),
       color var(--tr);
-    padding: 0.25rem;
   }
-}
-
-.hide {
-  visibility: hidden;
 }
 
 .disabled {
@@ -87,19 +81,23 @@ defineEmits<{ (e: 'trigger'): void }>()
   justify-content: center !important;
 
   &,
-  svg {
+  span {
     cursor: not-allowed;
   }
 }
 
 .active {
   background-color: var(--m);
-  border: toRem(3) solid var(--m);
-  color: var(--txt-m);
+  border: toRem(2) solid var(--m);
+
+  &,
+  span {
+    color: var(--txt-m);
+  }
 
   &:hover,
   &:focus {
-    background-color: var(--m-tp);
+    box-shadow: 0 0 var(--space-m) var(--m);
   }
 }
 </style>
