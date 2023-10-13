@@ -1,5 +1,5 @@
 <template>
-  <UiBlock layout="row" gap="sm" :class="{ checkbox: true, disabled: disabled }">
+  <UiSpace display="row" gap="sm" style="position: relative" :class="{ disabled: disabled }">
     <input
       :id="name"
       type="checkbox"
@@ -7,11 +7,11 @@
       :checked="modelValue"
       @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
     />
-    <UiBlock :center="true" block="block" class="box">
-      <UiIcon name="lucide:check" size="md" />
-    </UiBlock>
-    <UiText type="label" :for="name" :text="label" />
-  </UiBlock>
+    <UiSpace block="def" class="box">
+      <UiIcon name="lucide:check" size="cb" />
+    </UiSpace>
+    <UiText type="label" :gray="true" :for="name" :text="label" />
+  </UiSpace>
 </template>
 
 <script setup lang="ts">
@@ -20,23 +20,15 @@ defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
 </script>
 
 <style scoped lang="scss">
-.checkbox {
-  position: relative;
-}
-
 .box {
   @include ui-styles;
   width: var(--ui-size);
-  position: relative;
   padding: 0;
-  display: inline-block;
+  position: relative;
 
-  svg {
-    width: toRem(50);
-    display: inline-block;
-    height: auto;
+  span {
     position: absolute;
-    left: toRem(1);
+    left: toRem(2);
     bottom: toRem(-2);
     opacity: 0;
     transition: all 0.5s ease;
@@ -53,8 +45,7 @@ input {
   cursor: pointer;
 
   &:checked + .box {
-    svg {
-      // animation: bounce 0.5s ease;
+    span {
       opacity: 1;
       transform: translateY(0);
     }
@@ -76,20 +67,6 @@ input {
   input:hover + .box,
   input:focus + .box {
     border-color: var(--br);
-  }
-}
-
-@keyframes bounce {
-  0% {
-    opacity: 0;
-    transform: translateY(toRem(30));
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(toRem(-5));
-  }
-  100% {
-    transform: translateY(0);
   }
 }
 </style>

@@ -28,6 +28,7 @@
     "sass": "^1.69.3"
   },
   "dependencies": {
-    "@formkit/auto-animate": "^0.8.0"
+    "@formkit/auto-animate": "^0.8.0",
+    "@nuxt/image": "1.0.0-rc.3"
   }
 }

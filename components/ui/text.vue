@@ -57,4 +57,9 @@ h3 {
     font-size: 1.125rem;
   }
 }
+
+label {
+  font-size: small;
+  font-weight: bold;
+}
 </style>

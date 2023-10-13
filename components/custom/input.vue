@@ -1,6 +1,6 @@
 <template>
   <UiSpace display="col" gap="sm">
-    <UiText text="some" />
+    <UiText type="label" :gray="true" :for="name" :text="label" />
     <input
       :id="name"
       :name="name"
@@ -9,7 +9,7 @@
       :maxlength="length"
       :placeholder="$t(placeholder)"
       autocomplete="on"
-      :class="{ error: warn && modelValue.length }"
+      :class="{ error: warn }"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     />
   </UiSpace>
@@ -22,10 +22,11 @@ withDefaults(
     type?: 'text' | 'email' | 'password'
     modelValue: string
     placeholder: string
+    label: string
     length?: number
     warn?: boolean
   }>(),
-  { type: 'text', length: 300 }
+  { type: 'text', length: 100 }
 )
 
 defineEmits<{ (e: 'update:modelValue', value: string): void }>()
@@ -34,6 +35,7 @@ defineEmits<{ (e: 'update:modelValue', value: string): void }>()
 <style scoped lang="scss">
 input {
   @include ui-styles;
+  font-size: 0.875rem;
   background-color: var(--fg-m);
   color: var(--txt-m);
   border: toRem(1) solid var(--br);
@@ -43,17 +45,14 @@ input {
   &:hover {
     border: toRem(1) solid var(--m);
   }
-
-  @media (max-width: $zf) {
-    font-size: 0.8rem;
-  }
 }
 
 .error {
   &,
   &:focus,
   &:hover {
-    border: toRem(1) solid red;
+    border-color: var(--red);
+    box-shadow: 0 0 var(--space-m) var(--red);
   }
 }
 </style>

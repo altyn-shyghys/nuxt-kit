@@ -2,6 +2,7 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-icon',
     '@vueuse/nuxt',
+    '@nuxt/image',
     '@nuxtjs/robots',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',
@@ -19,6 +20,9 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: ['./constants']
+  },
+  image: {
+    domains: ['images.ctfassets.net']
   },
   app: {
     head: {

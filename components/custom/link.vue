@@ -1,39 +1,72 @@
 <template>
-  <NuxtLink :to="to" :class="['link', mode]" :target="global ? '_blank' : null" :title="$t(title)">
-    <slot />
+  <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="$t(title)">
+    <UiIcon v-if="icon" :name="icon" :size="mode === 'icon' ? 'ui' : 'sm'" />
+    <UiText v-if="text" type="h4" :text="text" />
   </NuxtLink>
 </template>
 
 <script setup lang="ts">
 withDefaults(
-  defineProps<{ to: string; title: string; global?: boolean; mode?: 'alt' | 'alt-icon' }>(),
-  { mode: undefined }
+  defineProps<{
+    to: string
+    text?: string
+    icon?: string
+    title: string
+    global?: boolean
+    mode?: 'hybrid' | 'text' | 'icon'
+  }>(),
+  { text: undefined, icon: undefined, mode: 'text' }
 )
 </script>
 
 <style scoped lang="scss">
-.link {
-  display: flex;
-  align-items: center;
-  gap: var(--space-m);
-  box-sizing: border-box;
-  transition:
-    filter var(--tr),
-    width var(--tr);
-
+a {
   &,
-  svg,
+  span,
   &:visited {
     color: var(--txt-m);
   }
+}
 
-  h4 {
-    word-wrap: none;
+a.hybrid {
+  display: flex;
+  align-items: center;
+  gap: toRem(3);
+  border-bottom: toRem(1) dashed var(--m);
+  padding-bottom: toRem(3);
+
+  &,
+  span {
+    color: var(--m);
   }
 
   &:hover,
   &:focus {
     color: var(--m);
+    border-bottom-style: solid;
+  }
+}
+
+a.text {
+  text-decoration: underline dashed var(--m) toRem(1);
+  text-underline-offset: toRem(5);
+  color: var(--m);
+
+  &:hover,
+  &:focus {
+    text-decoration-style: solid;
+  }
+}
+
+a.icon {
+  span {
+    
+  }
+  &:hover,
+  &:focus {
+    span {
+      color: var(--m);
+    }
   }
 }
 
