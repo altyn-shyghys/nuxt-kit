@@ -1,5 +1,5 @@
 <template>
-  <UiBlock pos="left" block="alt-block" :class="{ 'table-wrapper': true, clear: clear }">
+  <UiSpace block="alt" :class="{ 'table-wrapper': true, clear: clear }">
     <UiBlock layout="row" pos="between" :class="{ 'table-options': true, 'table-hide': clear }">
       <div :class="{ 'zf-hide': slots.options }">
         <UiBlock layout="row" gap="sm">
@@ -41,12 +41,18 @@
         </div>
       </Transition>
     </UiBlock>
-  </UiBlock>
+  </UiSpace>
 </template>
 
 <script setup lang="ts">
 withDefaults(
-  defineProps<{ title: string; error?: any; loading?: boolean; lenght: number; clear?: boolean }>(),
+  defineProps<{
+    title: string
+    error?: any
+    loading?: boolean
+    lenght?: number
+    full?: boolean
+  }>(),
   {
     loading: undefined,
     error: undefined,
