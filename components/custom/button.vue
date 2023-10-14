@@ -8,7 +8,7 @@
     <UiSpace :center="true" style="position: relative">
       <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <UiSpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
-        <UiIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'btn'" :name="icon" />
+        <UiIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'def'" :name="icon" />
         <UiText v-if="name" type="h4" :text="name" />
       </UiSpace>
     </UiSpace>

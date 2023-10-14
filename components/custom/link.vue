@@ -1,19 +1,18 @@
 <template>
   <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="$t(title)">
-    <UiIcon v-if="icon" :name="icon" :size="mode === 'icon' ? 'ui' : 'sm'" />
-    <UiText v-if="text" type="h4" :text="text" />
+    <UiIcon v-if="icon" :name="icon" :size="props.mode === 'hybrid' ? 'def' : 'ui'" />
+    <UiText v-if="title && mode !== 'icon'" type="h4" :text="title" />
   </NuxtLink>
 </template>
 
 <script setup lang="ts">
-withDefaults(
+const props = withDefaults(
   defineProps<{
     to: string
-    text?: string
     icon?: string
     title: string
     global?: boolean
-    mode?: 'hybrid' | 'text' | 'icon'
+    mode?: 'hybrid' | 'text' | 'icon' | 'page'
   }>(),
   { text: undefined, icon: undefined, mode: 'text' }
 )
@@ -24,33 +23,32 @@ a {
   &,
   span,
   &:visited {
+    transition: filter var(--tr);
     color: var(--txt-m);
   }
 }
 
 a.hybrid {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: toRem(3);
-  border-bottom: toRem(1) dashed var(--m);
+  border-bottom: toRem(1.2) dashed var(--txt-m);
   padding-bottom: toRem(3);
 
   &,
   span {
-    color: var(--m);
+    color: var(--txt-m);
   }
 
   &:hover,
   &:focus {
-    color: var(--m);
     border-bottom-style: solid;
   }
 }
 
 a.text {
-  text-decoration: underline dashed var(--m) toRem(1);
+  text-decoration: underline dashed var(--txt-m) toRem(1);
   text-underline-offset: toRem(5);
-  color: var(--m);
 
   &:hover,
   &:focus {
@@ -59,52 +57,43 @@ a.text {
 }
 
 a.icon {
-  span {
-    
-  }
   &:hover,
   &:focus {
+    filter: drop-shadow(0 0 toRem(5) var(--m));
+  }
+}
+
+a.page {
+  display: flex;
+  align-items: center;
+  gap: toRem(5);
+
+  &.router-link-active {
+    &,
     span {
       color: var(--m);
     }
-  }
-}
-
-@mixin link-styles {
-  @include ui-styles;
-
-  &:hover {
-    color: var(--txt-m);
-    border: toRem(3) solid var(--fg-m);
-    background-color: var(--fg-m);
-  }
-
-  &:focus {
-    border: toRem(3) solid var(--m);
-  }
-
-  &.router-link-active {
-    background-color: var(--m);
-    border: toRem(3) solid var(--m);
-    color: var(--fg-m);
 
     &:hover,
     &:focus {
-      background-color: var(--m-tp);
+      text-decoration: underline solid var(--m) toRem(1);
     }
   }
-}
 
-.alt {
-  @include link-styles;
-  border: toRem(3) solid var(--bg);
-}
+  @media (max-width: $sm) {
+    flex-direction: column;
+    gap: 3px;
+    justify-content: center;
 
-.alt-icon {
-  @include link-styles;
-  padding: 0;
-  border: toRem(3) solid transparent;
-  justify-content: center;
-  width: var(--ui-size);
+    h4 {
+      font-size: 0.67rem;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: underline solid var(--txt-m) toRem(1);
+    text-underline-offset: toRem(5);
+  }
 }
 </style>

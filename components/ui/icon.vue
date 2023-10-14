@@ -1,12 +1,11 @@
 <template><IconCSS :name="name" :size="size" /></template>
 
 <script setup lang="ts">
-type Size = 'sm' | 'def' | 'btn' | 'ui' | 'cb' | 'md' | 'lg' | 'max' | 'full'
+type Size = 'sm' | 'def' | 'ui' | 'cb' | 'md' | 'lg' | 'max' | 'full'
 const props = withDefaults(defineProps<{ name: string; size?: Size }>(), { size: 'def' })
 
 const sizeConfig: Record<Size, string> = {
   sm: '1rem', // 16px
-  btn: '1.25rem', // 20px
   def: '1.5rem', // 24px
   ui: 'var(--ui-size)', // see in 'assets/base.scss'
   cb: '2.5rem', // see in 'assets/base.scss'
