@@ -16,7 +16,7 @@ const props = withDefaults(
 const mode = props.dir === 'horizontal' ? 'right' : 'bottom'
 const target = ref<HTMLDivElement>()
 const { arrivedState: scState } = useScroll(target)
-const styles = `overflow: scroll; max-height: ${props.height ? props.height + 'dvh' : 'auto'}`
+const styles = `overflow: scroll; max-height: ${props.height ? props.height : 'auto'}`
 
 const classHandler = (st: boolean, md: boolean, ed: boolean) => {
   if (st) target.value!.className = 'st'

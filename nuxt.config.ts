@@ -21,8 +21,11 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['./constants']
   },
-  image: {
-    domains: ['images.ctfassets.net']
+  // image: {
+  //   domains: ['images.ctfassets.net']
+  // },
+  i18n: {
+    vueI18n: './locales/i18n.config.ts'
   },
   app: {
     head: {

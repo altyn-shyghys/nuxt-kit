@@ -1,18 +1,18 @@
 <template>
-  <UiSpace block="alt" :class="{ 'table-wrapper': true, clear: clear }">
-    <UiBlock layout="row" pos="between" :class="{ 'table-options': true, 'table-hide': clear }">
+  <UiSpace block="alt" display="col" style="padding-bottom: 0" :class="{ max: max }">
+    <UiSpace dispaly="row" pos="between" :class="{ options: true, hide: max }">
       <div :class="{ 'zf-hide': slots.options }">
-        <UiBlock layout="row" gap="sm">
+        <UiSpace dispaly="row" gap="sm">
           <UiIcon name="tabler:table-filled" size="md" />
           <div :class="{ hide: slots.options }">
-            <UiBlock layout="col" gap="min" class="hide">
+            <UiSpace dispaly="col" gap="min" class="hide">
               <UiText type="h4" :text="title" />
               <UiText text="app.tableName" />
-            </UiBlock>
+            </UiSpace>
           </div>
-        </UiBlock>
+        </UiSpace>
       </div>
-      <UiBlock layout="row" class="options">
+      <UiSpace dispaly="row" class="options">
         <slot name="options" />
         <UiButton
           v-if="loading !== undefined"
@@ -22,25 +22,19 @@
         >
           <UiIcon name="pepicons-pop:reload" />
         </UiButton>
-      </UiBlock>
-    </UiBlock>
-    <UiBlock :center="true" :full="true">
+      </UiSpace>
+    </UiSpace>
+    <UiSpace :center="true" :full="true">
       <Transition name="main" mode="out-in">
-        <AppScreen v-if="loading" class="margin" />
-        <AppScreen v-else-if="error" mode="error" class="margin" />
-        <AppScreen v-else-if="!lenght" mode="empty" class="margin" />
-        <div v-else class="table-container">
-          <UiScroll direction="horizontal" :class="['table-scroll', clear ? 'no-h' : 'h']">
+        <div class="table-container">
+          <UiScroll :height="max ? '100%' : '55dvh'" :class="['table-scroll']">
             <table class="table">
-              <tr>
-                <td :class="{ 'scroll-helper': true, 'table-hide': clear }" colspan="3"></td>
-              </tr>
               <slot name="table" />
             </table>
           </UiScroll>
         </div>
       </Transition>
-    </UiBlock>
+    </UiSpace>
   </UiSpace>
 </template>
 
@@ -51,7 +45,7 @@ withDefaults(
     error?: any
     loading?: boolean
     lenght?: number
-    full?: boolean
+    max?: boolean
   }>(),
   {
     loading: undefined,
@@ -64,12 +58,8 @@ defineEmits<{ (e: 'reload'): void }>()
 const slots = defineSlots<{ options(): any; table(): any }>()
 </script>
 
-<style lang="scss">
-.table-wrapper {
-  padding: var(--space) var(--space) 0 var(--space) !important;
-}
-
-.clear {
+<style scoped lang="scss">
+.max {
   padding: 0 !important;
   border: 0 !important;
 }
@@ -78,27 +68,13 @@ const slots = defineSlots<{ options(): any; table(): any }>()
   padding-bottom: var(--space);
 }
 
-.table-hide {
+.hide {
   display: none !important;
 }
 
 .table-container {
   width: 100%;
   max-width: 100%;
-}
-
-.table-scroll {
-  overflow-y: scroll;
-  height: fit-content;
-  padding-bottom: var(--space);
-}
-
-.h {
-  max-height: 55dvh;
-}
-
-.no-h {
-  max-height: 100%;
 }
 
 .table {
