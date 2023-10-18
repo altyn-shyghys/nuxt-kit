@@ -22,5 +22,6 @@ const size = sizeConfig[props.size]
 span {
   min-width: v-bind(size);
   color: var(--txt-m);
+  transition: transform var(--tr);
 }
 </style>

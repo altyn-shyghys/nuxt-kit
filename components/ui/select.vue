@@ -1,57 +1,50 @@
 <template>
-  <div ref="select" :class="['select', width]">
-    <UiButton
-      ref="selectTarget"
-      :title="modelValue.name"
-      :loading="loading"
-      :data-select="modelValue.id"
-      class="selected"
-      @trigger="isActive = !isActive"
+  <div ref="selectTarget" :style="`width: ${width}; position: relative`">
+    <button
+      :disabled="loading"
+      :class="{ disabled: loading }"
+      :title="$t(modelValue.name)"
+      class="button"
+      @click.prevent="active = !active"
     >
-      <UiBlock layout="row" gap="sm">
-        <UiIcon v-if="modelValue.icon" :name="modelValue.icon" />
-        <UiText type="h4" :text="optionLenghtHandler(modelValue.name) || ''" />
-      </UiBlock>
-      <div :class="{ rotate: isActive }">
-        <UiIcon name="ep:arrow-down-bold" size="min" />
-      </div>
-    </UiButton>
+      <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
+      <UiSpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
+        <UiSpace display="row" gap="sm">
+          <UiIcon v-if="modelValue.icon" size="def" :name="modelValue.icon" />
+          <UiText type="h4" :text="modelValue.name" />
+        </UiSpace>
+        <UiIcon name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
+      </UiSpace>
+    </button>
     <Transition name="select">
-      <UiBlock
-        v-if="isActive && options.length"
-        layout="col"
+      <UiSpace
+        v-if="active && options.length"
+        display="col"
         class="options"
         @click="optionsHandler"
       >
-        <UiInput
+        <!-- <UiInput
           v-if="options.length > 10"
           v-model="search"
           name="search"
           placeholder="app.search"
-        />
+        /> -->
         <div v-if="options.length > 10" class="padding"><div class="hr"></div></div>
-        <UiBlock
-          v-if="!defOptions.length"
-          layout="col"
-          block="alt-block"
-          class="empty"
-          :center="true"
-          :full="true"
-        >
-          <UiIcon size="md" name="tabler:table-alias" />
-          <UiText text="app.emptyTable" />
-        </UiBlock>
-        <UiButton
+        <button
           v-for="(option, idx) in defOptions"
           :key="idx"
-          class="option"
-          :data-idx="option.id"
+          class="button"
+          style="justify-content: flex-start"
+          :data-option="option.id"
           :title="option.name"
+          @click.prevent="active = !active"
         >
-          <UiIcon v-if="option.icon" :name="option.icon" />
-          <UiText type="h4" :text="optionLenghtHandler(option.name)" />
-        </UiButton>
-      </UiBlock>
+          <UiSpace display="row" gap="sm">
+            <UiIcon v-if="option.icon" size="def" :name="option.icon" />
+            <UiText type="h4" :text="optionLenghtHandler(option.name)" />
+          </UiSpace>
+        </button>
+      </UiSpace>
     </Transition>
   </div>
 </template>
@@ -63,16 +56,15 @@ const props = withDefaults(
     options: SelectOption[]
     loading?: boolean
     stringId?: boolean
-    width?: 'sm' | 'md' | 'lg' | 'full'
+    width?: string
     sub?: boolean
   }>(),
-  { width: 'full' }
+  { width: '100%' }
 )
 
 const emit = defineEmits<{ (evt: 'update:modelValue', value: SelectOption): void }>()
 
 const defOptions = ref<SelectOption[]>(props.options)
-
 const search = ref<string>('')
 
 watch(search, (newV) => {
@@ -102,13 +94,15 @@ watch(
   }
 )
 
-const optionLenghtHandler = (option: string) => {
-  return option.length >= 25 && props.sub ? option.substring(0, 25) + '...' : option
-}
+const lenghtHandler = (option: string) =>
+  option.length >= 25 && props.sub ? option.substring(0, 25) + '...' : option
 
-const isActive = ref<boolean>(false)
+const active = ref<boolean>(false)
+const rotateHandler = computed(() => (active.value ? 'transform: rotate(180deg);' : null))
+
+const target = '[data-option]'
 const optionsHandler = (evt: MouseEvent) => {
-  if ((evt.target as HTMLElement).closest('.option')) {
+  if ((evt.target as HTMLElement).closest(target)) {
     if (props.stringId) {
       const idx = (evt.target as HTMLButtonElement).dataset.idx!
       props.options.forEach((option) => {
@@ -120,15 +114,15 @@ const optionsHandler = (evt: MouseEvent) => {
       const idx = +(evt.target as HTMLButtonElement).dataset.idx!
       emit('update:modelValue', props.options[idx])
     }
-    isActive.value = false
+    active.value = false
     search.value = ''
   }
 }
 
 const selectTarget = ref<HTMLDivElement | null>(null)
 onClickOutside(selectTarget, (evt) => {
-  if (!(evt.target as HTMLElement).closest('.options')) {
-    isActive.value = false
+  if (!(evt.target as HTMLElement).closest(target)) {
+    active.value = false
     search.value = ''
   }
 })
@@ -140,53 +134,29 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-.select {
-  position: relative;
+.button {
+  @include ui-styles;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--btn-bg-m);
+
+  &,
+  span {
+    color: var(--fg-m);
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 var(--space-m) var(--btn-bg-m);
+  }
 
   h4 {
-    font-size: toRem(14);
-
-    @media (max-width: $zf) {
-      font-size: 0.7rem;
+    @media (max-width: $mob) {
+      font-size: 0.875rem;
     }
-  }
-
-  &.sm {
-    width: toRem(100);
-  }
-
-  &.md {
-    width: toRem(250);
-  }
-
-  &.lg {
-    width: toRem(300);
-  }
-
-  &.full {
-    width: 100%;
-  }
-}
-
-.search {
-  padding: var(--space);
-  label {
-    color: var(--fg-m) !important;
-  }
-}
-
-.data-wp {
-  padding: 0 var(--space) var(--space) var(--space);
-}
-
-.selected {
-  justify-content: space-between;
-  width: 100%;
-  z-index: 5;
-  text-align: left;
-
-  svg {
-    transition: transform 0.5s ease, fill 0.5s ease, color 0.5s ease;
   }
 }
 
@@ -228,12 +198,6 @@ onMounted(() => {
   }
 }
 
-.rotate {
-  svg {
-    transform: rotate(180deg);
-  }
-}
-
 .select {
   &-enter-active {
     animation: bounce var(--tr);
@@ -257,29 +221,5 @@ onMounted(() => {
   100% {
     transform: translateY(0);
   }
-}
-
-.empty {
-  background-color: var(--txt-m);
-  border: 0;
-
-  small,
-  svg {
-    color: var(--fg-m) !important;
-  }
-
-  svg {
-    fill: var(--fg-m) !important;
-  }
-}
-
-.padding {
-  padding: 0 var(--space);
-}
-
-.hr {
-  min-height: toRem(1);
-  width: 100%;
-  background-color: var(--br);
 }
 </style>
