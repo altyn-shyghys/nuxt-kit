@@ -14,21 +14,19 @@
             <UiIcon v-if="icon" size="def" :name="icon" />
             <UiText type="h4" :text="lenghtHandler(modelValue)" />
           </UiSpace>
-          <UiSpace mode="center" class="arrow">
-            <UiIcon name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
-          </UiSpace>
+          <UiIcon id="select-arrow" name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
         </UiSpace>
       </UiSpace>
     </button>
     <UiSpace v-if="active" display="col" gap="bit" class="options" @click="optionsHandler">
-      <UiSpace display="row" gap="bit" class="search">
+      <UiSpace v-if="options.length >= 10" display="row" gap="bit" class="search">
         <UiIcon name="gg:search" />
-        <input type="text" placeholder="Search" />
+        <input id="option-search" v-model="search" type="text" placeholder="Search" />
       </UiSpace>
-      <UiScroll height="20dvh">
-        <UiSpace display="col" gap="bit">
+      <UiScroll height="25dvh">
+        <UiSpace v-auto-animate display="col" gap="bit">
           <button
-            v-for="(opt, idx) in options"
+            v-for="(opt, idx) in printOptions"
             :key="idx"
             class="option"
             :data-opt="idx"
@@ -36,6 +34,10 @@
           >
             <UiText type="h4" :text="lenghtHandler(opt)" />
           </button>
+          <UiSpace v-if="!printOptions.length" display="col" gap="sm" mode="center" class="empty">
+            <UiIcon :name="ICON_EMPTY" size="md" />
+            <UiText type="h5" text="Some text" />
+          </UiSpace>
         </UiSpace>
       </UiScroll>
     </UiSpace>
@@ -62,6 +64,33 @@ const selected = ref<HTMLDivElement>()
 const optionTarget = '[data-opt]'
 const active = ref<boolean>(false)
 const rotateHandler = computed(() => (active.value ? 'transform: rotate(180deg);' : null))
+
+const printOptions = ref<string[]>([])
+const search = ref<string>('')
+
+watch(active, (newV) => {
+  if (newV) {
+    search.value = ''
+    printOptions.value = props.options
+  }
+})
+
+watch(search, (newV) => {
+  if (newV.length) {
+    printOptions.value = props.options.filter((opt) => opt.toLowerCase().match(newV.toLowerCase()))
+  } else {
+    printOptions.value = props.options
+  }
+})
+
+watch(
+  () => props.loading,
+  (newV) => {
+    if (!newV) {
+      printOptions.value = props.options
+    }
+  }
+)
 
 const lenghtHandler = (opt: string) =>
   opt.length >= 25 && props.sub ? opt.substring(0, 25) + '...' : opt
@@ -111,7 +140,7 @@ onClickOutside(selectTarget, (evt) => {
   }
 
   &:active {
-    .arrow span {
+    #select-arrow {
       transform: scale(1.3);
     }
   }
@@ -120,6 +149,7 @@ onClickOutside(selectTarget, (evt) => {
 .option {
   @include option-styles;
   border: toRem(2) solid var(--btn-bg);
+  min-height: var(--ui-size);
 
   &:active {
     transform: scale(0.95);
@@ -144,6 +174,7 @@ onClickOutside(selectTarget, (evt) => {
 .search {
   padding: 0 var(--space);
   height: var(--ui-size);
+  min-height: var(--ui-size);
 
   span {
     color: var(--fg-m);
@@ -155,19 +186,16 @@ input {
   width: 100%;
   background-color: transparent;
   color: var(--fg-m);
-  // font-size: 1rem;
   padding: 0 var(--space-m);
   border-radius: var(--br-rad);
 }
 
-.arrow {
-  position: relative;
-  width: var(--ui-size);
-  min-width: var(--ui-size);
-  height: var(--ui-size);
+.empty {
+  margin-bottom: var(--space);
 
-  span {
-    position: absolute;
+  span,
+  h5 {
+    color: var(--fg-m);
   }
 }
 </style>

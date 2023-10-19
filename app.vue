@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const flag = ref(false)
-const someArr = ['Some', 'Hi', 'Gay', 'GI']
+const someArr = ['Some', 'Hi', 'Gay', 'GI', 'sdfsdfs', 'Gigi', 'sdfss', 'Hell', 'Ahellow', 'Aboba']
 const txt = ref('')
 
 const change = () => {
