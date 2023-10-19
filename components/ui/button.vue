@@ -1,7 +1,7 @@
 <template>
   <button
     :disabled="disabled || loading"
-    :class="[mode, disabled || loading ? 'disabled' : '', active ? 'active' : '']"
+    :class="[mode, state]"
     :title="$t(title)"
     @click.prevent="$emit('trigger')"
   >
@@ -21,12 +21,12 @@ withDefaults(
     title: string
     mode?: 'button' | 'icon'
     disabled?: boolean
-    active?: boolean
+    state?: 'active'
     loading?: boolean
     icon?: string
     name?: string
   }>(),
-  { mode: 'button', icon: undefined, name: undefined }
+  { mode: 'button', icon: undefined, state: undefined, name: undefined }
 )
 
 defineEmits<{ (e: 'trigger'): void }>()
@@ -71,16 +71,6 @@ defineEmits<{ (e: 'trigger'): void }>()
   }
 }
 
-.disabled {
-  filter: brightness(0.5);
-  justify-content: center !important;
-
-  &,
-  span {
-    cursor: not-allowed;
-  }
-}
-
 .active {
   background-color: var(--m);
   border: toRem(2) solid var(--m);
@@ -94,5 +84,9 @@ defineEmits<{ (e: 'trigger'): void }>()
   &:focus {
     box-shadow: 0 0 var(--space-m) var(--m);
   }
+}
+
+button:active {
+  transform: scale(0.95);
 }
 </style>

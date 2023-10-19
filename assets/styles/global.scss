@@ -13,6 +13,15 @@ body {
   color: var(--txt-m);
 }
 
+button:disabled {
+  filter: brightness(0.5);
+
+  &,
+  span {
+    cursor: not-allowed !important;
+  }
+}
+
 /* Set Color when Selecting Text */
 ::selection {
   background-color: var(--m-h);

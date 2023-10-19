@@ -20,6 +20,7 @@ const Text = () =>
 * {
   line-height: 1;
   word-wrap: break-word;
+  will-change: transform;
 }
 
 h1 {

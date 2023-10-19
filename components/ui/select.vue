@@ -3,7 +3,6 @@
     <button
       ref="selected"
       :disabled="loading"
-      :class="{ disabled: loading }"
       :title="modelValue"
       class="selected"
       @click="active = !active"
@@ -15,7 +14,9 @@
             <UiIcon v-if="icon" size="def" :name="icon" />
             <UiText type="h4" :text="lenghtHandler(modelValue)" />
           </UiSpace>
-          <UiIcon name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
+          <UiSpace mode="center" class="arrow">
+            <UiIcon name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
+          </UiSpace>
         </UiSpace>
       </UiSpace>
     </button>
@@ -108,11 +109,21 @@ onClickOutside(selectTarget, (evt) => {
   &:focus {
     box-shadow: 0 0 var(--space-m) var(--btn-bg);
   }
+
+  &:active {
+    .arrow span {
+      transform: scale(1.3);
+    }
+  }
 }
 
 .option {
   @include option-styles;
   border: toRem(2) solid var(--btn-bg);
+
+  &:active {
+    transform: scale(0.95);
+  }
 
   &:hover,
   &:focus {
@@ -149,13 +160,14 @@ input {
   border-radius: var(--br-rad);
 }
 
-.disabled {
-  filter: brightness(0.5);
-  justify-content: center !important;
+.arrow {
+  position: relative;
+  width: var(--ui-size);
+  min-width: var(--ui-size);
+  height: var(--ui-size);
 
-  &,
   span {
-    cursor: not-allowed;
+    position: absolute;
   }
 }
 </style>
