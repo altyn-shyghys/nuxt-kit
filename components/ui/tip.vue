@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import TipWave from '@/assets/graphics/wave.vue'
-withDefaults(defineProps<{ title: string; message: string; wave: boolean }>(), { wave: true })
+withDefaults(defineProps<{ title: string; message: string; wave?: boolean }>(), { wave: true })
 </script>
 
 <style scoped lang="scss">

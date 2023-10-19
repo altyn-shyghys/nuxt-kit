@@ -47,26 +47,28 @@
   --header-height: 4.375rem; // 70px
 }
 
-.dark-mode {
+.dark {
   --bg: var(--dark-bg);
   --tp: var(--dark-tp);
   --fg-m: var(--dark-fg-m);
   --fg-s: var(--dark-fg-s);
   --btn-bg: var(--light-bg);
   --opt-bg: var(--light-fg-m);
+  --opt-tip-bg: var(--light-bg);
   --br: var(--dark-br);
   --txt-m: var(--dark-txt-m);
   --txt-s: var(--dark-txt-s);
   --txt-b: var(--dark-txt-b);
 }
 
-.light-mode {
+.light {
   --bg: var(--light-bg);
   --tp: var(--light-tp);
   --fg-m: var(--light-fg-m);
   --fg-s: var(--light-fg-s);
   --btn-bg: var(--dark-bg);
   --opt-bg: var(--dark-fg-m);
+  --opt-tip-bg: var(--dark-bg);
   --br: var(--light-br);
   --txt-m: var(--light-txt-m);
   --txt-s: var(--light-txt-s);

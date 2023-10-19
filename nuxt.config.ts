@@ -18,6 +18,14 @@ export default defineNuxtConfig({
       }
     }
   },
+  colorMode: {
+    fallback: 'dark',
+    hid: 'theme-script',
+    globalName: '__THEME__',
+    componentName: 'ColorScheme',
+    classSuffix: '',
+    storageKey: 'theme'
+  },
   imports: {
     dirs: ['./constants']
   },

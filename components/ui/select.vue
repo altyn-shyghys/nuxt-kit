@@ -1,5 +1,5 @@
 <template>
-  <div ref="selectTarget" v-auto-animate :style="`width: ${width}; position: relative`">
+  <div ref="selectTarget" v-auto-animate :style="`width: ${width}`">
     <button
       ref="selected"
       :disabled="loading"
@@ -7,7 +7,7 @@
       class="selected"
       @click="active = !active"
     >
-      <UiSpace mode="center">
+      <UiSpace mode="center" style="position: relative">
         <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
         <UiSpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
           <UiSpace display="row" gap="sm">
@@ -18,8 +18,8 @@
         </UiSpace>
       </UiSpace>
     </button>
-    <UiSpace v-if="active" display="col" gap="bit" class="options" @click="optionsHandler">
-      <UiSpace v-if="options.length >= 10" display="row" gap="bit" class="search">
+    <UiSpace v-if="active" display="col" gap="none" class="options" @click="optionsHandler">
+      <UiSpace v-if="options.length >= 10" display="row" gap="sm" class="search">
         <UiIcon name="gg:search" />
         <input id="option-search" v-model="search" type="text" placeholder="Search" />
       </UiSpace>
@@ -36,7 +36,7 @@
           </button>
           <UiSpace v-if="!printOptions.length" display="col" gap="sm" mode="center" class="empty">
             <UiIcon :name="ICON_EMPTY" size="md" />
-            <UiText type="h5" text="Some text" />
+            <UiText text="Some text" />
           </UiSpace>
         </UiSpace>
       </UiScroll>
@@ -65,7 +65,7 @@ const optionTarget = '[data-opt]'
 const active = ref<boolean>(false)
 const rotateHandler = computed(() => (active.value ? 'transform: rotate(180deg);' : null))
 
-const printOptions = ref<string[]>([])
+const printOptions = ref<string[]>(props.options)
 const search = ref<string>('')
 
 watch(active, (newV) => {
@@ -151,6 +151,10 @@ onClickOutside(selectTarget, (evt) => {
   border: toRem(2) solid var(--btn-bg);
   min-height: var(--ui-size);
 
+  h4 {
+    font-weight: normal;
+  }
+
   &:active {
     transform: scale(0.95);
   }
@@ -172,7 +176,7 @@ onClickOutside(selectTarget, (evt) => {
 }
 
 .search {
-  padding: 0 var(--space);
+  padding: var(--space-m) var(--space);
   height: var(--ui-size);
   min-height: var(--ui-size);
 
@@ -186,15 +190,15 @@ input {
   width: 100%;
   background-color: transparent;
   color: var(--fg-m);
-  padding: 0 var(--space-m);
-  border-radius: var(--br-rad);
 }
 
 .empty {
-  margin-bottom: var(--space);
+  background-color: var(--opt-tip-bg);
+  padding: var(--space);
+  border-radius: var(--br-rad);
 
   span,
-  h5 {
+  small {
     color: var(--fg-m);
   }
 }

@@ -1,7 +1,7 @@
 <template><Block /></template>
 
 <script setup lang="ts">
-type Gap = 'min' | 'bit' | 'sm' | 'base' | 'lg'
+type Gap = 'none' | 'bit' | 'sm' | 'base' | 'lg'
 
 const props = withDefaults(
   defineProps<{
@@ -28,7 +28,7 @@ const props = withDefaults(
 const slots = defineSlots<{ default(): any }>()
 
 const gapConfig: Record<Gap, string> = {
-  min: '0',
+  none: '0',
   bit: '0.125rem', // 2px
   sm: 'var(--space-m)', // see in 'assets/base.scss'
   base: 'var(--space)', // see in 'assets/base.scss'
@@ -40,8 +40,9 @@ const Block = () =>
     props.type,
     {
       class: [props.display, props.pos, props.block, props.layout, props.mode],
-      style: `${props.display ? `gap: ${gapConfig[props.gap]}` : ''}`
-      // style: `gap: ${props.display ? gapConfig[props.gap] : ''}; width: ${props.full ? '100%' : ''}`
+      style: `${props.display ? `gap: ${gapConfig[props.gap]}` : ''}; width: ${
+        props.full ? '100%' : ''
+      }`
     },
     slots.default()
   )

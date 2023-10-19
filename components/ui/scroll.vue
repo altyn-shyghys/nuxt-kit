@@ -1,38 +1,49 @@
 <template>
-  <div ref="target" :class="{ st: fallback }" :style="styles"><slot /></div>
+  <div ref="target" :style="styles"><slot /></div>
 </template>
 
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    dir?: 'vertical' | 'horizontal'
+    dir?: 'vert' | 'horiz'
     trigger?: number
     height?: string
     fallback?: boolean
   }>(),
-  { dir: 'vertical', trigger: undefined, height: undefined, fallback: true }
+  { dir: 'vert', trigger: undefined, height: undefined, fallback: true }
 )
 
-const mode = props.dir === 'horizontal' ? 'right' : 'bottom'
 const target = ref<HTMLDivElement>()
 const { arrivedState: scState } = useScroll(target)
-const styles = `overflow: scroll; max-height: ${props.height ? props.height : 'auto'}`
 
-const classHandler = (st: boolean, md: boolean, ed: boolean) => {
-  if (st) target.value!.className = 'st'
-  else if (md) target.value!.className = 'md'
-  else if (ed) target.value!.className = 'ed'
+const styles = ref('overflow: scroll;')
+
+const styleHandler = (st: boolean, md: boolean, ed: boolean) => {
+  const getMask = () => {
+    const nonTp = 'rgba(0, 0, 0, 1)'
+    const tp = 'rgba(0, 0, 0, 0)'
+
+    if (st) return `${nonTp} 0%, ${nonTp} 90%, ${tp} 100%`
+    else if (md) return `${tp} 0%, ${nonTp} 10%, ${nonTp} 90%, ${tp} 100%`
+    else if (ed) return `${tp}, ${nonTp} 10%, ${nonTp} 100%`
+  }
+
+  styles.value = `
+    overflow: scroll;
+    max-height: ${props.height ? props.height : 'auto'}; 
+    -webkit-mask: linear-gradient(to ${props.dir === 'horiz' ? 'right' : 'bottom'}, ${getMask()})
+  `
 }
 
 const maskHandler = () => {
-  if (props.dir === 'horizontal') {
+  if (props.dir === 'horiz') {
     target.value!.offsetWidth >= target.value!.scrollWidth
-      ? (target.value!.className = '')
-      : classHandler(scState.left, !scState.left && !scState.right, scState.right)
+      ? (styles.value = '')
+      : styleHandler(scState.left, !scState.left && !scState.right, scState.right)
   } else {
     target.value!.offsetHeight >= target.value!.scrollHeight
-      ? (target.value!.className = '')
-      : classHandler(scState.top, !scState.top && !scState.bottom, scState.bottom)
+      ? (styles.value = '')
+      : styleHandler(scState.top, !scState.top && !scState.bottom, scState.bottom)
   }
 }
 
@@ -48,31 +59,5 @@ useResizeObserver(target, () => maskHandler())
 </script>
 
 <style scoped lang="scss">
-.st {
-  -webkit-mask: linear-gradient(
-    to v-bind(mode),
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 85%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-.md {
-  -webkit-mask: linear-gradient(
-    to v-bind(mode),
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 15%,
-    rgba(0, 0, 0, 1) 85%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-.ed {
-  -webkit-mask: linear-gradient(
-    to v-bind(mode),
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 15%,
-    rgba(0, 0, 0, 1) 100%
-  );
-}
+// - - - //
 </style>
