@@ -1,4 +1,4 @@
-<template><IconCSS :name="name" :size="size" /></template>
+<template><IconCSS :name="name" :size="size" :style="`min-width: ${size}`" /></template>
 
 <script setup lang="ts">
 type Size = 'sm' | 'def' | 'ui' | 'cb' | 'md' | 'lg' | 'max' | 'full'
@@ -20,7 +20,6 @@ const size = sizeConfig[props.size]
 
 <style scoped lang="scss">
 span {
-  min-width: v-bind(size);
   color: var(--txt-m);
   transition: transform var(--tr);
 }

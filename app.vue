@@ -1,26 +1,30 @@
 <script setup lang="ts">
 const flag = ref(false)
-const someArr: SelectOption[] = [
-  { id: '1', name: 'Some', icon: ICON_INFO },
-  { id: '2', name: 'sdfsdfsdfsd' },
-  { id: '3', name: 'Привет' }
-]
+const someArr = ['Some', 'Hi', 'Gay', 'GI']
+const txt = ref('')
 
 const change = () => {
   flag.value = !flag.value
   setTimeout(() => (flag.value = !flag.value), 3000)
 }
 
-const some: SelectOption = someArr[0]
+const some = ref(someArr[0])
 </script>
 
 <template>
   <UiSpace layout="container">
     <UiSpace layout="wrapper">
       <UiSpace display="col" pos="left" :full="true">
-        <UiButton title="Some" name="Change" @trigger="change" />
+        <UiButton title="Some" name="Some" :loading="flag" :icon="ICON_INFO" @trigger="change" />
         <!-- Some -->
-        <UiSelect v-model="some" :options="someArr" width="10rem" :loading="flag" />
+        <UiSelect
+          v-model="some"
+          :options="someArr"
+          :icon="ICON_INFO"
+          width="10rem"
+          :loading="flag"
+        />
+        <UiInput v-model="txt" name="Bob" label="Some" placeholder="Some" />
       </UiSpace>
     </UiSpace>
   </UiSpace>

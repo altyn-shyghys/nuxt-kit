@@ -5,7 +5,7 @@
     :title="$t(title)"
     @click.prevent="$emit('trigger')"
   >
-    <UiSpace :center="true" style="position: relative">
+    <UiSpace mode="center" style="position: relative">
       <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <UiSpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
         <UiIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'def'" :name="icon" />
@@ -36,7 +36,8 @@ defineEmits<{ (e: 'trigger'): void }>()
 .button {
   @include ui-styles;
   cursor: pointer;
-  background-color: var(--btn-bg-m);
+  background-color: var(--btn-bg);
+  font-size: 0.875rem;
 
   &,
   span {
@@ -45,13 +46,7 @@ defineEmits<{ (e: 'trigger'): void }>()
 
   &:hover,
   &:focus {
-    box-shadow: 0 0 var(--space-m) var(--btn-bg-m);
-  }
-
-  h4 {
-    @media (max-width: $mob) {
-      font-size: 0.875rem;
-    }
+    box-shadow: 0 0 var(--space-m) var(--btn-bg);
   }
 }
 

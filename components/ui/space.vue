@@ -11,7 +11,7 @@ const props = withDefaults(
     pos?: 'between' | 'left'
     block?: 'def' | 'alt'
     layout?: 'container' | 'wrapper' | 'screen'
-    center?: boolean
+    mode?: 'center'
     full?: boolean
   }>(),
   {
@@ -20,7 +20,8 @@ const props = withDefaults(
     gap: 'base',
     pos: undefined,
     block: undefined,
-    layout: undefined
+    layout: undefined,
+    mode: undefined
   }
 )
 
@@ -34,21 +35,13 @@ const gapConfig: Record<Gap, string> = {
   lg: 'var(--space-l)' // see in 'assets/base.scss'
 }
 
-const gap = gapConfig[props.gap]
-
 const Block = () =>
   h(
     props.type,
     {
-      class: [
-        props.display,
-        props.layout === undefined ? 'gap' : '',
-        props.pos,
-        props.block,
-        props.layout,
-        props.center ? 'center' : null,
-        props.full ? 'full' : null
-      ]
+      class: [props.display, props.pos, props.block, props.layout, props.mode],
+      style: `${props.display ? `gap: ${gapConfig[props.gap]}` : ''}`
+      // style: `gap: ${props.display ? gapConfig[props.gap] : ''}; width: ${props.full ? '100%' : ''}`
     },
     slots.default()
   )
@@ -71,12 +64,6 @@ const Block = () =>
 .grid {
   display: grid;
   gap: var(--space);
-}
-
-/* Gap */
-
-.gap {
-  gap: v-bind(gap);
 }
 
 /* Pos */
@@ -164,11 +151,5 @@ const Block = () =>
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-/* Full */
-
-.full {
-  width: 100%;
 }
 </style>
