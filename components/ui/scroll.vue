@@ -1,48 +1,48 @@
 <template>
-  <div ref="target" :style="styles"><slot /></div>
+  <div ref="target" :style="defStyles + styles"><slot /></div>
 </template>
 
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    dir?: 'vert' | 'horiz'
+    dir?: 'right' | 'bottom'
     trigger?: number
     height?: string
     fallback?: boolean
   }>(),
-  { dir: 'vert', trigger: undefined, height: undefined, fallback: true }
+  { dir: 'bottom', trigger: undefined, height: undefined, fallback: true }
 )
 
 const target = ref<HTMLDivElement>()
 const { arrivedState: scState } = useScroll(target)
+const defStyles = `overflow: scroll; max-height: ${props.height ? props.height : 'auto'};`
 
-const styles = ref('overflow: scroll;')
+const maskConf = {
+  st: 'rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%',
+  md: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%',
+  ed: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 100%'
+}
+
+const styles = ref(`-webkit-mask: linear-gradient(to ${props.dir}, ${maskConf.st});`)
 
 const styleHandler = (st: boolean, md: boolean, ed: boolean) => {
   const getMask = () => {
-    const nonTp = 'rgba(0, 0, 0, 1)'
-    const tp = 'rgba(0, 0, 0, 0)'
-
-    if (st) return `${nonTp} 0%, ${nonTp} 90%, ${tp} 100%`
-    else if (md) return `${tp} 0%, ${nonTp} 10%, ${nonTp} 90%, ${tp} 100%`
-    else if (ed) return `${tp}, ${nonTp} 10%, ${nonTp} 100%`
+    if (st) return maskConf.st
+    else if (md) return maskConf.md
+    else if (ed) return maskConf.ed
   }
 
-  styles.value = `
-    overflow: scroll;
-    max-height: ${props.height ? props.height : 'auto'}; 
-    -webkit-mask: linear-gradient(to ${props.dir === 'horiz' ? 'right' : 'bottom'}, ${getMask()})
-  `
+  styles.value = `-webkit-mask: linear-gradient(to ${props.dir}, ${getMask()});`
 }
 
 const maskHandler = () => {
-  if (props.dir === 'horiz') {
+  if (props.dir === 'right') {
     target.value!.offsetWidth >= target.value!.scrollWidth
-      ? (styles.value = '')
+      ? (styles.value = '-webkit-mask: none;')
       : styleHandler(scState.left, !scState.left && !scState.right, scState.right)
   } else {
     target.value!.offsetHeight >= target.value!.scrollHeight
-      ? (styles.value = '')
+      ? (styles.value = '-webkit-mask: none;')
       : styleHandler(scState.top, !scState.top && !scState.bottom, scState.bottom)
   }
 }
@@ -54,10 +54,11 @@ if (props.trigger !== undefined) {
   )
 }
 
-watch(scState, () => maskHandler())
+watch(scState, () => {
+  props.dir === 'right'
+    ? styleHandler(scState.left, !scState.left && !scState.right, scState.right)
+    : styleHandler(scState.top, !scState.top && !scState.bottom, scState.bottom)
+})
+
 useResizeObserver(target, () => maskHandler())
 </script>
-
-<style scoped lang="scss">
-// - - - //
-</style>

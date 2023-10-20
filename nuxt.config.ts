@@ -8,12 +8,15 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode'
   ],
-  css: ['~/assets/styles/main.scss'],
+  devtools: {
+    enabled: false
+  },
+  css: ['@/assets/styles/main.scss'],
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "~/assets/styles/module.scss";'
+          additionalData: '@import "@/assets/styles/module.scss";'
         }
       }
     }
