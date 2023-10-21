@@ -2,24 +2,27 @@
   <UiSpace layout="container">
     <UiSpace layout="wrapper">
       <UiSpace display="col" :full="true">
-        <UiSelect v-model="some" :icon="ICON_EMPTY" :options="somes" width="10rem" :sub="12" />
+        <UiTable title="Some">
+          <template #options>
+            <UiButton title="report.option" mode="icon" icon="tabler:table-options" />
+            <UiButton title="report.option" mode="icon" icon="mingcute:add-fill" />
+          </template>
+          <template #table>
+            <tr>
+              <th><UiText type="h4" text="Param" /></th>
+              <th><UiText type="h4" text="Status" /></th>
+              <th><UiText type="h4" text="Comment" /></th>
+            </tr>
+            <tr v-for="(note, noteIdx) in 10" :key="noteIdx">
+              <td><UiText text="note.obsParam" /></td>
+              <td>
+                <UiText text="note.status ? 'OK' : 'NOK'" />
+              </td>
+              <td><UiText text="note.comment || '—'" /></td>
+            </tr>
+          </template>
+        </UiTable>
       </UiSpace>
     </UiSpace>
   </UiSpace>
 </template>
-
-<script setup lang="ts">
-const somes = [
-  'sdfdsf',
-  'sdfdsf',
-  'wefwf',
-  'sfs sdfsdfsdf dsfsdf fds dsf dfsf',
-  'sfsfsddsfsdfsdfsdfsdfdsfdsfds',
-  'sdfsffdsf',
-  'sdfsdsdfsd',
-  'scvbcvbccvb',
-  'werwrwerwer',
-  'sfsfewwrerw'
-]
-const some = ref(somes[0])
-</script>

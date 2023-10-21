@@ -40,8 +40,8 @@ const Block = () =>
     props.type,
     {
       class: [props.display, props.pos, props.block, props.layout, props.mode],
-      style: `${props.display ? `gap: ${gapConfig[props.gap]}` : ''}; width: ${
-        props.full ? '100%' : ''
+      style: `${props.display ? `gap: ${gapConfig[props.gap]};` : ''} ${
+        props.full ? 'width: 100%;' : ''
       }`
     },
     slots.default()

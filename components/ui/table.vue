@@ -1,41 +1,59 @@
 <template>
-  <UiSpace block="alt" display="col" style="padding-bottom: 0" :class="{ max: max }">
-    <UiSpace dispaly="row" pos="between" :class="{ options: true, hide: max }">
-      <div :class="{ 'zf-hide': slots.options }">
-        <UiSpace dispaly="row" gap="sm">
-          <UiIcon name="tabler:table-filled" size="md" />
-          <div :class="{ hide: slots.options }">
-            <UiSpace dispaly="col" gap="min" class="hide">
-              <UiText type="h4" :text="title" />
-              <UiText text="app.tableName" />
-            </UiSpace>
-          </div>
+  <ClientOnly>
+    <UiSpace display="col" block="alt" style="padding-bottom: 0">
+      <UiSpace display="row" pos="between">
+        <UiSpace display="row" gap="sm">
+          <UiIcon name="tabler:table-filled" size="md" class="hide" />
+          <UiSpace display="col" gap="bit">
+            <UiText type="h4" :text="title" />
+            <UiText :gray="true" text="ui.tableName" />
+          </UiSpace>
         </UiSpace>
-      </div>
-      <UiSpace dispaly="row" class="options">
-        <slot name="options" />
-        <UiButton
-          v-if="loading !== undefined"
-          title="app.reload"
-          mode="icon"
-          @trigger="$emit('reload')"
-        >
-          <UiIcon name="pepicons-pop:reload" />
-        </UiButton>
+        <UiSpace display="row" class="options">
+          <slot name="options" />
+          <UiButton
+            v-if="loading !== undefined"
+            title="ui.reload"
+            icon="pepicons-pop:reload"
+            mode="icon"
+            @trigger="$emit('reload')"
+          />
+        </UiSpace>
       </UiSpace>
-    </UiSpace>
-    <UiSpace :center="true" :full="true">
-      <Transition name="main" mode="out-in">
+      <UiSpace :center="true" :full="true">
         <div class="table-container">
-          <UiScroll :height="max ? '100%' : '55dvh'" :class="['table-scroll']">
+          <UiScroll v-auto-animate dir="right" :class="{ 'table-scroll': true, max: print }">
             <table class="table">
               <slot name="table" />
             </table>
           </UiScroll>
         </div>
-      </Transition>
+      </UiSpace>
     </UiSpace>
-  </UiSpace>
+    <template #fallback>
+      <UiSpace mode="center" block="def" :full="true" style="box-sizing: border-box">
+        <UiSpace display="row" pos="between">
+          <UiSpace display="row" gap="sm">
+            <UiIcon name="tabler:table-filled" size="md" class="hide" />
+            <UiSpace display="col" gap="bit">
+              <UiText type="h4" :text="title" />
+              <UiText :gray="true" text="ui.tableName" />
+            </UiSpace>
+          </UiSpace>
+          <UiSpace display="row" class="options">
+            <slot name="options" />
+            <UiButton
+              v-if="loading !== undefined"
+              title="ui.reload"
+              icon="pepicons-pop:reload"
+              mode="icon"
+              @trigger="$emit('reload')"
+            />
+          </UiSpace>
+        </UiSpace>
+      </UiSpace>
+    </template>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -45,7 +63,7 @@ withDefaults(
     error?: any
     loading?: boolean
     lenght?: number
-    max?: boolean
+    print?: boolean
   }>(),
   {
     loading: undefined,
@@ -55,23 +73,10 @@ withDefaults(
 )
 
 defineEmits<{ (e: 'reload'): void }>()
-const slots = defineSlots<{ options(): any; table(): any }>()
+defineSlots<{ options(): any; table(): any }>()
 </script>
 
-<style scoped lang="scss">
-.max {
-  padding: 0 !important;
-  border: 0 !important;
-}
-
-.table-options {
-  padding-bottom: var(--space);
-}
-
-.hide {
-  display: none !important;
-}
-
+<style lang="scss">
 .table-container {
   width: 100%;
   max-width: 100%;
@@ -79,6 +84,7 @@ const slots = defineSlots<{ options(): any; table(): any }>()
 
 .table {
   width: 100%;
+  padding-bottom: var(--space);
   position: relative;
   min-width: min-content;
 
@@ -122,7 +128,7 @@ const slots = defineSlots<{ options(): any; table(): any }>()
 }
 
 .hide {
-  @media (max-width: $mob) {
+  @media (max-width: $zf) {
     display: none;
   }
 }
@@ -130,13 +136,6 @@ const slots = defineSlots<{ options(): any; table(): any }>()
 .zf-hide {
   @media (max-width: $zf) {
     display: none;
-  }
-}
-
-.options {
-  @media (max-width: $zf) {
-    width: 100%;
-    justify-content: space-between;
   }
 }
 

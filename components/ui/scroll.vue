@@ -38,11 +38,11 @@ const styleHandler = (st: boolean, md: boolean, ed: boolean) => {
 const maskHandler = () => {
   if (props.dir === 'right') {
     target.value!.offsetWidth >= target.value!.scrollWidth
-      ? (styles.value = '-webkit-mask: none;')
+      ? (styles.value = '')
       : styleHandler(scState.left, !scState.left && !scState.right, scState.right)
   } else {
     target.value!.offsetHeight >= target.value!.scrollHeight
-      ? (styles.value = '-webkit-mask: none;')
+      ? (styles.value = '')
       : styleHandler(scState.top, !scState.top && !scState.bottom, scState.bottom)
   }
 }

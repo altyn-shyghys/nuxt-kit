@@ -23,7 +23,7 @@
         <UiIcon name="gg:search" />
         <input id="option-search" v-model="search" type="text" placeholder="Search" />
       </UiSpace>
-      <UiScroll height="20dvh">
+      <UiScroll height="10rem">
         <UiSpace v-auto-animate display="col" gap="bit">
           <button
             v-for="(opt, idx) in printOptions"
