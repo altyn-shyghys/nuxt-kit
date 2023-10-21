@@ -61,6 +61,5 @@ h3 {
 
 label {
   font-size: small;
-  font-weight: bold;
 }
 </style>

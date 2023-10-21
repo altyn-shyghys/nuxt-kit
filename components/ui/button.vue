@@ -59,15 +59,11 @@ defineEmits<{ (e: 'trigger'): void }>()
 
   &:hover,
   &:focus {
-    span {
-      color: var(--m);
-    }
+    filter: drop-shadow(0 0 toRem(5) var(--m));
   }
 
   span {
-    transition:
-      filter var(--tr),
-      color var(--tr);
+    transition: filter var(--tr);
   }
 }
 

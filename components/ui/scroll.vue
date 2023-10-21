@@ -54,11 +54,6 @@ if (props.trigger !== undefined) {
   )
 }
 
-watch(scState, () => {
-  props.dir === 'right'
-    ? styleHandler(scState.left, !scState.left && !scState.right, scState.right)
-    : styleHandler(scState.top, !scState.top && !scState.bottom, scState.bottom)
-})
-
+watch(scState, () => maskHandler())
 useResizeObserver(target, () => maskHandler())
 </script>

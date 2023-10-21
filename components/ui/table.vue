@@ -22,6 +22,7 @@
       </UiSpace>
       <UiSpace :center="true" :full="true">
         <div class="table-container">
+          <div class="hider"></div>
           <UiScroll v-auto-animate dir="right" :class="{ 'table-scroll': true, max: print }">
             <table class="table">
               <slot name="table" />
@@ -30,29 +31,7 @@
         </div>
       </UiSpace>
     </UiSpace>
-    <template #fallback>
-      <UiSpace mode="center" block="def" :full="true" style="box-sizing: border-box">
-        <UiSpace display="row" pos="between">
-          <UiSpace display="row" gap="sm">
-            <UiIcon name="tabler:table-filled" size="md" class="hide" />
-            <UiSpace display="col" gap="bit">
-              <UiText type="h4" :text="title" />
-              <UiText :gray="true" text="ui.tableName" />
-            </UiSpace>
-          </UiSpace>
-          <UiSpace display="row" class="options">
-            <slot name="options" />
-            <UiButton
-              v-if="loading !== undefined"
-              title="ui.reload"
-              icon="pepicons-pop:reload"
-              mode="icon"
-              @trigger="$emit('reload')"
-            />
-          </UiSpace>
-        </UiSpace>
-      </UiSpace>
-    </template>
+    <template #fallback><UiFallback /></template>
   </ClientOnly>
 </template>
 
@@ -80,50 +59,59 @@ defineSlots<{ options(): any; table(): any }>()
 .table-container {
   width: 100%;
   max-width: 100%;
+  position: relative;
+}
+
+.hider {
+  position: absolute;
+  width: 100%;
+  height: 1.8rem;
+  z-index: 2;
+  background: linear-gradient(180deg, var(--bg) 50%, transparent 100%);
+}
+
+.table-scroll {
+  overflow-y: scroll;
+  height: fit-content;
+  padding-bottom: var(--space);
+  max-height: 50dvh;
+
+  &.max {
+    max-width: 100% !important;
+  }
 }
 
 .table {
   width: 100%;
-  padding-bottom: var(--space);
   position: relative;
+  border-collapse: separate;
   min-width: min-content;
-
-  th,
-  td {
-    text-align: left;
-    border-radius: calc(var(--br-rad) / 2);
-    transition: var(--tr-fg);
-  }
+  border-spacing: toRem(1);
+  text-align: left;
+  color: var(--txt-s);
+  border-radius: calc(var(--br-rad) / 2);
 
   th {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
-    z-index: 2;
-    padding: toRem(11) toRem(10);
-    background-color: var(--btn-bg-m);
-    color: var(--fg-m) !important;
-    transition: var(--tr-fg);
-    border: toRem(1) solid var(--btn-bg-m);
-
-    @media (max-width: $mob) {
-      font-size: 0.9rem;
-    }
+    top: toRem(0);
+    z-index: 3;
+    padding: toRem(9) var(--space-m);
+    background-color: var(--btn-bg);
+    color: var(--fg-m);
+    border-radius: calc(var(--br-rad) / 2);
   }
 
   td {
-    padding: toRem(5) toRem(10);
+    position: inherit;
+    z-index: 1;
+    border-radius: calc(var(--br-rad) / 2);
     border: toRem(1) solid var(--br);
+    padding: toRem(5.5) var(--space-m);
   }
 
   tr:hover {
     background-color: var(--fg-s);
-  }
-
-  .hr {
-    width: 100%;
-    height: toRem(1);
-    background-color: var(--tr);
   }
 }
 
@@ -131,33 +119,5 @@ defineSlots<{ options(): any; table(): any }>()
   @media (max-width: $zf) {
     display: none;
   }
-}
-
-.zf-hide {
-  @media (max-width: $zf) {
-    display: none;
-  }
-}
-
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  padding: var(--space);
-  transition: background-color var(--tr);
-  background-color: var(--bg);
-  z-index: 2;
-}
-
-.scroll-helper {
-  position: sticky;
-  width: 100%;
-  top: 0;
-  border: 0 !important;
-  background-color: var(--bg);
-}
-
-.margin {
-  margin-bottom: var(--space);
 }
 </style>
