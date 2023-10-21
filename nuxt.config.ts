@@ -36,7 +36,36 @@ export default defineNuxtConfig({
   //   domains: ['images.ctfassets.net']
   // },
   i18n: {
-    vueI18n: './locales/i18n.config.ts'
+    vueI18n: './locale/i18n.config.ts',
+    strategy: 'no_prefix',
+    defaultLocale: 'ru',
+    lazy: true,
+    experimental: {
+      jsTsFormatResource: true
+    },
+    langDir: './locale/lang',
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        file: 'en.ts'
+      },
+      {
+        code: 'kz',
+        iso: 'kz-KZ',
+        file: 'kz.ts'
+      },
+      {
+        code: 'ru',
+        iso: 'ru-RU',
+        file: 'ru.ts'
+      }
+    ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18nRed',
+      redirectOn: 'root'
+    }
   },
   app: {
     head: {

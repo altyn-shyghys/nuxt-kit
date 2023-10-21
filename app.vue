@@ -2,27 +2,24 @@
   <UiSpace layout="container">
     <UiSpace layout="wrapper">
       <UiSpace display="col" :full="true">
-        <UiScroll dir="right">
-          <UiSpace display="row">
-            <div v-for="(_, idx) in 15" :key="idx" class="card"></div>
-          </UiSpace>
-        </UiScroll>
-        <UiScroll height="30dvh">
-          <UiSpace display="col">
-            <div v-for="(_, idx) in 15" :key="idx" class="card"></div>
-          </UiSpace>
-        </UiScroll>
+        <UiSelect v-model="some" :icon="ICON_EMPTY" :options="somes" width="10rem" :sub="12" />
       </UiSpace>
     </UiSpace>
   </UiSpace>
 </template>
 
-<style lang="scss">
-.card {
-  width: toRem(100);
-  min-width: toRem(100);
-  height: toRem(100);
-  border-radius: var(--br-rad);
-  background-color: var(--txt-m);
-}
-</style>
+<script setup lang="ts">
+const somes = [
+  'sdfdsf',
+  'sdfdsf',
+  'wefwf',
+  'sfs sdfsdfsdf dsfsdf fds dsf dfsf',
+  'sfsfsddsfsdfsdfsdfsdfdsfdsfds',
+  'sdfsffdsf',
+  'sdfsdsdfsd',
+  'scvbcvbccvb',
+  'werwrwerwer',
+  'sfsfewwrerw'
+]
+const some = ref(somes[0])
+</script>

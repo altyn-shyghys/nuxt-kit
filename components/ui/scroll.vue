@@ -18,9 +18,9 @@ const { arrivedState: scState } = useScroll(target)
 const defStyles = `overflow: scroll; max-height: ${props.height ? props.height : 'auto'};`
 
 const maskConf = {
-  st: 'rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%',
-  md: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%',
-  ed: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 100%'
+  st: 'rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%',
+  md: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%',
+  ed: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 100%'
 }
 
 const styles = ref(`-webkit-mask: linear-gradient(to ${props.dir}, ${maskConf.st});`)

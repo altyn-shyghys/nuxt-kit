@@ -23,7 +23,7 @@
         <UiIcon name="gg:search" />
         <input id="option-search" v-model="search" type="text" placeholder="Search" />
       </UiSpace>
-      <UiScroll height="25dvh">
+      <UiScroll height="20dvh">
         <UiSpace v-auto-animate display="col" gap="bit">
           <button
             v-for="(opt, idx) in printOptions"
@@ -36,7 +36,7 @@
           </button>
           <UiSpace v-if="!printOptions.length" display="col" gap="sm" mode="center" class="empty">
             <UiIcon :name="ICON_EMPTY" size="md" />
-            <UiText text="Some text" />
+            <UiText text="ui.selectTip" />
           </UiSpace>
         </UiSpace>
       </UiScroll>
@@ -52,9 +52,9 @@ const props = withDefaults(
     icon?: string
     loading?: boolean
     width?: string
-    sub?: boolean
+    sub?: number
   }>(),
-  { type: 'str', icon: undefined, width: '100%' }
+  { type: 'str', icon: undefined, width: '100%', sub: undefined }
 )
 
 const emit = defineEmits<{ (evt: 'update:modelValue', value: string): void }>()
@@ -93,7 +93,7 @@ watch(
 )
 
 const lenghtHandler = (opt: string) =>
-  opt.length >= 25 && props.sub ? opt.substring(0, 25) + '...' : opt
+  opt.length >= (props.sub || 25) && props.sub ? opt.substring(0, props.sub) + '...' : opt
 
 const optionsHandler = (evt: MouseEvent) => {
   if ((evt.target as HTMLElement).closest(optionTarget)) {
