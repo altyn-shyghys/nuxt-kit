@@ -59,7 +59,8 @@ h3 {
   }
 }
 
-label {
+label,
+small {
   font-size: small;
 }
 </style>

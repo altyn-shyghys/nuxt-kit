@@ -22,6 +22,43 @@ button:disabled {
   }
 }
 
+table {
+  width: 100%;
+  position: relative;
+  border-collapse: separate;
+  min-width: min-content;
+  border-spacing: toRem(1);
+  text-align: left;
+
+  th,
+  td {
+    border-radius: calc(var(--br-rad) / 2);
+    padding: toRem(5.5) var(--space-m);
+  }
+
+  th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: toRem(0);
+    z-index: 3;
+    font-weight: bold;
+    background-color: var(--btn-bg);
+    border: toRem(1) solid var(--btn-bg);
+    color: var(--fg-m);
+  }
+
+  td {
+    color: var(--txt-s);
+    position: inherit;
+    border: toRem(1) solid var(--br);
+    z-index: 1;
+  }
+
+  tr:hover {
+    background-color: var(--fg-s);
+  }
+}
+
 /* Set Color when Selecting Text */
 ::selection {
   background-color: var(--m-h);

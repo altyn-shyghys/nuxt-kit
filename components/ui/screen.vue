@@ -1,14 +1,20 @@
 <template>
-  <UiSpace display="col" :block="custom ? undefined : 'def'" mode="center" :full="true">
-    <UiIcon :name="icon" size="md" />
-    <UiText type="h5" :text="message" />
+  <UiSpace display="col" mode="center" block="def" :full="true">
+    <template v-if="type === 'empty'">
+      <UiIcon :name="ICON_EMPTY" size="md" />
+      <UiText text="ui.selectTip" />
+    </template>
+    <template v-if="type === 'loading'">
+      <UiIcon :name="ICON_LOADING_DOTS" size="md" />
+      <UiText text="ui.selectTip" />
+    </template>
+    <template v-if="type === 'error'">
+      <UiIcon :name="ICON_EMPTY" size="md" />
+      <UiText text="ui.selectTip" />
+    </template>
   </UiSpace>
 </template>
 
 <script setup lang="ts">
-defineProps<{ icon: string; message: string; custom?: boolean }>()
+withDefaults(defineProps<{ type: 'loading' | 'empty' | 'error' }>(), { type: 'loading' })
 </script>
-
-<style scoped lang="scss">
-// --- //
-</style>

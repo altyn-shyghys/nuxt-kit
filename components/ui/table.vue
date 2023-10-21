@@ -11,20 +11,16 @@
         </UiSpace>
         <UiSpace display="row" class="options">
           <slot name="options" />
-          <UiButton
-            v-if="loading !== undefined"
-            title="ui.reload"
-            icon="pepicons-pop:reload"
-            mode="icon"
-            @trigger="$emit('reload')"
-          />
         </UiSpace>
       </UiSpace>
-      <UiSpace :center="true" :full="true">
-        <div class="table-container">
+      <UiSpace v-auto-animate :full="true">
+        <UiScreen v-if="lenght === 0" type="empty" style="margin-bottom: var(--space)" />
+        <UiScreen v-else-if="error" type="empty" style="margin-bottom: var(--space)" />
+        <UiScreen v-else-if="loading" type="empty" style="margin-bottom: var(--space)" />
+        <div v-else class="table-container">
           <div class="hider"></div>
-          <UiScroll v-auto-animate dir="right" :class="{ 'table-scroll': true, max: print }">
-            <table class="table">
+          <UiScroll dir="right" :class="{ 'table-scroll': true, max: print }">
+            <table v-auto-animate class="table">
               <slot name="table" />
             </table>
           </UiScroll>
@@ -55,7 +51,7 @@ defineEmits<{ (e: 'reload'): void }>()
 defineSlots<{ options(): any; table(): any }>()
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .table-container {
   width: 100%;
   max-width: 100%;
@@ -78,40 +74,6 @@ defineSlots<{ options(): any; table(): any }>()
 
   &.max {
     max-width: 100% !important;
-  }
-}
-
-.table {
-  width: 100%;
-  position: relative;
-  border-collapse: separate;
-  min-width: min-content;
-  border-spacing: toRem(1);
-  text-align: left;
-  color: var(--txt-s);
-  border-radius: calc(var(--br-rad) / 2);
-
-  th {
-    position: -webkit-sticky;
-    position: sticky;
-    top: toRem(0);
-    z-index: 3;
-    padding: toRem(9) var(--space-m);
-    background-color: var(--btn-bg);
-    color: var(--fg-m);
-    border-radius: calc(var(--br-rad) / 2);
-  }
-
-  td {
-    position: inherit;
-    z-index: 1;
-    border-radius: calc(var(--br-rad) / 2);
-    border: toRem(1) solid var(--br);
-    padding: toRem(5.5) var(--space-m);
-  }
-
-  tr:hover {
-    background-color: var(--fg-s);
   }
 }
 

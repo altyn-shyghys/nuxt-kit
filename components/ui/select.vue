@@ -20,7 +20,7 @@
     </button>
     <UiSpace v-if="active" display="col" gap="none" class="options" @click="optionsHandler">
       <UiSpace v-if="options.length >= 10" display="row" gap="sm" class="search">
-        <UiIcon name="gg:search" />
+        <UiIcon name="gg:search" class="search-icon" />
         <input id="option-search" v-model="search" type="text" placeholder="Search" />
       </UiSpace>
       <UiScroll height="10rem">
@@ -34,10 +34,7 @@
           >
             <UiText type="h4" :text="lenghtHandler(opt)" />
           </button>
-          <UiSpace v-if="!printOptions.length" display="col" gap="sm" mode="center" class="empty">
-            <UiIcon :name="ICON_EMPTY" size="md" />
-            <UiText text="ui.selectTip" />
-          </UiSpace>
+          <UiScreen v-if="!printOptions.length" type="empty" style="border-width: 0.063rem 0 0 0" />
         </UiSpace>
       </UiScroll>
     </UiSpace>
@@ -115,29 +112,26 @@ onClickOutside(selectTarget, (evt) => {
   cursor: pointer;
   width: 100%;
   text-align: left;
-  background-color: var(--btn-bg);
+  background-color: var(--fg-m);
   font-size: 0.875rem;
+  border: toRem(1) solid var(--br);
   word-wrap: normal;
-
-  &,
-  span {
-    color: var(--fg-m);
-  }
+  color: var(--txt-m);
 
   h4,
   div,
   span {
     pointer-events: none;
   }
+
+  &:hover,
+  &:focus {
+    border-color: var(--m);
+  }
 }
 
 .selected {
   @include option-styles;
-
-  &:hover,
-  &:focus {
-    box-shadow: 0 0 var(--space-m) var(--btn-bg);
-  }
 
   &:active {
     #select-arrow {
@@ -148,7 +142,7 @@ onClickOutside(selectTarget, (evt) => {
 
 .option {
   @include option-styles;
-  border: toRem(2) solid var(--btn-bg);
+  background-color: var(--fg-s);
   min-height: var(--ui-size);
 
   h4 {
@@ -158,11 +152,6 @@ onClickOutside(selectTarget, (evt) => {
   &:active {
     transform: scale(0.95);
   }
-
-  &:hover,
-  &:focus {
-    border-color: var(--m);
-  }
 }
 
 .options {
@@ -171,35 +160,21 @@ onClickOutside(selectTarget, (evt) => {
   top: calc(var(--ui-size) + toRem(2));
   z-index: 6;
   width: 100%;
-  background-color: var(--opt-bg);
+  background-color: var(--fg-m);
   border-radius: var(--br-rad);
+  border: toRem(1) solid var(--br);
 }
 
 .search {
   padding: var(--space-m) var(--space);
   height: var(--ui-size);
   min-height: var(--ui-size);
-
-  span {
-    color: var(--fg-m);
-  }
 }
 
 input {
   font-family: 'Montserrat';
   width: 100%;
   background-color: transparent;
-  color: var(--fg-m);
-}
-
-.empty {
-  background-color: var(--opt-tip-bg);
-  padding: var(--space);
-  border-radius: var(--br-rad);
-
-  span,
-  small {
-    color: var(--fg-m);
-  }
+  color: var(--txt-m);
 }
 </style>
