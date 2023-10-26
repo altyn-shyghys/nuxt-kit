@@ -13,12 +13,12 @@
 
 <script setup lang="ts">
 const some = ref([
-  'sdfdsff',
-  'sdfsdfdsf',
-  'sfsdfssd',
-  'sdfsdf',
-  'sdfdsf',
-  'sdfdsf',
+  'sdfdsff dfgfdgf fgdfg',
+  'sdfsdfdsf dfgdfgdf dfgdfg',
+  'sfsdfssd dfgfdg dfgdfgdfg',
+  'sdfsdf dfgdfg dfgfdg f',
+  'sdfdsfdfgfdg  dfgfdg',
+  'sdfdsf dgfgfdgdfg dfgdfgf',
   'sdfdsd',
   'sdfsdfdsf',
   'sdfdsfsf',

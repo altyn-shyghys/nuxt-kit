@@ -89,7 +89,6 @@ const Block = () =>
   padding: var(--space);
   border-radius: var(--br-rad);
   border: toRem(1) solid var(--br);
-  box-sizing: border-box;
 }
 
 .def {

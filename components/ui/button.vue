@@ -8,7 +8,7 @@
     <UiSpace mode="center" style="position: relative">
       <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <UiSpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
-        <UiIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'def'" :name="icon" />
+        <UiIcon v-if="icon" :name="icon" />
         <UiText v-if="name" type="h4" :text="name" />
       </UiSpace>
     </UiSpace>
@@ -48,6 +48,10 @@ defineEmits<{ (e: 'trigger'): void }>()
   &:focus {
     box-shadow: 0 0 var(--space-m) var(--btn-bg);
   }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .icon {
@@ -65,6 +69,10 @@ defineEmits<{ (e: 'trigger'): void }>()
   span {
     transition: filter var(--tr);
   }
+
+  &:active {
+    transform: scale(0.9);
+  }
 }
 
 .active {
@@ -80,9 +88,5 @@ defineEmits<{ (e: 'trigger'): void }>()
   &:focus {
     box-shadow: 0 0 var(--space-m) var(--m);
   }
-}
-
-button:active {
-  transform: scale(0.95);
 }
 </style>

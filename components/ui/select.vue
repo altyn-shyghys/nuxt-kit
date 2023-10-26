@@ -1,44 +1,51 @@
 <template>
-  <div ref="selectTarget" v-auto-animate :style="`width: ${width}`">
-    <button
-      ref="selected"
-      :disabled="loading"
-      :title="modelValue"
-      class="selected"
-      @click="active = !active"
-    >
-      <UiSpace mode="center" style="position: relative">
-        <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
-        <UiSpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
-          <UiSpace display="row" gap="sm">
-            <UiIcon v-if="icon" size="def" :name="icon" />
-            <UiText type="h4" :text="lenghtHandler(modelValue)" />
+  <UiSpace display="col" gap="sm">
+    <UiText text="Some text" :gray="true" />
+    <div ref="selectTarget" v-auto-animate :style="`width: ${width}`">
+      <button
+        ref="selected"
+        :disabled="loading"
+        :title="modelValue"
+        class="selected"
+        @click="active = !active"
+      >
+        <UiSpace mode="center" style="position: relative">
+          <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
+          <UiSpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
+            <UiSpace display="row" gap="sm">
+              <UiIcon v-if="icon" size="def" :name="icon" />
+              <UiText type="h4" :text="lenghtHandler(modelValue)" />
+            </UiSpace>
+            <UiIcon id="select-arrow" name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
           </UiSpace>
-          <UiIcon id="select-arrow" name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
         </UiSpace>
-      </UiSpace>
-    </button>
-    <UiSpace v-if="active" display="col" gap="none" class="options" @click="optionsHandler">
-      <UiSpace v-if="options.length >= 10" display="row" gap="sm" class="search">
-        <UiIcon name="gg:search" class="search-icon" />
-        <input id="option-search" v-model="search" type="text" placeholder="Search" />
-      </UiSpace>
-      <UiScroll height="10rem">
-        <UiSpace v-auto-animate display="col" gap="bit">
-          <button
-            v-for="(opt, idx) in printOptions"
-            :key="idx"
-            class="option"
-            :data-opt="idx"
-            :title="opt"
-          >
-            <UiText type="h4" :text="lenghtHandler(opt)" />
-          </button>
-          <UiScreen v-if="!printOptions.length" type="empty" style="border-width: 0.063rem 0 0 0" />
+      </button>
+      <UiSpace v-if="active" display="col" gap="none" class="options" @click="optionsHandler">
+        <UiSpace v-if="options.length >= 10" display="row" gap="sm" style="padding: var(--space-m)">
+          <UiIcon name="gg:search" class="search-icon" />
+          <input id="option-search" v-model="search" type="text" placeholder="Search" />
         </UiSpace>
-      </UiScroll>
-    </UiSpace>
-  </div>
+        <UiScroll height="10rem" :trigger="search.length">
+          <UiSpace v-auto-animate display="col" gap="bit">
+            <button
+              v-for="(opt, idx) in printOptions"
+              :key="idx"
+              class="option"
+              :data-opt="idx"
+              :title="opt"
+            >
+              <UiText type="h4" :text="lenghtHandler(opt)" />
+            </button>
+            <UiScreen
+              v-if="!printOptions.length"
+              type="empty"
+              style="border-width: 0.063rem 0 0 0"
+            />
+          </UiSpace>
+        </UiScroll>
+      </UiSpace>
+    </div>
+  </UiSpace>
 </template>
 
 <script setup lang="ts">
@@ -115,13 +122,16 @@ onClickOutside(selectTarget, (evt) => {
   background-color: var(--fg-m);
   font-size: 0.875rem;
   border: toRem(1) solid var(--br);
-  word-wrap: normal;
   color: var(--txt-m);
 
   h4,
   div,
   span {
     pointer-events: none;
+    font-weight: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   &:hover,
@@ -145,10 +155,6 @@ onClickOutside(selectTarget, (evt) => {
   background-color: var(--fg-s);
   min-height: var(--ui-size);
 
-  h4 {
-    font-weight: normal;
-  }
-
   &:active {
     transform: scale(0.95);
   }
@@ -163,12 +169,6 @@ onClickOutside(selectTarget, (evt) => {
   background-color: var(--fg-m);
   border-radius: var(--br-rad);
   border: toRem(1) solid var(--br);
-}
-
-.search {
-  padding: var(--space-m) var(--space);
-  height: var(--ui-size);
-  min-height: var(--ui-size);
 }
 
 input {
