@@ -75,7 +75,9 @@ watch(
   box-shadow: toRem(0) toRem(0) toRem(50) rgba(0, 0, 0, 0.2);
 
   @media (max-width: $mob) {
+    padding-bottom: calc(var(--space-l) * 1.5);
     width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -83,6 +85,11 @@ watch(
   animation: bounce var(--tr);
   opacity: 1;
   transform: translateY(0);
+
+  @media (max-width: $mob) {
+    animation: mobBounce var(--tr);
+    transform: translateY(var(--space));
+  }
 }
 
 @keyframes bounce {
@@ -96,6 +103,20 @@ watch(
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes mobBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(toRem(500));
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(var(--space));
   }
 }
 </style>
