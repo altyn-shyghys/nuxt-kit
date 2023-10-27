@@ -15,8 +15,8 @@
       </UiSpace>
       <UiSpace v-auto-animate :full="true">
         <UiScreen v-if="lenght === 0" type="empty" style="margin-bottom: var(--space)" />
-        <UiScreen v-else-if="error" type="empty" style="margin-bottom: var(--space)" />
-        <UiScreen v-else-if="loading" type="empty" style="margin-bottom: var(--space)" />
+        <UiScreen v-else-if="error" type="error" style="margin-bottom: var(--space)" />
+        <UiScreen v-else-if="loading" style="margin-bottom: var(--space)" />
         <div v-else class="table-container">
           <div class="hider"></div>
           <UiScroll dir="right" :class="{ 'table-scroll': true, max: print }">

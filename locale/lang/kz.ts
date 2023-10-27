@@ -1,7 +1,8 @@
 export default defineI18nLocale(() => {
   return {
     ui: {
-      selectTip: 'Көрсетілетін деректер жоқ',
+      emptyTip: 'Көрсетілетін деректер жоқ...',
+      errorTip: 'Деректер жүктелмеді...',
       tableName: 'Кесте атауы',
       reload: 'Қайта жүктеңіз',
       close: 'Жабық'

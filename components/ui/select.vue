@@ -1,6 +1,6 @@
 <template>
   <UiSpace display="col" gap="sm">
-    <UiText text="Some text" :gray="true" />
+    <UiText :text="label" :gray="true" />
     <div ref="selectTarget" v-auto-animate :style="`width: ${width}`">
       <button
         ref="selected"
@@ -14,7 +14,7 @@
           <UiSpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
             <UiSpace display="row" gap="sm">
               <UiIcon v-if="icon" size="def" :name="icon" />
-              <UiText type="h4" :text="lenghtHandler(modelValue)" />
+              <UiText type="h4" :text="modelValue" />
             </UiSpace>
             <UiIcon id="select-arrow" name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
           </UiSpace>
@@ -34,7 +34,7 @@
               :data-opt="idx"
               :title="opt"
             >
-              <UiText type="h4" :text="lenghtHandler(opt)" />
+              <UiText type="h4" :text="opt" />
             </button>
             <UiScreen
               v-if="!printOptions.length"
@@ -54,11 +54,11 @@ const props = withDefaults(
     modelValue: string
     options: string[]
     icon?: string
+    label: string
     loading?: boolean
     width?: string
-    sub?: number
   }>(),
-  { type: 'str', icon: undefined, width: '100%', sub: undefined }
+  { icon: undefined, width: '100%' }
 )
 
 const emit = defineEmits<{ (evt: 'update:modelValue', value: string): void }>()
@@ -95,9 +95,6 @@ watch(
     }
   }
 )
-
-const lenghtHandler = (opt: string) =>
-  opt.length >= (props.sub || 25) && props.sub ? opt.substring(0, props.sub) + '...' : opt
 
 const optionsHandler = (evt: MouseEvent) => {
   if ((evt.target as HTMLElement).closest(optionTarget)) {

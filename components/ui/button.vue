@@ -3,7 +3,7 @@
     :disabled="disabled || loading"
     :class="[mode, state]"
     :title="$t(title)"
-    @click.prevent="$emit('trigger')"
+    @click="$emit('trigger')"
   >
     <UiSpace mode="center" style="position: relative">
       <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
@@ -50,7 +50,22 @@ defineEmits<{ (e: 'trigger'): void }>()
   }
 
   &:active {
-    transform: scale(0.97);
+    transform: scale(0.98);
+  }
+
+  &.active {
+    background-color: var(--m);
+    border: toRem(2) solid var(--m);
+
+    &,
+    span {
+      color: var(--txt-m);
+    }
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 var(--space-m) var(--m);
+    }
   }
 }
 
@@ -73,20 +88,17 @@ defineEmits<{ (e: 'trigger'): void }>()
   &:active {
     transform: scale(0.9);
   }
-}
 
-.active {
-  background-color: var(--m);
-  border: toRem(2) solid var(--m);
+  &.active {
+    &,
+    span {
+      color: var(--m);
+    }
 
-  &,
-  span {
-    color: var(--txt-m);
-  }
-
-  &:hover,
-  &:focus {
-    box-shadow: 0 0 var(--space-m) var(--m);
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 var(--space-m) var(--m);
+    }
   }
 }
 </style>
