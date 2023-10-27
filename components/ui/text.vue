@@ -18,7 +18,6 @@ const Text = () =>
 
 <style scoped lang="scss">
 * {
-  line-height: 1.2;
   word-wrap: break-word;
   will-change: transform;
 }
@@ -59,6 +58,17 @@ h3 {
   @media (max-width: $sm) {
     font-size: 1.125rem;
   }
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1;
+}
+
+p,
+small {
+  line-height: 1.2;
 }
 
 label,

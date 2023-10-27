@@ -67,6 +67,7 @@ watch(
 .window {
   width: toRem(400);
   max-width: toRem(400);
+  min-width: toRem(400);
   transition:
     transform var(--tr),
     opacity var(--tr);
@@ -78,6 +79,7 @@ watch(
     padding-bottom: calc(var(--space-l) * 1.5);
     width: 100%;
     max-width: 100%;
+    min-width: 100%;
   }
 }
 

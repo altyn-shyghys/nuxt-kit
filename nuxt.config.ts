@@ -32,9 +32,10 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['./constants']
   },
-  // image: {
-  //   domains: ['images.ctfassets.net']
-  // },
+  image: {
+    inject: true,
+    format: ['webp']
+  },
   i18n: {
     vueI18n: './locale/i18n.config.ts',
     strategy: 'no_prefix',
