@@ -3,7 +3,8 @@ export default defineI18nLocale(() => {
     ui: {
       selectTip: 'Көрсетілетін деректер жоқ',
       tableName: 'Кесте атауы',
-      reload: 'Қайта жүктеңіз'
+      reload: 'Қайта жүктеңіз',
+      close: 'Жабық'
     }
   }
 })

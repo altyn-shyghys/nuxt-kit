@@ -3,7 +3,8 @@ export default defineI18nLocale(() => {
     ui: {
       selectTip: 'No data to display',
       tableName: 'Table name',
-      reload: 'Reload'
+      reload: 'Reload',
+      close: 'Close'
     }
   }
 })

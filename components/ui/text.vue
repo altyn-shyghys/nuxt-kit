@@ -18,13 +18,14 @@ const Text = () =>
 
 <style scoped lang="scss">
 * {
-  line-height: 1;
+  line-height: 1.2;
   word-wrap: break-word;
   will-change: transform;
 }
 
 h1 {
   font-size: 3rem;
+  letter-spacing: toRem(-1);
 
   @media (max-width: $md) {
     font-size: 2.5rem;
@@ -36,10 +37,11 @@ h1 {
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  letter-spacing: toRem(-1);
 
   @media (max-width: $md) {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   @media (max-width: $sm) {
