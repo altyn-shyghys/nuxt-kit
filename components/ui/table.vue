@@ -27,7 +27,7 @@
         </div>
       </UiSpace>
     </UiSpace>
-    <template #fallback><UiFallback /></template>
+    <template #fallback><UiFallback type="table" /></template>
   </ClientOnly>
 </template>
 

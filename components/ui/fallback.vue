@@ -18,10 +18,18 @@
       </UiSpace>
     </UiSpace>
   </template>
+  <template v-if="type === 'scroll'">
+    <UiSpace display="col" block="alt" :style="`height: ${height}`">
+      <UiIcon :name="ICON_LOADING_CIRCLE" />
+    </UiSpace>
+  </template>
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{ type?: 'table' }>(), { type: 'table' })
+withDefaults(defineProps<{ type?: 'table' | 'scroll'; height?: string }>(), {
+  type: 'table',
+  height: undefined
+})
 </script>
 
 <style scoped lang="scss">

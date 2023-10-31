@@ -7,7 +7,7 @@
   >
     <UiSpace mode="center" style="position: relative">
       <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
-      <UiSpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
+      <UiSpace display="row" gap="bit" :style="loading ? `visibility: hidden` : null">
         <UiIcon v-if="icon" :name="icon" />
         <UiText v-if="name" type="h4" :text="name" />
       </UiSpace>
@@ -50,7 +50,7 @@ defineEmits<{ (e: 'trigger'): void }>()
   }
 
   &:active {
-    transform: scale(0.98);
+    transform: scale(0.96);
   }
 
   &.active {
@@ -94,11 +94,18 @@ defineEmits<{ (e: 'trigger'): void }>()
     span {
       color: var(--m);
     }
+  }
+}
 
-    &:hover,
-    &:focus {
-      box-shadow: 0 0 var(--space-m) var(--m);
-    }
+button:disabled {
+  &,
+  span {
+    filter: brightness(0.5);
+  }
+
+  &,
+  span {
+    cursor: not-allowed !important;
   }
 }
 </style>

@@ -48,11 +48,14 @@ input {
 }
 
 .error {
-  &,
-  &:focus,
-  &:hover {
+  & {
     border-color: var(--red);
     box-shadow: 0 0 var(--space-m) var(--red);
+  }
+
+  &:focus,
+  &:hover {
+    border-color: darkred;
   }
 }
 </style>

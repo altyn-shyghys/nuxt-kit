@@ -8,7 +8,7 @@
   <UiSpace layout="container">
     <UiSpace layout="wrapper">
       <UiSpace display="col" :full="true" pos="left">
-        <UiSpace display="col" gap="sm">
+        <UiSpace display="row">
           <UiText type="h2" text="Buttons" />
           <UiButton title="Some" :icon="ICON_CLOSE" mode="icon" />
           <UiButton title="Some" :icon="ICON_CLOSE" mode="icon" :disabled="button" />

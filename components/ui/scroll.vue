@@ -1,5 +1,8 @@
 <template>
-  <div ref="target" :style="defStyles + styles"><slot /></div>
+  <ClientOnly>
+    <div ref="target" :style="defStyles + styles"><slot /></div>
+    <template #fallback><UiFallback type="scroll" /></template>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -8,7 +11,6 @@ const props = withDefaults(
     dir?: 'right' | 'bottom'
     trigger?: number
     height?: string
-    fallback?: boolean
   }>(),
   { dir: 'bottom', trigger: undefined, height: undefined, fallback: true }
 )
