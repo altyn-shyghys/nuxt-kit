@@ -61,7 +61,7 @@ input {
   &,
   svg,
   input {
-    cursor: default;
+    cursor: not-allowed;
   }
 
   input:hover + .box,

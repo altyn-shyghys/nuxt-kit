@@ -1,6 +1,6 @@
 <template>
   <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="$t(title)">
-    <UiIcon v-if="icon" :name="icon" :size="props.mode === 'hybrid' ? 'def' : 'ui'" />
+    <UiIcon v-if="icon" :name="icon" :size="props.mode === 'page' ? 'ui' : 'def'" />
     <UiText v-if="title && mode !== 'icon'" type="h4" :text="title" />
   </NuxtLink>
 </template>
@@ -80,20 +80,32 @@ a.page {
     }
   }
 
-  @media (max-width: $sm) {
-    flex-direction: column;
-    gap: 3px;
-    justify-content: center;
-
-    h4 {
-      font-size: 0.67rem;
-    }
-  }
-
   &:hover,
   &:focus {
     text-decoration: underline solid var(--txt-m) toRem(1);
     text-underline-offset: toRem(5);
+  }
+
+  @media (max-width: $sm) {
+    flex-direction: column;
+    gap: 3px;
+    justify-content: center;
+    text-decoration: none !important;
+
+    h4 {
+      font-size: 0.67rem;
+    }
+
+    span {
+      min-width: 1.5rem !important;
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+    }
+
+    &:hover,
+    &:focus {
+      filter: drop-shadow(0 0 toRem(5) var(--m));
+    }
   }
 }
 </style>

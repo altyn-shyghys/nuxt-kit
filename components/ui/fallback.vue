@@ -19,7 +19,7 @@
     </UiSpace>
   </template>
   <template v-if="type === 'scroll'">
-    <UiSpace display="col" block="alt" :style="`height: ${height}`">
+    <UiSpace display="col" block="alt" :style="`height: ${height}`" mode="center">
       <UiIcon :name="ICON_LOADING_CIRCLE" />
     </UiSpace>
   </template>

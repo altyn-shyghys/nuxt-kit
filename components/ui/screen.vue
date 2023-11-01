@@ -15,5 +15,5 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{ type: 'loading' | 'empty' | 'error' }>(), { type: 'loading' })
+withDefaults(defineProps<{ type?: 'loading' | 'empty' | 'error' }>(), { type: 'loading' })
 </script>

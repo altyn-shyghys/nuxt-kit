@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <UiSpace display="col" block="alt" style="padding-bottom: 0">
+    <UiSpace display="col" block="alt" :full="true" style="padding-bottom: 0">
       <UiSpace display="row" pos="between">
         <UiSpace display="row" gap="sm">
           <UiIcon name="tabler:table-filled" size="md" class="hide" />
@@ -20,7 +20,7 @@
         <div v-else class="table-container">
           <div class="hider"></div>
           <UiScroll dir="right" :class="{ 'table-scroll': true, max: print }">
-            <table v-auto-animate class="table">
+            <table v-auto-animate>
               <slot name="table" />
             </table>
           </UiScroll>

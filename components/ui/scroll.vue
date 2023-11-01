@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <div ref="target" :style="defStyles + styles"><slot /></div>
-    <template #fallback><UiFallback type="scroll" /></template>
+    <template #fallback><UiFallback type="scroll" :height="height" /></template>
   </ClientOnly>
 </template>
 
@@ -17,7 +17,7 @@ const props = withDefaults(
 
 const target = ref<HTMLDivElement>()
 const { arrivedState: scState } = useScroll(target)
-const defStyles = `overflow: scroll; max-height: ${props.height ? props.height : 'auto'};`
+const defStyles = `overflow: scroll; max-height: ${props.dir === 'bottom' ? props.height : 'auto'};`
 
 const maskConf = {
   st: 'rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%',
