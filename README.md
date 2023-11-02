@@ -1,8 +1,20 @@
 # Nuxt Kit
+> UI Library and ready-made configuration for projects developed on the [Nuxt](https://nuxt.com/) framework
 
-### Under development
+![NuxtKit Banner](https://github.com/altyn-shyghys/nuxt-kit/assets/106645309/9a98a026-4101-44fc-8ecb-ae73cb9e17a7)
 
-Example template
+### How to use?
+Just add the following code to the new project's nuxt.config.ts
+```ts
+export default defineNuxtConfig({
+  extends: [
+    '../nuxt-kit',                   // Extend from a local layer
+    'github:altyn-shyghys/nuxt-kit', // Extend from a git repository
+  ]
+})
+```
+
+To view the available components, create an app.vue file in the root of the project and place the following code there
 ```vue
 <template>
   <UiSpace layout="container">
