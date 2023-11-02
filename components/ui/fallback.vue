@@ -1,6 +1,6 @@
 <template>
   <template v-if="type === 'table'">
-    <UiSpace display="col" block="alt">
+    <UiSpace display="col" block="alt" :full="true">
       <UiSpace display="row" pos="between">
         <UiSpace display="row" gap="sm">
           <div class="fb" style="width: 3.125rem; height: 3.125rem"></div>

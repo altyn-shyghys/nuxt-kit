@@ -12,7 +12,6 @@
               @trigger="emit('update:modelValue', !modelValue)"
             />
           </UiSpace>
-          <UiLine :full="true" />
           <UiScroll dir="bottom" height="80dvh">
             <UiSpace display="col">
               <slot />
@@ -76,6 +75,8 @@ watch(
   box-shadow: toRem(0) toRem(0) toRem(50) rgba(0, 0, 0, 0.2);
 
   @media (max-width: $mob) {
+    border: 0;
+    border-top: toRem(1) solid var(--br);
     padding-bottom: calc(var(--space-l) * 1.5);
     width: 100%;
     max-width: 100%;

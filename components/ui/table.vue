@@ -70,7 +70,7 @@ defineSlots<{ options(): any; table(): any }>()
   overflow-y: scroll;
   height: fit-content;
   padding-bottom: var(--space);
-  max-height: 50dvh;
+  max-height: 50vh;
 
   &.max {
     max-width: 100% !important;

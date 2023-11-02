@@ -9,7 +9,7 @@
         class="selected"
         @click="active = !active"
       >
-        <UiSpace mode="center" style="position: relative">
+        <UiSpace mode="center" style="position: relative; min-height: 1.5rem;">
           <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
           <UiSpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
             <UiSpace display="row" gap="sm">
@@ -139,6 +139,7 @@ onClickOutside(selectTarget, (evt) => {
 
 .selected {
   @include option-styles;
+  box-sizing: border-box;
 
   &:active {
     #select-arrow {

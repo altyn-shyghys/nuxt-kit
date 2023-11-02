@@ -1,8 +1,10 @@
 <template>
-  <ClientOnly>
-    <div ref="target" :style="defStyles + styles"><slot /></div>
-    <template #fallback><UiFallback type="scroll" :height="height" /></template>
-  </ClientOnly>
+  <div ref="target" :style="defStyles + styles">
+    <ClientOnly>
+      <template #fallback><UiFallback type="scroll" :height="height" /></template>
+      <slot />
+    </ClientOnly>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -12,20 +14,19 @@ const props = withDefaults(
     trigger?: number
     height?: string
   }>(),
-  { dir: 'bottom', trigger: undefined, height: undefined, fallback: true }
+  { dir: 'bottom', trigger: undefined, height: undefined }
 )
 
 const target = ref<HTMLDivElement>()
 const { arrivedState: scState } = useScroll(target)
 const defStyles = `overflow: scroll; max-height: ${props.dir === 'bottom' ? props.height : 'auto'};`
+const styles = ref('')
 
 const maskConf = {
-  st: 'rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%',
-  md: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%',
-  ed: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 100%'
+  st: 'rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 95%, rgba(0, 0, 0, 0) 100%',
+  md: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 1) 95%, rgba(0, 0, 0, 0) 100%',
+  ed: 'rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 1) 100%'
 }
-
-const styles = ref(`-webkit-mask: linear-gradient(to ${props.dir}, ${maskConf.st});`)
 
 const styleHandler = (st: boolean, md: boolean, ed: boolean) => {
   const getMask = () => {
