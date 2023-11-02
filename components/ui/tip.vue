@@ -1,6 +1,6 @@
 <template>
   <UiSpace display="grid" gap="sm" block="def" :class="{ tip: true, wave: wave }">
-    <UiIcon :name="ICON_INFO" size="ui" />
+    <UiIcon name="ep:info-filled" size="ui" />
     <div class="mark"></div>
     <UiSpace display="col" gap="sm">
       <UiText type="h4" :text="title" />
@@ -18,6 +18,7 @@ withDefaults(defineProps<{ title: string; message: string; wave?: boolean }>(), 
 <style scoped lang="scss">
 .tip {
   grid-template-columns: toRem(32) toRem(2) 1fr;
+  max-width: toRem(400);
 }
 
 .wave {

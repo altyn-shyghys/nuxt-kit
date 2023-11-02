@@ -1,6 +1,11 @@
 <template>
   <ClientOnly>
-    <UiSpace display="col" block="alt" :full="true" style="padding-bottom: 0">
+    <UiSpace
+      display="col"
+      :block="print ? undefined : 'alt'"
+      :full="true"
+      style="padding-bottom: 0"
+    >
       <UiSpace display="row" pos="between">
         <UiSpace display="row" gap="sm">
           <UiIcon name="tabler:table-filled" size="md" class="hide" />
@@ -9,7 +14,7 @@
             <UiText :gray="true" text="ui.tableName" />
           </UiSpace>
         </UiSpace>
-        <UiSpace display="row" class="options">
+        <UiSpace display="row" class="options" :style="`display: ${print ? 'none' : 'flex'}`">
           <slot name="options" />
         </UiSpace>
       </UiSpace>
@@ -71,10 +76,11 @@ defineSlots<{ options(): any; table(): any }>()
   height: fit-content;
   padding-bottom: var(--space);
   max-height: 50vh;
+}
 
-  &.max {
-    max-width: 100% !important;
-  }
+.max {
+  max-height: 100% !important;
+  padding-bottom: 0;
 }
 
 .hide {

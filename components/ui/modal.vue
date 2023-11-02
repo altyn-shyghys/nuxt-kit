@@ -8,7 +8,7 @@
             <UiButton
               title="ui.close"
               mode="icon"
-              :icon="ICON_CLOSE"
+              icon="icon-park:close"
               @trigger="emit('update:modelValue', !modelValue)"
             />
           </UiSpace>
@@ -70,7 +70,7 @@ watch(
   transition:
     transform var(--tr),
     opacity var(--tr);
-  transform: translateY(toRem(500));
+  transform: translateY(toRem(400));
   opacity: 0;
   box-shadow: toRem(0) toRem(0) toRem(50) rgba(0, 0, 0, 0.2);
 
@@ -98,7 +98,7 @@ watch(
 @keyframes bounce {
   0% {
     opacity: 0;
-    transform: translateY(toRem(500));
+    transform: translateY(toRem(400));
   }
   60% {
     opacity: 1;
@@ -112,7 +112,7 @@ watch(
 @keyframes mobBounce {
   0% {
     opacity: 0;
-    transform: translateY(toRem(500));
+    transform: translateY(toRem(400));
   }
   60% {
     opacity: 1;

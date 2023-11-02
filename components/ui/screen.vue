@@ -2,14 +2,14 @@
   <UiSpace mode="center" block="def" :full="true">
     <UiSpace display="row" gap="sm" class="control">
       <template v-if="type === 'empty'">
-        <UiIcon :name="ICON_EMPTY" size="md" />
+        <UiIcon name="tabler:table-alias" size="md" />
         <UiText text="ui.emptyTip" />
       </template>
       <template v-else-if="type === 'loading'">
         <UiIcon :name="ICON_LOADING_DOTS" size="md" />
       </template>
       <template v-else-if="type === 'error'">
-        <UiIcon :name="ICON_ERROR_LOAD" size="md" />
+        <UiIcon name="tabler:table-down" size="md" />
         <UiText text="ui.errorTip" />
       </template>
     </UiSpace>
