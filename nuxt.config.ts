@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@vite-pwa/nuxt'
   ],
   devtools: {
     enabled: false
@@ -16,7 +17,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/assets/styles/module.scss";'
+          additionalData: '@use "@/assets/styles/module.scss" as *;'
         }
       }
     }
