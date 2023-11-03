@@ -8,11 +8,11 @@
             <UiButton
               title="ui.close"
               mode="icon"
-              icon="icon-park:close"
+              icon="ep:close"
               @trigger="emit('update:modelValue', !modelValue)"
             />
           </UiSpace>
-          <UiScroll dir="bottom" height="80dvh">
+          <UiScroll v-auto-animate dir="bottom" height="80dvh">
             <UiSpace display="col">
               <slot />
             </UiSpace>
@@ -29,7 +29,7 @@ const emit = defineEmits<{ (evt: 'update:modelValue', val: boolean): void }>()
 
 const windowTarget = ref<HTMLDivElement>()
 onClickOutside(windowTarget, () => emit('update:modelValue', !props.modelValue))
-const styles = 'transition: background-color 0.5s ease; height: 100%; overflow: hidden;'
+const styles = 'height: 100%; overflow: hidden;'
 
 useHead({
   bodyAttrs: {
@@ -64,9 +64,10 @@ watch(
 }
 
 .window {
-  width: toRem(400);
-  max-width: toRem(400);
-  min-width: toRem(400);
+  $modal-width: toRem(350);
+  width: $modal-width;
+  max-width: $modal-width;
+  min-width: $modal-width;
   transition:
     transform var(--tr),
     opacity var(--tr);

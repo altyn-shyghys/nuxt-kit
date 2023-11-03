@@ -1,10 +1,12 @@
 <template>
-  <UiSpace display="grid" gap="sm" block="def" :class="{ tip: true, wave: wave }">
-    <UiIcon name="ep:info-filled" size="ui" />
-    <div class="mark"></div>
-    <UiSpace display="col" gap="sm">
-      <UiText type="h4" :text="title" />
-      <UiText :text="message" />
+  <UiSpace block="def" :class="{ wave: wave }">
+    <UiSpace display="grid" gap="sm" class="tip">
+      <UiIcon name="ep:info-filled" size="ui" />
+      <div class="mark"></div>
+      <UiSpace display="col" gap="sm">
+        <UiText type="h4" :text="title" />
+        <UiText :text="message" />
+      </UiSpace>
     </UiSpace>
     <TipWave v-if="wave" />
   </UiSpace>
@@ -27,9 +29,10 @@ withDefaults(defineProps<{ title: string; message: string; wave?: boolean }>(), 
   overflow: hidden;
   padding-bottom: var(--space-l);
 
-  svg {
+  svg#wave {
     position: absolute;
     bottom: toRem(-2);
+    left: 0;
     width: 100%;
     z-index: -1;
   }

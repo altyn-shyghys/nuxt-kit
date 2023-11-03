@@ -1,6 +1,6 @@
 <template>
   <UiSpace display="col" gap="sm">
-    <UiText type="label" :gray="true" :for="name" :text="label" />
+    <UiText v-if="label" type="label" :gray="true" :for="name" :text="label" />
     <input
       :id="name"
       :name="name"
@@ -22,11 +22,11 @@ withDefaults(
     type?: 'text' | 'email' | 'password'
     modelValue: string
     placeholder: string
-    label: string
+    label?: string
     length?: number
     warn?: boolean
   }>(),
-  { type: 'text', length: 100 }
+  { type: 'text', length: 100, label: undefined }
 )
 
 defineEmits<{ (e: 'update:modelValue', value: string): void }>()

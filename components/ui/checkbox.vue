@@ -26,7 +26,7 @@ defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
   padding: 0;
   position: relative;
 
-  span {
+  svg {
     position: absolute;
     left: toRem(2);
     bottom: toRem(-2);
@@ -45,7 +45,7 @@ input {
   cursor: pointer;
 
   &:checked + .box {
-    span {
+    svg {
       opacity: 1;
       transform: translateY(0);
     }

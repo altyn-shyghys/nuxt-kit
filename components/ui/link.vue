@@ -12,7 +12,7 @@ const props = withDefaults(
     icon?: string
     title: string
     global?: boolean
-    mode?: 'hybrid' | 'text' | 'icon' | 'page'
+    mode?: 'hybrid' | 'text' | 'icon' | 'page' | 'index'
   }>(),
   { text: undefined, icon: undefined, mode: 'text' }
 )
@@ -21,7 +21,7 @@ const props = withDefaults(
 <style scoped lang="scss">
 a {
   &,
-  span,
+  svg,
   &:visited {
     transition: filter var(--tr);
     color: var(--txt-m);
@@ -36,7 +36,7 @@ a.hybrid {
   padding-bottom: toRem(3);
 
   &,
-  span {
+  svg {
     color: var(--txt-m);
   }
 
@@ -67,10 +67,11 @@ a.page {
   display: flex;
   align-items: center;
   gap: toRem(5);
+  font-size: 0.875rem;
 
   &.router-link-active {
     &,
-    span {
+    svg {
       color: var(--m);
     }
 
@@ -86,26 +87,42 @@ a.page {
     text-underline-offset: toRem(5);
   }
 
+  $width: 1.5rem;
   @media (max-width: $sm) {
     flex-direction: column;
     gap: 3px;
     justify-content: center;
     text-decoration: none !important;
+    font-size: 0.5rem;
+    max-width: $width;
 
-    h4 {
-      font-size: 0.67rem;
-    }
-
-    span {
-      min-width: 1.5rem !important;
-      width: 1.5rem !important;
-      height: 1.5rem !important;
+    svg {
+      min-width: $width !important;
+      width: $width !important;
+      height: $width !important;
     }
 
     &:hover,
     &:focus {
       filter: drop-shadow(0 0 toRem(5) var(--m));
     }
+  }
+}
+
+.index {
+  display: flex;
+  align-items: center;
+  gap: toRem(5);
+
+  &:hover,
+  &:focus {
+    filter: drop-shadow(0 0 toRem(5) var(--m));
+  }
+
+  svg {
+    min-width: 2rem !important;
+    width: 2rem !important;
+    height: 2rem !important;
   }
 }
 </style>

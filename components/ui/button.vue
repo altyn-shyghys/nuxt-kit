@@ -3,12 +3,12 @@
     :disabled="disabled || loading"
     :class="[mode, state]"
     :title="$t(title)"
-    @click="$emit('trigger')"
+    @click.prevent="$emit('trigger')"
   >
     <UiSpace mode="center" style="position: relative">
       <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <UiSpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
-        <UiIcon v-if="icon" :name="icon" />
+        <UiIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'def'" :name="icon" />
         <UiText v-if="name" type="h4" :text="name" />
       </UiSpace>
     </UiSpace>
@@ -40,7 +40,7 @@ defineEmits<{ (e: 'trigger'): void }>()
   font-size: 0.875rem;
 
   &,
-  span {
+  svg {
     color: var(--fg-m);
   }
 
@@ -55,12 +55,6 @@ defineEmits<{ (e: 'trigger'): void }>()
 
   &.active {
     background-color: var(--m);
-    border: toRem(2) solid var(--m);
-
-    &,
-    span {
-      color: var(--txt-m);
-    }
 
     &:hover,
     &:focus {
@@ -81,7 +75,7 @@ defineEmits<{ (e: 'trigger'): void }>()
     filter: drop-shadow(0 0 toRem(5) var(--m));
   }
 
-  span {
+  svg {
     transition: filter var(--tr);
   }
 
@@ -91,7 +85,7 @@ defineEmits<{ (e: 'trigger'): void }>()
 
   &.active {
     &,
-    span {
+    svg {
       color: var(--m);
     }
   }
@@ -99,12 +93,12 @@ defineEmits<{ (e: 'trigger'): void }>()
 
 button:disabled {
   &,
-  span {
+  svg {
     filter: brightness(0.5);
   }
 
   &,
-  span {
+  svg {
     cursor: not-allowed !important;
   }
 }

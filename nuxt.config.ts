@@ -49,17 +49,20 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'en',
+        name: 'English',
         iso: 'en-US',
         file: 'en.ts'
       },
       {
         code: 'kz',
+        name: 'Қазақ',
         iso: 'kz-KZ',
         file: 'kz.ts'
       },
       {
         code: 'ru',
         iso: 'ru-RU',
+        name: 'Русский',
         file: 'ru.ts'
       }
     ],
