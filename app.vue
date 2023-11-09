@@ -9,14 +9,15 @@
           desc="Срабатывает при уведомлениях"
         />
       </div>
+      <UiLine :dashed="true" />
+      <UiSpace display="row">
+        <UiButton title="Выйти" icon="tabler:logout" mode="link" />
+        <UiLink to="/" title="Выйти" icon="tabler:logout" mode="hybrid" />
+      </UiSpace>
     </UiSpace>
-    <UiLine :dashed="true" />
-    <UiButton title="Выйти" icon="tabler:logout" />
   </UiSpace>
 </template>
 
 <script setup lang="ts">
 const ch = ref(false)
-
-watch(ch, (n) => console.log(n))
 </script>

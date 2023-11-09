@@ -19,7 +19,7 @@
 withDefaults(
   defineProps<{
     title: string
-    mode?: 'button' | 'icon'
+    mode?: 'button' | 'icon' | 'link'
     disabled?: boolean
     state?: 'active'
     loading?: boolean
@@ -78,19 +78,45 @@ defineEmits<{ (e: 'trigger'): void }>()
     filter: drop-shadow(0 0 toRem(5) var(--m));
   }
 
-  svg {
-    transition: filter var(--tr);
-  }
-
   &:active {
     transform: scale(0.9);
   }
+}
 
-  &.active {
-    &,
-    svg {
-      color: var(--m);
-    }
+.link {
+  @include ui-styles;
+  border-radius: 0;
+  background-color: transparent;
+  padding: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  gap: toRem(3);
+  border-bottom: toRem(1.2) dashed var(--txt-m);
+  padding-bottom: toRem(3);
+  transition: transform var(--tr);
+
+  .row {
+    gap: toRem(3) !important;
+    align-items: flex-end;
+  }
+
+  &,
+  svg {
+    color: var(--txt-m);
+    height: auto !important;
+  }
+
+  svg {
+    pointer-events: none;
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &:hover,
+  &:focus {
+    border-bottom-style: solid;
   }
 }
 

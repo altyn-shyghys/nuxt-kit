@@ -41,7 +41,7 @@ input {
   }
 
   &:checked + .toggler::before {
-    transform: translateX(106%);
+    transform: translateX(101%);
     background-color: var(--m);
   }
 }
@@ -49,9 +49,10 @@ input {
 .toggler {
   display: flex;
   align-items: center;
+  position: relative;
   transition: justify-content var(--tr);
   height: var(--ui-size);
-  border-radius: toRem(20);
+  border-radius: var(--space);
   width: calc(var(--ui-size) * 2);
   min-width: calc(var(--ui-size) * 2);
   background-color: var(--fg-m);
@@ -59,9 +60,11 @@ input {
 
   &::before {
     content: '';
-    height: calc(var(--ui-size) - toRem(2));
+    position: absolute;
+    left: -1%;
+    height: var(--ui-size);
     border-radius: 100%;
-    width: calc(var(--ui-size) - toRem(2));
+    width: var(--ui-size);
     background-color: var(--txt-m);
     transition:
       transform var(--tr),
