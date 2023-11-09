@@ -1,62 +1,72 @@
 <template>
-  <div style="position: relative">
+  <UiSpace display="row" pos="between" style="position: relative">
+    <UiSpace display="col" gap="bit">
+      <UiText type="h4" :for="name" :text="label" />
+      <UiText v-if="desc" :gray="true" :text="desc" />
+    </UiSpace>
     <input
       :id="name"
       type="checkbox"
-      class="input"
       :disabled="disabled"
       :checked="modelValue"
       @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
     />
-    <UiText type="label" :gray="true" :for="name" :text="label" />
-  </div>
+    <div class="toggler"></div>
+  </UiSpace>
 </template>
 
 <script setup lang="ts">
-defineProps<{ name: string; modelValue: boolean; label: string; disabled?: boolean }>()
+defineProps<{
+  name: string
+  modelValue: boolean
+  label: string
+  desc?: string
+  disabled?: boolean
+}>()
 defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
 </script>
 
 <style scoped lang="scss">
-.input {
+input {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+
+  &:hover + .toggler::before,
+  &:focus + .toggler::before {
+    box-shadow: 0 0 var(--space-m) var(--m);
+  }
+
+  &:checked + .toggler::before {
+    transform: translateX(106%);
+    background-color: var(--m);
+  }
 }
 
 .toggler {
   display: flex;
-  width: 46px;
-  height: 22px;
-  background-color: #f1f1f1;
-  border-radius: var(--br-rad);
-  transition: var(--transition);
-  cursor: pointer;
+  align-items: center;
+  transition: justify-content var(--tr);
+  height: var(--ui-size);
+  border-radius: toRem(20);
+  width: calc(var(--ui-size) * 2);
+  min-width: calc(var(--ui-size) * 2);
+  background-color: var(--fg-m);
+  border: toRem(1) solid var(--br);
 
   &::before {
     content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 18px;
-    height: 18px;
+    height: calc(var(--ui-size) - toRem(2));
     border-radius: 100%;
-    background-color: var(--light-bg-c);
-    color: var(--light-wrapper-c);
-    transition: var(--transition);
-    box-sizing: border-box;
-  }
-}
-
-.input:checked + .toggler {
-  background-color: #3a3a3a;
-
-  &::before {
-    left: 25px;
-    background-color: var(--dark-bg-c);
+    width: calc(var(--ui-size) - toRem(2));
+    background-color: var(--txt-m);
+    transition:
+      transform var(--tr),
+      box-shadow var(--tr),
+      background-color var(--tr);
   }
 }
 </style>
