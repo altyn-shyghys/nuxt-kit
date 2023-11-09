@@ -6,6 +6,12 @@ export default defineI18nLocale(() => {
       tableName: 'Table name',
       reload: 'Reload',
       close: 'Close'
+    },
+    app: {
+      offline: {
+        title: "You don't seem to be connected to the internet...",
+        desc: 'Check your network settings'
+      }
     }
   }
 })

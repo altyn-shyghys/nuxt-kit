@@ -1,5 +1,5 @@
 <template>
-  <USpace display="row" pos="between" style="position: relative">
+  <USpace display="row" pos="between" block="def" style="position: relative">
     <USpace display="col" gap="bit">
       <UText type="h4" :for="name" :text="label" />
       <UText v-if="desc" :gray="true" :text="desc" />
@@ -31,6 +31,7 @@ input {
   position: absolute;
   width: 100%;
   height: 100%;
+  left: 0;
   opacity: 0;
   z-index: 1;
   cursor: pointer;
@@ -54,7 +55,7 @@ input {
   border-radius: var(--space);
   width: calc(var(--ui-size) * 2);
   min-width: calc(var(--ui-size) * 2);
-  background-color: var(--fg-m);
+  background-color: var(--bg);
   border: toRem(1) solid var(--br);
 
   &::before {

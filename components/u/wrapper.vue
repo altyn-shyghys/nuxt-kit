@@ -4,7 +4,7 @@
       <UText type="h4" :text="title" />
       <UText v-if="tip" :gray="true" :text="tip" />
     </USpace>
-    <ULine :full="true" />
+    <ULine />
     <USpace display="col" style="padding: var(--space)">
       <slot />
     </USpace>

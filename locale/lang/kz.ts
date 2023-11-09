@@ -6,6 +6,12 @@ export default defineI18nLocale(() => {
       tableName: 'Кесте атауы',
       reload: 'Қайта жүктеңіз',
       close: 'Жабық'
+    },
+    app: {
+      offline: {
+        title: 'Сізде интернет байланысы жоқ сияқты...',
+        desc: 'Желі параметрлерін тексеріңіз'
+      }
     }
   }
 })
