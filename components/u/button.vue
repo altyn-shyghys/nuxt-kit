@@ -5,13 +5,13 @@
     :title="$t(title)"
     @click.prevent="$emit('trigger')"
   >
-    <UiSpace mode="center" style="position: relative">
-      <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
-      <UiSpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
-        <UiIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'def'" :name="icon" />
-        <UiText v-if="title && mode !== 'icon'" type="h4" :text="title" />
-      </UiSpace>
-    </UiSpace>
+    <USpace mode="center" style="position: relative">
+      <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
+      <USpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
+        <UIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'def'" :name="icon" />
+        <UText v-if="title && mode !== 'icon'" type="h4" :text="title" />
+      </USpace>
+    </USpace>
   </button>
 </template>
 

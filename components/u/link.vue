@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="$t(title)">
-    <UiIcon v-if="icon" :name="icon" :size="props.mode === 'page' ? 'ui' : 'def'" />
-    <UiText v-if="title && mode !== 'icon'" type="h4" :text="title" />
+    <UIcon v-if="icon" :name="icon" :size="props.mode === 'page' ? 'U' : 'def'" />
+    <UText v-if="title && mode !== 'icon'" type="h4" :text="title" />
   </NuxtLink>
 </template>
 
@@ -119,7 +119,7 @@ a.page {
   display: flex;
   align-items: center;
   gap: toRem(5);
-  max-width: var(--ui-size);
+  max-width: var(--U-size);
 
   &:hover,
   &:focus {

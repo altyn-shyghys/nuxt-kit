@@ -8,7 +8,11 @@
   padding: 0 var(--space);
   height: var(--ui-size);
   border-radius: var(--br-rad);
-  transition: filter var(--tr), border var(--tr), box-shadow var(--tr), transform var(--tr);
+  transition:
+    filter var(--tr),
+    border var(--tr),
+    box-shadow var(--tr),
+    transform var(--tr);
 }
 
 /* Media Breakpoints */

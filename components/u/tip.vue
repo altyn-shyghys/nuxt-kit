@@ -1,15 +1,15 @@
 <template>
-  <UiSpace block="def" :class="{ wave: wave }">
-    <UiSpace display="grid" gap="sm" class="tip">
-      <UiIcon name="ep:info-filled" size="ui" />
+  <USpace block="def" :class="{ wave: wave }">
+    <USpace display="grid" gap="sm" class="tip">
+      <UIcon name="ep:info-filled" size="ui" />
       <div class="mark"></div>
-      <UiSpace display="col" gap="sm">
-        <UiText type="h4" :text="title" />
-        <UiText :text="message" />
-      </UiSpace>
-    </UiSpace>
+      <USpace display="col" gap="sm">
+        <UText type="h4" :text="title" />
+        <UText :text="message" />
+      </USpace>
+    </USpace>
     <TipWave v-if="wave" />
-  </UiSpace>
+  </USpace>
 </template>
 
 <script setup lang="ts">

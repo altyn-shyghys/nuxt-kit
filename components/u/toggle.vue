@@ -1,9 +1,9 @@
 <template>
-  <UiSpace display="row" pos="between" style="position: relative">
-    <UiSpace display="col" gap="bit">
-      <UiText type="h4" :for="name" :text="label" />
-      <UiText v-if="desc" :gray="true" :text="desc" />
-    </UiSpace>
+  <USpace display="row" pos="between" style="position: relative">
+    <USpace display="col" gap="bit">
+      <UText type="h4" :for="name" :text="label" />
+      <UText v-if="desc" :gray="true" :text="desc" />
+    </USpace>
     <input
       :id="name"
       type="checkbox"
@@ -12,7 +12,7 @@
       @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
     />
     <div class="toggler"></div>
-  </UiSpace>
+  </USpace>
 </template>
 
 <script setup lang="ts">
@@ -50,12 +50,11 @@ input {
   display: flex;
   align-items: center;
   position: relative;
-  transition: justify-content var(--tr);
   height: var(--ui-size);
   border-radius: var(--space);
   width: calc(var(--ui-size) * 2);
   min-width: calc(var(--ui-size) * 2);
-  background-color: var(--fg-m);
+  background-color: var(--fg-s);
   border: toRem(1) solid var(--br);
 
   &::before {

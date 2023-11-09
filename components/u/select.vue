@@ -1,6 +1,6 @@
 <template>
-  <UiSpace display="col" gap="sm">
-    <UiText :text="label" :gray="true" />
+  <USpace display="col" gap="sm">
+    <UText :text="label" :gray="true" />
     <div ref="selectTarget" v-auto-animate :style="`width: ${width}`">
       <button
         ref="selected"
@@ -9,24 +9,24 @@
         class="selected"
         @click="active = !active"
       >
-        <UiSpace mode="center" style="position: relative; min-height: 1.5rem">
-          <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
-          <UiSpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
-            <UiSpace display="row" gap="sm">
-              <UiIcon v-if="icon" size="def" :name="icon" />
-              <UiText type="h4" :text="modelValue" />
-            </UiSpace>
-            <UiIcon id="select-arrow" name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
-          </UiSpace>
-        </UiSpace>
+        <USpace mode="center" style="position: relative; min-height: 1.5rem">
+          <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
+          <USpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
+            <USpace display="row" gap="sm">
+              <UIcon v-if="icon" size="def" :name="icon" />
+              <UText type="h4" :text="modelValue" />
+            </USpace>
+            <UIcon id="select-arrow" name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
+          </USpace>
+        </USpace>
       </button>
-      <UiSpace v-if="active" display="col" gap="none" class="options" @click="optionsHandler">
-        <UiSpace v-if="options.length >= 10" display="row" gap="sm" style="padding: var(--space-m)">
-          <UiIcon name="gg:search" class="search-icon" />
+      <USpace v-if="active" display="col" gap="none" class="options" @click="optionsHandler">
+        <USpace v-if="options.length >= 10" display="row" gap="sm" style="padding: var(--space-m)">
+          <UIcon name="gg:search" class="search-icon" />
           <input id="option-search" v-model="search" type="text" placeholder="Search" />
-        </UiSpace>
-        <UiScroll height="10rem" :trigger="search.length">
-          <UiSpace v-auto-animate display="col" gap="bit">
+        </USpace>
+        <UScroll height="10rem" :trigger="search.length">
+          <USpace v-auto-animate display="col" gap="bit">
             <button
               v-for="(opt, idx) in printOptions"
               :key="idx"
@@ -34,18 +34,18 @@
               :data-opt="idx"
               :title="opt"
             >
-              <UiText type="h4" :text="opt" />
+              <UText type="h4" :text="opt" />
             </button>
-            <UiScreen
+            <UScreen
               v-if="!printOptions.length"
               type="empty"
               style="border-width: 0.063rem 0 0 0"
             />
-          </UiSpace>
-        </UiScroll>
-      </UiSpace>
+          </USpace>
+        </UScroll>
+      </USpace>
     </div>
-  </UiSpace>
+  </USpace>
 </template>
 
 <script setup lang="ts">

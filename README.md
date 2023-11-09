@@ -1,53 +1,52 @@
 # Nuxt Kit
-> UI Library and ready-made SSR configuration for projects developed on the [Nuxt](https://nuxt.com/) framework
+
+> U Library and ready-made SSR configuration for projects developed on the [Nuxt](https://nuxt.com/) framework
 
 ![NuxtKit Banner](https://github.com/altyn-shyghys/nuxt-kit/assets/106645309/0be7a2f1-a65f-408c-a1be-56f9d0f4c558)
 
 ### How to use?
+
 Just add the following code to the new project's nuxt.config.ts | [Documentation](https://nuxt.com/docs/getting-started/layers)
+
 ```ts
 export default defineNuxtConfig({
   extends: [
-    '../nuxt-kit',                   // Extend from a local layer
-    'github:altyn-shyghys/nuxt-kit', // Extend from a git repository
+    '../nuxt-kit', // Extend from a local layer
+    'github:altyn-shyghys/nuxt-kit' // Extend from a git repository
   ]
 })
 ```
 
 To view the available components, create an app.vue file in the root of the project and place the following code there
+
 ```vue
 <template>
-  <UiSpace layout="container">
-    <UiSpace layout="wrapper">
-      <UiSpace display="col" mode="center" gap="sm">
-        <UiText type="h2" text="— Buttons —" />
-        <UiText :gray="true" text="Icon mode (hover to see more details)" />
-        <UiSpace display="row" mode="center" gap="sm" style="flex-wrap: wrap">
-          <UiButton title="Default icon-button" :icon="exIcon" mode="icon" />
-          <UiButton title="Disabled icon-button" :icon="exIcon" mode="icon" :disabled="button" />
-          <UiButton
-            title="Loading state icon-button"
-            :icon="exIcon"
-            mode="icon"
-            :loading="button"
-          />
-          <UiButton title="Active icon-button" :icon="exIcon" mode="icon" state="active" />
-        </UiSpace>
-        <UiText :gray="true" text="Default" />
-        <UiSpace display="row" gap="sm" mode="center" style="flex-wrap: wrap">
-          <UiButton title="Default button" name="Default" />
-          <UiButton title="Default button with Icon" :icon="exIcon" name="With Icon" />
-          <UiButton title="Loading state button" :icon="exIcon" name="Loading" :loading="button" />
-          <UiButton title="Disabled button" :icon="exIcon" name="Disabled" :disabled="button" />
-          <UiButton title="Active button" :icon="exIcon" name="Active" state="active" />
-        </UiSpace>
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm" :full="true">
-        <UiText type="h2" text="— Scrolls —" />
-        <UiText :gray="true" text="Horizontal (Hold 'Shift' for horizontal scroll)" />
-        <UiSpace display="col" gap="sm" :full="true">
-          <UiScroll dir="right" height="5rem">
-            <UiSpace display="row">
+  <USpace layout="container">
+    <USpace layout="wrapper">
+      <USpace display="col" mode="center" gap="sm">
+        <UText type="h2" text="— Buttons —" />
+        <UText :gray="true" text="Icon mode (hover to see more details)" />
+        <USpace display="row" mode="center" gap="sm" style="flex-wrap: wrap">
+          <UButton title="Default icon-button" :icon="exIcon" mode="icon" />
+          <UButton title="Disabled icon-button" :icon="exIcon" mode="icon" :disabled="button" />
+          <UButton title="Loading state icon-button" :icon="exIcon" mode="icon" :loading="button" />
+          <UButton title="Active icon-button" :icon="exIcon" mode="icon" state="active" />
+        </USpace>
+        <UText :gray="true" text="Default" />
+        <USpace display="row" gap="sm" mode="center" style="flex-wrap: wrap">
+          <UButton title="Default button" name="Default" />
+          <UButton title="Default button with Icon" :icon="exIcon" name="With Icon" />
+          <UButton title="Loading state button" :icon="exIcon" name="Loading" :loading="button" />
+          <UButton title="Disabled button" :icon="exIcon" name="Disabled" :disabled="button" />
+          <UButton title="Active button" :icon="exIcon" name="Active" state="active" />
+        </USpace>
+      </USpace>
+      <USpace display="col" mode="center" gap="sm" :full="true">
+        <UText type="h2" text="— Scrolls —" />
+        <UText :gray="true" text="Horizontal (Hold 'Shift' for horizontal scroll)" />
+        <USpace display="col" gap="sm" :full="true">
+          <UScroll dir="right" height="5rem">
+            <USpace display="row">
               <div
                 v-for="(_, idx) in 15"
                 :key="idx"
@@ -60,11 +59,11 @@ To view the available components, create an app.vue file in the root of the proj
                   border: 0.063rem solid var(--br);
                 "
               ></div>
-            </UiSpace>
-          </UiScroll>
-          <UiSpace mode="center"><UiText :gray="true" text="Vertical" /></UiSpace>
-          <UiScroll height="10rem">
-            <UiSpace display="col">
+            </USpace>
+          </UScroll>
+          <USpace mode="center"><UText :gray="true" text="Vertical" /></USpace>
+          <UScroll height="10rem">
+            <USpace display="col">
               <div
                 v-for="(_, idx) in 15"
                 :key="idx"
@@ -76,178 +75,178 @@ To view the available components, create an app.vue file in the root of the proj
                   border: 0.063rem solid var(--br);
                 "
               ></div>
-            </UiSpace>
-          </UiScroll>
-        </UiSpace>
-      </UiSpace>
-      <UiSpace display="col" gap="sm">
-        <UiText type="h2" text="— Checkboxes —" />
-        <UiSpace display="row" mode="center" style="flex-wrap: wrap">
-          <UiCheckbox v-model="checkbox" label="Default" name="cb" />
-          <UiCheckbox v-model="disCheckbox" label="Disabled" name="discb" :disabled="true" />
-        </UiSpace>
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm">
-        <UiText type="h2" text="— Icons —" />
-        <UiText :gray="true" text="Hover to see more details" />
-        <UiSpace display="row" mode="center" style="flex-wrap: wrap">
-          <UiIcon title="50px" :name="exIcon" size="md" />
-          <UiIcon title="40px" :name="exIcon" size="cb" />
-          <UiIcon title="UI size" :name="exIcon" size="ui" />
-          <UiIcon title="24px" :name="exIcon" />
-          <UiIcon title="16px" :name="exIcon" size="sm" />
-        </UiSpace>
-        <UiText :gray="true" text="...and other" />
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm">
-        <UiText type="h2" text="— Screens —" />
-        <UiText :gray="true" text="Shows notifications in your device's language" />
-        <UiSpace display="row" :full="true" style="flex-wrap: wrap">
-          <UiScreen />
-          <UiScreen type="error" />
-          <UiScreen type="empty" />
-        </UiSpace>
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm">
-        <UiText type="h2" text="— Inputs —" />
-        <UiSpace display="row" mode="center" style="flex-wrap: wrap">
-          <UiInput
+            </USpace>
+          </UScroll>
+        </USpace>
+      </USpace>
+      <USpace display="col" gap="sm">
+        <UText type="h2" text="— Checkboxes —" />
+        <USpace display="row" mode="center" style="flex-wrap: wrap">
+          <UCheckbox v-model="checkbox" label="Default" name="cb" />
+          <UCheckbox v-model="disCheckbox" label="Disabled" name="discb" :disabled="true" />
+        </USpace>
+      </USpace>
+      <USpace display="col" mode="center" gap="sm">
+        <UText type="h2" text="— Icons —" />
+        <UText :gray="true" text="Hover to see more details" />
+        <USpace display="row" mode="center" style="flex-wrap: wrap">
+          <UIcon title="50px" :name="exIcon" size="md" />
+          <UIcon title="40px" :name="exIcon" size="cb" />
+          <UIcon title="UI size" :name="exIcon" size="ui" />
+          <UIcon title="24px" :name="exIcon" />
+          <UIcon title="16px" :name="exIcon" size="sm" />
+        </USpace>
+        <UText :gray="true" text="...and other" />
+      </USpace>
+      <USpace display="col" mode="center" gap="sm">
+        <UText type="h2" text="— Screens —" />
+        <UText :gray="true" text="Shows notifications in your device's language" />
+        <USpace display="row" :full="true" style="flex-wrap: wrap">
+          <UScreen />
+          <UScreen type="error" />
+          <UScreen type="empty" />
+        </USpace>
+      </USpace>
+      <USpace display="col" mode="center" gap="sm">
+        <UText type="h2" text="— Inputs —" />
+        <USpace display="row" mode="center" style="flex-wrap: wrap">
+          <UInput
             v-model="inputOne"
             placeholder="Some text"
             label="Default input"
             name="inputOne"
           />
-          <UiInput
+          <UInput
             v-model="inputTwo"
             placeholder="Some Text"
             label="Input with warn state"
             name="inputTwo"
             :warn="true"
           />
-        </UiSpace>
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm">
-        <UiText type="h2" text="— Tips —" />
-        <UiSpace display="row" mode="center" style="flex-wrap: wrap; align-items: flex-start">
-          <UiTip
+        </USpace>
+      </USpace>
+      <USpace display="col" mode="center" gap="sm">
+        <UText type="h2" text="— Tips —" />
+        <USpace display="row" mode="center" style="flex-wrap: wrap; align-items: flex-start">
+          <UTip
             title="Example witn Wave"
             message="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem, optio nesciunt! Labore non eum veritatis"
           />
-          <UiTip
+          <UTip
             title="Example witnout Wave"
             :wave="false"
             message="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem, optio nesciunt! Labore non eum veritatis"
           />
-        </UiSpace>
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm">
-        <UiText type="h2" text="— Modal Ex. —" />
-        <UiText :gray="true" text="Includes different modes in Desktop & Mobile" />
-        <UiButton title="Some" :icon="exIcon" name="Open modal" @trigger="modal = !modal" />
-        <UiModal v-model="modal" title="Modal Ex">
-          <UiSpace display="col" gap="sm" block="def" mode="center">
-            <UiIcon :name="exIcon" size="lg" />
-            <UiText type="h4" text="Welcome to modal example!" />
-            <UiText
+        </USpace>
+      </USpace>
+      <USpace display="col" mode="center" gap="sm">
+        <UText type="h2" text="— Modal Ex. —" />
+        <UText :gray="true" text="Includes different modes in Desktop & Mobile" />
+        <UButton title="Some" :icon="exIcon" name="Open modal" @trigger="modal = !modal" />
+        <UModal v-model="modal" title="Modal Ex">
+          <USpace display="col" gap="sm" block="def" mode="center">
+            <UIcon :name="exIcon" size="lg" />
+            <UText type="h4" text="Welcome to modal example!" />
+            <UText
               :gray="true"
               text="Click on the cross button or on the space outside the window to close"
             />
-          </UiSpace>
-        </UiModal>
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm" :full="true">
-        <UiText type="h2" text="— Tables—" />
-        <UiText :gray="true" text="Shows tips in your device's language" />
-        <UiSpace display="row" style="flex-wrap: wrap">
-          <UiTable title="Table With Options">
+          </USpace>
+        </UModal>
+      </USpace>
+      <USpace display="col" mode="center" gap="sm" :full="true">
+        <UText type="h2" text="— Tables—" />
+        <UText :gray="true" text="Shows tips in your device's language" />
+        <USpace display="row" style="flex-wrap: wrap">
+          <UTable title="Table With Options">
             <template #options>
-              <UiButton title="Some" :icon="exIcon" mode="icon" />
-              <UiButton title="Some" :icon="exIcon" mode="icon" />
+              <UButton title="Some" :icon="exIcon" mode="icon" />
+              <UButton title="Some" :icon="exIcon" mode="icon" />
             </template>
             <template #table>
               <tr>
-                <th v-for="(_, idx) in 5" :key="idx"><UiText :text="idx.toString()" /></th>
+                <th v-for="(_, idx) in 5" :key="idx"><UText :text="idx.toString()" /></th>
               </tr>
               <tr v-for="(_, tridx) in 15" :key="tridx">
-                <td v-for="(__, tdIdx) in 5" :key="tdIdx"><UiText :text="tdIdx.toString()" /></td>
+                <td v-for="(__, tdIdx) in 5" :key="tdIdx"><UText :text="tdIdx.toString()" /></td>
               </tr>
             </template>
-          </UiTable>
-          <UiTable title="With Error (ex. case)" :error="true">
+          </UTable>
+          <UTable title="With Error (ex. case)" :error="true">
             <template #options>
-              <UiButton title="Some" :icon="exIcon" mode="icon" />
-              <UiButton title="Some" :icon="exIcon" mode="icon" />
+              <UButton title="Some" :icon="exIcon" mode="icon" />
+              <UButton title="Some" :icon="exIcon" mode="icon" />
             </template>
-          </UiTable>
-          <UiTable title="Print mode" :print="true">
+          </UTable>
+          <UTable title="Print mode" :print="true">
             <template #options>
-              <UiButton title="Some" :icon="exIcon" mode="icon" />
-              <UiButton title="Some" :icon="exIcon" mode="icon" />
+              <UButton title="Some" :icon="exIcon" mode="icon" />
+              <UButton title="Some" :icon="exIcon" mode="icon" />
             </template>
             <template #table>
               <tr>
-                <th v-for="(_, idx) in 5" :key="idx"><UiText :text="idx.toString()" /></th>
+                <th v-for="(_, idx) in 5" :key="idx"><UText :text="idx.toString()" /></th>
               </tr>
               <tr v-for="(_, trIdx) in 10" :key="trIdx">
                 <td v-for="(__, tdIdx) in 5" :key="tdIdx"><UiText :text="tdIdx.toString()" /></td>
               </tr>
             </template>
-          </UiTable>
-        </UiSpace>
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm">
-        <UiText type="h2" text="— Selects —" />
-        <UiSpace display="row" mode="center" style="flex-wrap: wrap">
-          <UiSelect
+          </UTable>
+        </USpace>
+      </USpace>
+      <USpace display="col" mode="center" gap="sm">
+        <UText type="h2" text="— Selects —" />
+        <USpace display="row" mode="center" style="flex-wrap: wrap">
+          <USelect
             v-model="selOneModel"
             :options="selOne"
             label="Without search and Icon"
             width="10rem"
           />
-          <UiSelect
+          <USelect
             v-model="selOneModel"
             :options="selOne"
             label="Infinite loading"
             width="10rem"
             :loading="true"
           />
-          <UiSelect
+          <USelect
             v-model="selOneModel"
             :options="selOne"
             label="Without search"
             :icon="exIcon"
             width="10rem"
           />
-          <UiSelect
+          <USelect
             v-model="selTwoModel"
             :options="selTwo"
             label="With search"
             :icon="exIcon"
             width="10rem"
           />
-        </UiSpace>
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm" style="max-width: 40rem">
-        <UiText type="h2" text="— Texts —" />
-        <UiText :gray="true" text="These are just a few of the many options available" />
-        <UiText type="h1" text="Main Title Example" />
-        <UiText
+        </USpace>
+      </USpace>
+      <USpace display="col" mode="center" gap="sm" style="max-width: 40rem">
+        <UText type="h2" text="— Texts —" />
+        <UText :gray="true" text="These are just a few of the many options available" />
+        <UText type="h1" text="Main Title Example" />
+        <UText
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis facilis at nesciunt officiis, vitae consectetur praesentium quod a vel cum!"
         />
-        <UiText :gray="true" text="...and other" />
-      </UiSpace>
-      <UiSpace display="col" mode="center" gap="sm">
-        <UiText type="h2" text="— Links —" />
-        <UiText :gray="true" text="Hover to see more details" />
-        <UiSpace display="row" mode="center" style="flex-wrap: wrap">
-          <UiLink to="#" title="Default" />
-          <UiLink to="#" title="Icon" :icon="exIcon" mode="icon" />
-          <UiLink to="#" title="Text & icon" :icon="exIcon" mode="hybrid" />
-          <UiLink to="/" title="Page" :icon="exIcon" mode="page" />
-        </UiSpace>
-      </UiSpace>
-    </UiSpace>
-  </UiSpace>
+        <UText :gray="true" text="...and other" />
+      </USpace>
+      <USpace display="col" mode="center" gap="sm">
+        <UText type="h2" text="— Links —" />
+        <UText :gray="true" text="Hover to see more details" />
+        <USpace display="row" mode="center" style="flex-wrap: wrap">
+          <ULink to="#" title="Default" />
+          <ULink to="#" title="Icon" :icon="exIcon" mode="icon" />
+          <ULink to="#" title="Text & icon" :icon="exIcon" mode="hybrid" />
+          <ULink to="/" title="Page" :icon="exIcon" mode="page" />
+        </USpace>
+      </USpace>
+    </USpace>
+  </USpace>
 </template>
 
 <script setup lang="ts">

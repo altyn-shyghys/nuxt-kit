@@ -1,37 +1,32 @@
 <template>
   <ClientOnly>
-    <UiSpace
-      display="col"
-      :block="print ? undefined : 'alt'"
-      :full="true"
-      style="padding-bottom: 0"
-    >
-      <UiSpace display="row" pos="between">
-        <UiSpace display="row" gap="sm">
-          <UiIcon name="tabler:table-filled" size="md" class="hide" />
-          <UiSpace display="col" gap="bit">
-            <UiText type="h4" :text="title" />
-            <UiText :gray="true" text="ui.tableName" />
-          </UiSpace>
-        </UiSpace>
-        <UiSpace display="row" class="options" :style="`display: ${print ? 'none' : 'flex'}`">
+    <USpace display="col" :block="print ? undefined : 'alt'" :full="true" style="padding-bottom: 0">
+      <USpace display="row" pos="between">
+        <USpace display="row" gap="sm">
+          <UIcon name="tabler:table-filled" size="md" class="hide" />
+          <USpace display="col" gap="bit">
+            <UText type="h4" :text="title" />
+            <UText :gray="true" text="U.tableName" />
+          </USpace>
+        </USpace>
+        <USpace display="row" class="options" :style="`display: ${print ? 'none' : 'flex'}`">
           <slot name="options" />
-        </UiSpace>
-      </UiSpace>
-      <UiSpace v-auto-animate :full="true">
-        <div v-if="lenght === 0" class="table-screen"><UiScreen type="empty" /></div>
-        <div v-else-if="error" class="table-screen"><UiScreen type="error" /></div>
+        </USpace>
+      </USpace>
+      <USpace v-auto-animate :full="true">
+        <div v-if="lenght === 0" class="table-screen"><UScreen type="empty" /></div>
+        <div v-else-if="error" class="table-screen"><UScreen type="error" /></div>
         <div v-else class="table-container">
           <div class="hider"></div>
-          <UiScroll dir="right" :class="{ 'table-scroll': true, max: print }">
+          <UScroll dir="right" :class="{ 'table-scroll': true, max: print }">
             <table v-auto-animate>
               <slot name="table" />
             </table>
-          </UiScroll>
+          </UScroll>
         </div>
-      </UiSpace>
-    </UiSpace>
-    <template #fallback><UiFallback type="table" /></template>
+      </USpace>
+    </USpace>
+    <template #fallback><UFallback type="table" /></template>
   </ClientOnly>
 </template>
 

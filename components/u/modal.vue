@@ -1,24 +1,24 @@
 <template>
   <Teleport to="body">
     <Transition name="main" mode="out-in">
-      <UiSpace v-if="modelValue" mode="center" class="modal">
-        <UiSpace ref="windowTarget" display="col" block="alt" class="window">
-          <UiSpace display="row" pos="between">
-            <UiText type="h3" :text="title" />
-            <UiButton
-              title="ui.close"
+      <USpace v-if="modelValue" mode="center" class="modal">
+        <USpace ref="windowTarget" display="col" block="alt" class="window">
+          <USpace display="row" pos="between">
+            <UText type="h3" :text="title" />
+            <UButton
+              title="U.close"
               mode="icon"
               icon="ep:close"
               @trigger="emit('update:modelValue', !modelValue)"
             />
-          </UiSpace>
-          <UiScroll v-auto-animate dir="bottom" height="80dvh">
-            <UiSpace display="col">
+          </USpace>
+          <UScroll v-auto-animate dir="bottom" height="80dvh">
+            <USpace display="col">
               <slot />
-            </UiSpace>
-          </UiScroll>
-        </UiSpace>
-      </UiSpace>
+            </USpace>
+          </UScroll>
+        </USpace>
+      </USpace>
     </Transition>
   </Teleport>
 </template>

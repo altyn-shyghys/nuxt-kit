@@ -1,19 +1,19 @@
 <template>
-  <UiSpace mode="center" block="def" :full="true" style="height: 100%">
-    <UiSpace display="row" gap="sm" class="control">
+  <USpace mode="center" block="def" :full="true" style="height: 100%">
+    <USpace display="row" gap="sm" class="control">
       <template v-if="type === 'empty'">
-        <UiIcon name="tabler:table-alias" size="md" />
-        <UiText text="ui.emptyTip" />
+        <UIcon name="tabler:table-alias" size="md" />
+        <UText text="U.emptyTip" />
       </template>
       <template v-else-if="type === 'loading'">
-        <UiIcon :name="ICON_LOADING_DOTS" size="md" />
+        <UIcon :name="ICON_LOADING_DOTS" size="md" />
       </template>
       <template v-else-if="type === 'error'">
-        <UiIcon name="tabler:table-down" size="md" />
-        <UiText text="ui.errorTip" />
+        <UIcon name="tabler:table-down" size="md" />
+        <UText text="U.errorTip" />
       </template>
-    </UiSpace>
-  </UiSpace>
+    </USpace>
+  </USpace>
 </template>
 
 <script setup lang="ts">

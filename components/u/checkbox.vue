@@ -1,5 +1,5 @@
 <template>
-  <UiSpace display="row" gap="sm" style="position: relative" :class="{ disabled: disabled }">
+  <USpace display="row" gap="sm" style="position: relative" :class="{ disabled: disabled }">
     <input
       :id="name"
       type="checkbox"
@@ -7,11 +7,11 @@
       :checked="modelValue"
       @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
     />
-    <UiSpace block="def" class="box">
-      <UiIcon name="lucide:check" size="cb" />
-    </UiSpace>
-    <UiText type="label" :gray="true" :for="name" :text="label" />
-  </UiSpace>
+    <USpace block="def" class="box">
+      <UIcon name="lucide:check" size="cb" />
+    </USpace>
+    <UText type="label" :gray="true" :for="name" :text="label" />
+  </USpace>
 </template>
 
 <script setup lang="ts">

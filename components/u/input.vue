@@ -1,6 +1,6 @@
 <template>
-  <UiSpace display="col" gap="sm">
-    <UiText v-if="label" type="label" :gray="true" :for="name" :text="label" />
+  <USpace display="col" gap="sm">
+    <UText v-if="label" type="label" :gray="true" :for="name" :text="label" />
     <input
       :id="name"
       :name="name"
@@ -12,7 +12,7 @@
       :class="{ error: warn }"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     />
-  </UiSpace>
+  </USpace>
 </template>
 
 <script setup lang="ts">
@@ -34,7 +34,7 @@ defineEmits<{ (e: 'update:modelValue', value: string): void }>()
 
 <style scoped lang="scss">
 input {
-  @include ui-styles;
+  @include U-styles;
   font-size: 0.875rem;
   background-color: var(--fg-m);
   color: var(--txt-m);
