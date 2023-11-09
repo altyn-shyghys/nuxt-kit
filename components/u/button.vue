@@ -32,9 +32,24 @@ defineEmits<{ (e: 'trigger'): void }>()
 </script>
 
 <style scoped lang="scss">
-.button {
+button {
   @include ui-styles;
   cursor: pointer;
+  svg {
+    pointer-events: none;
+  }
+
+  &:active {
+    transform: var(--scale);
+  }
+
+  &:disabled {
+    filter: brightness(0.5);
+    cursor: not-allowed !important;
+  }
+}
+
+.button {
   background-color: var(--btn-bg);
   font-size: 0.875rem;
 
@@ -43,17 +58,9 @@ defineEmits<{ (e: 'trigger'): void }>()
     color: var(--fg-m);
   }
 
-  svg:hover {
-    filter: none;
-  }
-
   &:hover,
   &:focus {
     box-shadow: 0 0 var(--space-m) var(--btn-bg);
-  }
-
-  &:active {
-    transform: scale(0.96);
   }
 
   &.active {
@@ -67,29 +74,21 @@ defineEmits<{ (e: 'trigger'): void }>()
 }
 
 .icon {
-  @include ui-styles;
   background-color: transparent;
   padding: 0;
   color: var(--txt-m);
-  cursor: pointer;
 
   &:hover,
   &:focus {
     filter: drop-shadow(0 0 toRem(5) var(--m));
   }
-
-  &:active {
-    transform: scale(0.9);
-  }
 }
 
 .link {
-  @include ui-styles;
   border-radius: 0;
   background-color: transparent;
   padding: 0;
   font-size: 1rem;
-  cursor: pointer;
   gap: toRem(3);
   border-bottom: toRem(1.2) dashed var(--txt-m);
   padding-bottom: toRem(3);
@@ -106,28 +105,9 @@ defineEmits<{ (e: 'trigger'): void }>()
     height: auto !important;
   }
 
-  svg {
-    pointer-events: none;
-  }
-
-  &:active {
-    transform: scale(0.96);
-  }
-
   &:hover,
   &:focus {
     border-bottom-style: solid;
-  }
-}
-
-button:disabled {
-  & {
-    filter: brightness(0.5);
-  }
-
-  &,
-  svg {
-    cursor: not-allowed !important;
   }
 }
 </style>

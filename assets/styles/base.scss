@@ -40,11 +40,9 @@
   /* Border Radius Style */
   --br-rad: 0.75rem; // 12px
 
-  /* Main UI size */
+  /* Main UI sizes */
   --ui-size: 2rem; // 32px
-
-  /* Header Height Style */
-  --header-height: 4.375rem; // 70px
+  --scale: scale(0.95);
 }
 
 .dark {

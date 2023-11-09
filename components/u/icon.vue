@@ -1,8 +1,10 @@
-<template><Icon :name="name" :size="size" :style="`min-width: ${size}`" /></template>
+<template>
+  <Icon :name="name" :size="sizeConfig[size]" :style="`min-width: ${sizeConfig[size]}`" />
+</template>
 
 <script setup lang="ts">
 type Size = 'sm' | 'def' | 'ui' | 'cb' | 'md' | 'lg' | 'max' | 'full'
-const props = withDefaults(defineProps<{ name: string; size?: Size }>(), { size: 'def' })
+withDefaults(defineProps<{ name: string; size?: Size }>(), { size: 'def' })
 
 const sizeConfig: Record<Size, string> = {
   sm: '1rem', // 16px
@@ -14,8 +16,6 @@ const sizeConfig: Record<Size, string> = {
   max: '6.25rem', // 100px
   full: '100%'
 }
-
-const size = sizeConfig[props.size]
 </script>
 
 <style scoped lang="scss">

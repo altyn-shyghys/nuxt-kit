@@ -1,9 +1,9 @@
 <template>
-  <div class="line" :style="`width: ${full ? '100%' : '80%'}`" :class="{ dashed: dashed }"></div>
+  <div class="line" :style="`width: ${full ? '100%' : '80%'}`" :class="[mode]"></div>
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{ full?: boolean; dashed?: boolean }>(), { full: true })
+withDefaults(defineProps<{ full?: boolean; mode?: 'dashed' }>(), { full: true, mode: undefined })
 </script>
 
 <style scoped lang="scss">

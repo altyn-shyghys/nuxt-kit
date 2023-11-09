@@ -28,7 +28,7 @@
         <UScroll height="10rem" :trigger="search.length">
           <USpace v-auto-animate display="col" gap="bit">
             <button
-              v-for="(opt, idx) in printOptions"
+              v-for="(opt, idx) in printArr"
               :key="idx"
               class="option"
               :data-opt="idx"
@@ -36,11 +36,7 @@
             >
               <UText type="h4" :text="opt" />
             </button>
-            <UScreen
-              v-if="!printOptions.length"
-              type="empty"
-              style="border-width: 0.063rem 0 0 0"
-            />
+            <UScreen v-if="!printArr.length" type="empty" style="border-width: 0.063rem 0 0 0" />
           </USpace>
         </UScroll>
       </USpace>
@@ -69,30 +65,26 @@ const optionTarget = '[data-opt]'
 const active = ref<boolean>(false)
 const rotateHandler = computed(() => (active.value ? 'transform: rotate(180deg);' : null))
 
-const printOptions = ref<string[]>(props.options)
+const printArr = ref<string[]>(props.options)
 const search = ref<string>('')
 
 watch(active, (newV) => {
   if (newV) {
     search.value = ''
-    printOptions.value = props.options
+    printArr.value = props.options
   }
 })
 
 watch(search, (newV) => {
-  if (newV.length) {
-    printOptions.value = props.options.filter((opt) => opt.toLowerCase().match(newV.toLowerCase()))
-  } else {
-    printOptions.value = props.options
-  }
+  newV.length
+    ? (printArr.value = props.options.filter((opt) => opt.toLowerCase().match(newV.toLowerCase())))
+    : (printArr.value = props.options)
 })
 
 watch(
   () => props.loading,
   (newV) => {
-    if (!newV) {
-      printOptions.value = props.options
-    }
+    if (!newV) printArr.value = props.options
   }
 )
 
@@ -139,7 +131,6 @@ onClickOutside(selectTarget, (evt) => {
 
 .selected {
   @include option-styles;
-  box-sizing: border-box;
 
   &:active {
     #select-arrow {
@@ -154,7 +145,7 @@ onClickOutside(selectTarget, (evt) => {
   min-height: var(--ui-size);
 
   &:active {
-    transform: scale(0.95);
+    transform: var(--scale);
   }
 }
 

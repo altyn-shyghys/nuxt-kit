@@ -31,7 +31,7 @@ defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
     left: toRem(2);
     bottom: toRem(-2);
     opacity: 0;
-    transition: all 0.5s ease;
+    transition: all var(--tr);
     transform: translateY(toRem(20));
   }
 }

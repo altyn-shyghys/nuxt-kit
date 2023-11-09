@@ -1,5 +1,5 @@
 <template>
-  <USpace display="col" gap="sm">
+  <USpace display="col" gap="sm" :full="true">
     <UText v-if="label" type="label" :gray="true" :for="name" :text="label" />
     <input
       :id="name"
@@ -19,9 +19,9 @@
 withDefaults(
   defineProps<{
     name: string
-    type?: 'text' | 'email' | 'password'
     modelValue: string
     placeholder: string
+    type?: 'text' | 'email' | 'password'
     label?: string
     length?: number
     warn?: boolean
@@ -34,7 +34,7 @@ defineEmits<{ (e: 'update:modelValue', value: string): void }>()
 
 <style scoped lang="scss">
 input {
-  @include U-styles;
+  @include ui-styles;
   font-size: 0.875rem;
   background-color: var(--fg-m);
   color: var(--txt-m);
@@ -48,10 +48,8 @@ input {
 }
 
 .error {
-  & {
-    border-color: var(--red);
-    box-shadow: 0 0 var(--space-m) var(--red);
-  }
+  border-color: var(--red);
+  box-shadow: 0 0 var(--space-m) var(--red);
 
   &:focus,
   &:hover {

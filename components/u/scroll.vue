@@ -1,8 +1,8 @@
 <template>
   <div ref="target" :style="defStyles + styles">
     <ClientOnly>
-      <template #fallback><UFallback type="scroll" :height="height" /></template>
       <slot />
+      <template #fallback><UFallback type="scroll" :height="height" /></template>
     </ClientOnly>
   </div>
 </template>

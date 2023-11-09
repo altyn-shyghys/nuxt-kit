@@ -6,16 +6,14 @@
           <USpace display="row" pos="between">
             <UText type="h3" :text="title" />
             <UButton
-              title="U.close"
+              title="ui.close"
               mode="icon"
               icon="ep:close"
               @trigger="emit('update:modelValue', !modelValue)"
             />
           </USpace>
           <UScroll v-auto-animate dir="bottom" height="80dvh">
-            <USpace display="col">
-              <slot />
-            </USpace>
+            <slot />
           </UScroll>
         </USpace>
       </USpace>
@@ -40,8 +38,8 @@ watch(
   () => props.modelValue,
   (newV) => {
     setTimeout(() => {
-      const some = document.querySelector('.window') as HTMLDivElement
-      newV ? some.classList.add('active') : some.classList.remove('active')
+      const window = document.querySelector('.window') as HTMLDivElement
+      newV ? window.classList.add('active') : window.classList.remove('active')
     })
   }
 )
@@ -81,6 +79,11 @@ watch(
     width: 100%;
     max-width: 100%;
     min-width: 100%;
+  }
+
+  @media (max-width: $zf) {
+    padding-left: toRem(10);
+    padding-right: toRem(10);
   }
 }
 

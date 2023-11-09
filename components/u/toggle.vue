@@ -54,7 +54,7 @@ input {
   border-radius: var(--space);
   width: calc(var(--ui-size) * 2);
   min-width: calc(var(--ui-size) * 2);
-  background-color: var(--fg-s);
+  background-color: var(--fg-m);
   border: toRem(1) solid var(--br);
 
   &::before {

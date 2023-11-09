@@ -32,13 +32,14 @@ To view the available components, create an app.vue file in the root of the proj
           <UButton title="Loading state icon-button" :icon="exIcon" mode="icon" :loading="button" />
           <UButton title="Active icon-button" :icon="exIcon" mode="icon" state="active" />
         </USpace>
-        <UText :gray="true" text="Default" />
+        <UText :gray="true" text="Button & Link modes" />
         <USpace display="row" gap="sm" mode="center" style="flex-wrap: wrap">
-          <UButton title="Default button" name="Default" />
-          <UButton title="Default button with Icon" :icon="exIcon" name="With Icon" />
-          <UButton title="Loading state button" :icon="exIcon" name="Loading" :loading="button" />
-          <UButton title="Disabled button" :icon="exIcon" name="Disabled" :disabled="button" />
-          <UButton title="Active button" :icon="exIcon" name="Active" state="active" />
+          <UButton title="Default" />
+          <UButton title="With Icon" :icon="exIcon" />
+          <UButton title="Loading state" :icon="exIcon" :loading="button" />
+          <UButton title="Disabled" :icon="exIcon" :disabled="button" />
+          <UButton title="Active" :icon="exIcon" state="active" />
+          <UButton title="Link-style" :icon="exIcon" state="active" mode="link" />
         </USpace>
       </USpace>
       <USpace display="col" mode="center" gap="sm" :full="true">
@@ -98,6 +99,15 @@ To view the available components, create an app.vue file in the root of the proj
         </USpace>
         <UText :gray="true" text="...and other" />
       </USpace>
+      <USpace display="col" mode="center" gap="sm" :full="true">
+        <UText type="h2" text="— Lines —" />
+        <UText :gray="true" text="Solid" />
+        <ULine />
+        <UText :gray="true" text="Dashed" />
+        <ULine mode="dashed" />
+        <UText :gray="true" text="Not complete" />
+        <ULine :full="false" />
+      </USpace>
       <USpace display="col" mode="center" gap="sm">
         <UText type="h2" text="— Screens —" />
         <UText :gray="true" text="Shows notifications in your device's language" />
@@ -112,13 +122,13 @@ To view the available components, create an app.vue file in the root of the proj
         <USpace display="row" mode="center" style="flex-wrap: wrap">
           <UInput
             v-model="inputOne"
-            placeholder="Some text"
+            placeholder="Example text"
             label="Default input"
             name="inputOne"
           />
           <UInput
             v-model="inputTwo"
-            placeholder="Some Text"
+            placeholder="Example Text"
             label="Input with warn state"
             name="inputTwo"
             :warn="true"
@@ -142,7 +152,7 @@ To view the available components, create an app.vue file in the root of the proj
       <USpace display="col" mode="center" gap="sm">
         <UText type="h2" text="— Modal Ex. —" />
         <UText :gray="true" text="Includes different modes in Desktop & Mobile" />
-        <UButton title="Some" :icon="exIcon" name="Open modal" @trigger="modal = !modal" />
+        <UButton title="Example" :icon="exIcon" name="Open modal" @trigger="modal = !modal" />
         <UModal v-model="modal" title="Modal Ex">
           <USpace display="col" gap="sm" block="def" mode="center">
             <UIcon :name="exIcon" size="lg" />
@@ -160,8 +170,8 @@ To view the available components, create an app.vue file in the root of the proj
         <USpace display="row" style="flex-wrap: wrap">
           <UTable title="Table With Options">
             <template #options>
-              <UButton title="Some" :icon="exIcon" mode="icon" />
-              <UButton title="Some" :icon="exIcon" mode="icon" />
+              <UButton title="Example" :icon="exIcon" mode="icon" />
+              <UButton title="Example" :icon="exIcon" mode="icon" />
             </template>
             <template #table>
               <tr>
@@ -174,21 +184,21 @@ To view the available components, create an app.vue file in the root of the proj
           </UTable>
           <UTable title="With Error (ex. case)" :error="true">
             <template #options>
-              <UButton title="Some" :icon="exIcon" mode="icon" />
-              <UButton title="Some" :icon="exIcon" mode="icon" />
+              <UButton title="Example" :icon="exIcon" mode="icon" />
+              <UButton title="Example" :icon="exIcon" mode="icon" />
             </template>
           </UTable>
           <UTable title="Print mode" :print="true">
             <template #options>
-              <UButton title="Some" :icon="exIcon" mode="icon" />
-              <UButton title="Some" :icon="exIcon" mode="icon" />
+              <UButton title="Example" :icon="exIcon" mode="icon" />
+              <UButton title="Example" :icon="exIcon" mode="icon" />
             </template>
             <template #table>
               <tr>
                 <th v-for="(_, idx) in 5" :key="idx"><UText :text="idx.toString()" /></th>
               </tr>
               <tr v-for="(_, trIdx) in 10" :key="trIdx">
-                <td v-for="(__, tdIdx) in 5" :key="tdIdx"><UiText :text="tdIdx.toString()" /></td>
+                <td v-for="(__, tdIdx) in 5" :key="tdIdx"><UText :text="tdIdx.toString()" /></td>
               </tr>
             </template>
           </UTable>
@@ -235,6 +245,16 @@ To view the available components, create an app.vue file in the root of the proj
         />
         <UText :gray="true" text="...and other" />
       </USpace>
+      <USpace display="col" mode="center" gap="sm" style="max-width: 20rem">
+        <UText type="h2" text="— Togglers —" />
+        <UToggle v-model="toggleOne" name="toggleExOne" label="Default toggler" />
+        <UToggle
+          v-model="toggleTwo"
+          name="toggleExOne"
+          label="Toggler with description"
+          desc="Any important info"
+        />
+      </USpace>
       <USpace display="col" mode="center" gap="sm">
         <UText type="h2" text="— Links —" />
         <UText :gray="true" text="Hover to see more details" />
@@ -242,7 +262,10 @@ To view the available components, create an app.vue file in the root of the proj
           <ULink to="#" title="Default" />
           <ULink to="#" title="Icon" :icon="exIcon" mode="icon" />
           <ULink to="#" title="Text & icon" :icon="exIcon" mode="hybrid" />
+        </USpace>
+        <USpace display="row" mode="center">
           <ULink to="/" title="Page" :icon="exIcon" mode="page" />
+          <ULink to="/" title="Index" :icon="exIcon" mode="index" />
         </USpace>
       </USpace>
     </USpace>
@@ -251,19 +274,22 @@ To view the available components, create an app.vue file in the root of the proj
 
 <script setup lang="ts">
 const exIcon = 'geo:ui-earth-east'
-const button = ref(true)
+const button = ref<boolean>(true)
 
-const checkbox = ref(true)
-const disCheckbox = ref(false)
+const checkbox = ref<boolean>(true)
+const disCheckbox = ref<boolean>(false)
 
-const inputOne = ref('')
-const inputTwo = ref('')
+const inputOne = ref<string>('')
+const inputTwo = ref<string>('')
 
-const modal = ref(false)
+const modal = ref<boolean>(false)
 
-const selOne = ['One', 'Two', 'Three', 'Four', 'Five']
-const selOneModel = ref(selOne[0])
-const selTwo = [...selOne, 'Six', 'Seven', 'Eight', 'Nine', 'Ten']
-const selTwoModel = ref(selTwo[0])
+const selOne: string[] = ['One', 'Two', 'Three', 'Four', 'Five']
+const selOneModel = ref<string>(selOne[0])
+const selTwo: string[] = [...selOne, 'Six', 'Seven', 'Eight', 'Nine', 'Ten']
+const selTwoModel = ref<string>(selTwo[0])
+
+const toggleOne = ref<boolean>(false)
+const toggleTwo = ref<boolean>(false)
 </script>
 ```

@@ -1,6 +1,6 @@
 <template>
   <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="$t(title)">
-    <UIcon v-if="icon" :name="icon" :size="props.mode === 'page' ? 'U' : 'def'" />
+    <UIcon v-if="icon" :name="icon" :size="props.mode === 'page' ? 'ui' : 'def'" />
     <UText v-if="title && mode !== 'icon'" type="h4" :text="title" />
   </NuxtLink>
 </template>
@@ -27,24 +27,20 @@ a {
       filter var(--tr),
       transform var(--tr);
     color: var(--txt-m);
+    font-size: 0.875rem;
   }
 
   &:active {
-    transform: scale(0.96);
+    transform: var(--scale);
   }
 }
 
 a.hybrid {
   display: flex;
   align-items: flex-end;
-  gap: toRem(3);
+  gap: toRem(5);
   border-bottom: toRem(1.2) dashed var(--txt-m);
   padding-bottom: toRem(3);
-
-  &,
-  svg {
-    color: var(--txt-m);
-  }
 
   &:hover,
   &:focus {
@@ -73,7 +69,6 @@ a.page {
   display: flex;
   align-items: center;
   gap: toRem(5);
-  font-size: 0.875rem;
 
   &.router-link-active {
     &,
@@ -96,10 +91,10 @@ a.page {
   $width: 1.5rem;
   @media (max-width: $sm) {
     flex-direction: column;
-    gap: 3px;
+    gap: toRem(3);
     justify-content: center;
     text-decoration: none !important;
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     max-width: $width;
 
     svg {
@@ -119,7 +114,7 @@ a.page {
   display: flex;
   align-items: center;
   gap: toRem(5);
-  max-width: var(--U-size);
+  max-width: var(--ui-size);
 
   &:hover,
   &:focus {
