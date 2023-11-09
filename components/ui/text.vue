@@ -8,7 +8,7 @@ const props = withDefaults(
     for?: string
     gray?: boolean
   }>(),
-  { type: 'small', for: undefined }
+  { type: 'small', for: undefined, options: undefined }
 )
 
 const { t } = useI18n()
@@ -33,6 +33,10 @@ h1 {
   @media (max-width: $sm) {
     font-size: 2rem;
   }
+
+  @media (max-width: $zf) {
+    font-size: 1.5rem;
+  }
 }
 
 h2 {
@@ -42,21 +46,19 @@ h2 {
   @media (max-width: $md) {
     font-size: 1.75rem;
   }
-
-  @media (max-width: $sm) {
-    font-size: 1.5rem;
-  }
 }
 
 h3 {
-  font-size: 1.875rem;
-
-  @media (max-width: $md) {
-    font-size: 1.5rem;
-  }
+  font-size: 1.4rem;
 
   @media (max-width: $sm) {
-    font-size: 1.125rem;
+    font-size: 1.3rem;
+  }
+}
+
+p {
+  @media (max-width: $mob) {
+    font-size: 0.875rem;
   }
 }
 

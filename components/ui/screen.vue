@@ -1,5 +1,5 @@
 <template>
-  <UiSpace mode="center" block="def" :full="true">
+  <UiSpace mode="center" block="def" :full="true" style="height: 100%">
     <UiSpace display="row" gap="sm" class="control">
       <template v-if="type === 'empty'">
         <UiIcon name="tabler:table-alias" size="md" />

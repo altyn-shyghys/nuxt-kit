@@ -19,9 +19,8 @@
         </UiSpace>
       </UiSpace>
       <UiSpace v-auto-animate :full="true">
-        <UiScreen v-if="lenght === 0" type="empty" style="margin-bottom: var(--space)" />
-        <UiScreen v-else-if="error" type="error" style="margin-bottom: var(--space)" />
-        <UiScreen v-else-if="loading" style="margin-bottom: var(--space)" />
+        <div v-if="lenght === 0" class="table-screen"><UiScreen type="empty" /></div>
+        <div v-else-if="error" class="table-screen"><UiScreen type="error" /></div>
         <div v-else class="table-container">
           <div class="hider"></div>
           <UiScroll dir="right" :class="{ 'table-scroll': true, max: print }">
@@ -40,15 +39,13 @@
 withDefaults(
   defineProps<{
     title: string
-    error?: any
-    loading?: boolean
+    error?: any | null
     lenght?: number
     print?: boolean
   }>(),
   {
-    loading: undefined,
-    error: undefined,
-    lenght: undefined
+    lenght: undefined,
+    error: null
   }
 )
 
@@ -76,6 +73,13 @@ defineSlots<{ options(): any; table(): any }>()
   height: fit-content;
   padding-bottom: var(--space);
   max-height: 50vh;
+  position: inherit;
+  z-index: 5;
+}
+
+.table-screen {
+  padding-bottom: var(--space);
+  box-sizing: border-box;
 }
 
 .max {

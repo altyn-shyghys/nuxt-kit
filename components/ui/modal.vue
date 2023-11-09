@@ -4,7 +4,7 @@
       <UiSpace v-if="modelValue" mode="center" class="modal">
         <UiSpace ref="windowTarget" display="col" block="alt" class="window">
           <UiSpace display="row" pos="between">
-            <UiText type="h2" :text="title" />
+            <UiText type="h3" :text="title" />
             <UiButton
               title="ui.close"
               mode="icon"
@@ -29,11 +29,10 @@ const emit = defineEmits<{ (evt: 'update:modelValue', val: boolean): void }>()
 
 const windowTarget = ref<HTMLDivElement>()
 onClickOutside(windowTarget, () => emit('update:modelValue', !props.modelValue))
-const styles = 'height: 100%; overflow: hidden;'
 
 useHead({
   bodyAttrs: {
-    style: () => (props.modelValue ? styles : '')
+    style: () => (props.modelValue ? 'height: 100%; overflow: hidden;' : undefined)
   }
 })
 

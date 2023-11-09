@@ -11,7 +11,7 @@ const props = withDefaults(
     pos?: 'between' | 'left'
     block?: 'def' | 'alt'
     layout?: 'container' | 'wrapper' | 'screen'
-    mode?: 'center'
+    mode?: 'center' | 'mob'
     full?: boolean
   }>(),
   {
@@ -40,7 +40,7 @@ const Block = () =>
     props.type,
     {
       class: [props.display, props.pos, props.block, props.layout, props.mode],
-      style: `${props.display ? `gap: ${gapConfig[props.gap]};` : ''} ${
+      style: `${props.display ? `gap: ${gapConfig[props.gap]};` : ''}${
         props.full ? 'width: 100%;' : ''
       }`
     },
@@ -145,12 +145,18 @@ const Block = () =>
   overflow: scroll;
 }
 
-/* Center */
+/* Mode */
 
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.mob {
+  @media (max-width: $sm) {
+    padding: 4.5rem 0 7.938rem 0;
+  }
 }
 </style>

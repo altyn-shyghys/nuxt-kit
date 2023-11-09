@@ -23,8 +23,14 @@ a {
   &,
   svg,
   &:visited {
-    transition: filter var(--tr);
+    transition:
+      filter var(--tr),
+      transform var(--tr);
     color: var(--txt-m);
+  }
+
+  &:active {
+    transform: scale(0.96);
   }
 }
 
@@ -113,6 +119,7 @@ a.page {
   display: flex;
   align-items: center;
   gap: toRem(5);
+  max-width: var(--ui-size);
 
   &:hover,
   &:focus {

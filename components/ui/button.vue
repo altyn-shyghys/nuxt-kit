@@ -9,7 +9,7 @@
       <UiIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <UiSpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
         <UiIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'def'" :name="icon" />
-        <UiText v-if="name" type="h4" :text="name" />
+        <UiText v-if="title && mode !== 'icon'" type="h4" :text="title" />
       </UiSpace>
     </UiSpace>
   </button>
@@ -24,9 +24,8 @@ withDefaults(
     state?: 'active'
     loading?: boolean
     icon?: string
-    name?: string
   }>(),
-  { mode: 'button', icon: undefined, state: undefined, name: undefined }
+  { mode: 'button', icon: undefined, state: undefined }
 )
 
 defineEmits<{ (e: 'trigger'): void }>()
@@ -42,6 +41,10 @@ defineEmits<{ (e: 'trigger'): void }>()
   &,
   svg {
     color: var(--fg-m);
+  }
+
+  svg:hover {
+    filter: none;
   }
 
   &:hover,
@@ -92,8 +95,7 @@ defineEmits<{ (e: 'trigger'): void }>()
 }
 
 button:disabled {
-  &,
-  svg {
+  & {
     filter: brightness(0.5);
   }
 

@@ -39,7 +39,7 @@ input {
   background-color: var(--fg-m);
   color: var(--txt-m);
   border: toRem(1) solid var(--br);
-  width: auto;
+  width: 100%;
 
   &:focus,
   &:hover {
