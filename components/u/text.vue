@@ -11,9 +11,8 @@ const props = withDefaults(
   { type: 'small', for: undefined, options: undefined }
 )
 
-const { t } = useI18n()
 const Text = () =>
-  h(props.type, { for: props.for, style: props.gray ? 'color: var(--txt-s)' : null }, t(props.text))
+  h(props.type, { for: props.for, style: props.gray ? 'color: var(--txt-s)' : null }, props.text)
 </script>
 
 <style scoped lang="scss">

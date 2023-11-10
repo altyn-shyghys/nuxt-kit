@@ -7,7 +7,7 @@
       :type="type"
       :value="modelValue"
       :maxlength="length"
-      :placeholder="$t(placeholder)"
+      :placeholder="placeholder"
       autocomplete="on"
       :class="{ error: warn }"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"

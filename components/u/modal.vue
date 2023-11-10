@@ -6,7 +6,7 @@
           <USpace display="row" pos="between">
             <UText type="h3" :text="title" />
             <UButton
-              title="ui.close"
+              :title="$t('ui.close')"
               mode="icon"
               icon="ep:close"
               @trigger="emit('update:modelValue', !modelValue)"

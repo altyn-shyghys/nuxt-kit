@@ -2,7 +2,7 @@
   <button
     :disabled="disabled || loading"
     :class="[mode, state]"
-    :title="$t(title)"
+    :title="title"
     @click.prevent="$emit('trigger')"
   >
     <USpace mode="center" style="position: relative">

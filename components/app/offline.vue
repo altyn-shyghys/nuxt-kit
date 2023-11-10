@@ -2,8 +2,8 @@
   <USpace layout="screen">
     <USpace display="col" mode="center">
       <NoInternetConnection style="width: 5rem; height: 5rem" />
-      <UText type="h4" text="app.offline.title" />
-      <UText :gray="true" text="app.offline.desc" />
+      <UText type="h4" :text="$t('app.offline.title')" />
+      <UText :gray="true" :text="$t('app.offline.desc')" />
     </USpace>
   </USpace>
 </template>

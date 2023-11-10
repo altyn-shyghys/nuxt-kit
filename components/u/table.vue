@@ -6,7 +6,7 @@
           <UIcon name="tabler:table-filled" size="md" class="hide" />
           <USpace display="col" gap="bit">
             <UText type="h4" :text="title" />
-            <UText :gray="true" text="ui.tableName" />
+            <UText :gray="true" :text="$t('ui.tableName')" />
           </USpace>
         </USpace>
         <USpace display="row" class="options" :style="`display: ${print ? 'none' : 'flex'}`">

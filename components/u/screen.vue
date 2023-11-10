@@ -3,14 +3,14 @@
     <USpace display="row" gap="sm" style="max-width: 12rem; text-align: left">
       <template v-if="type === 'empty'">
         <UIcon name="tabler:table-alias" size="md" />
-        <UText text="ui.emptyTip" />
+        <UText :text="$t('ui.emptyTip')" />
       </template>
       <template v-else-if="type === 'loading'">
         <UIcon :name="ICON_LOADING_DOTS" size="md" />
       </template>
       <template v-else-if="type === 'error'">
         <UIcon name="tabler:table-down" size="md" />
-        <UText text="ui.errorTip" />
+        <UText :text="$t('ui.errorTip')" />
       </template>
     </USpace>
   </USpace>

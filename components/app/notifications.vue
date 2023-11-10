@@ -3,7 +3,7 @@
     <Transition name="notf" mode="out-in">
       <USpace v-if="$notf.value" display="row" gap="sm" class="notification">
         <UIcon size="ui" name="mdi:bell-notification" />
-        <UText :text="$notf.value" />
+        <UText :text="$t($notf.value)" />
       </USpace>
     </Transition>
   </USpace>

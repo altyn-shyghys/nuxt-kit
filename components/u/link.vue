@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="$t(title)">
+  <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="title">
     <UIcon v-if="icon" :name="icon" :size="props.mode === 'page' ? 'ui' : 'def'" />
     <UText v-if="title && mode !== 'icon'" type="h4" :text="title" />
   </NuxtLink>
