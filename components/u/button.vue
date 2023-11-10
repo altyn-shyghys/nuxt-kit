@@ -35,6 +35,8 @@ defineEmits<{ (e: 'trigger'): void }>()
 button {
   @include ui-styles;
   cursor: pointer;
+  font-size: 0.875rem;
+
   svg {
     pointer-events: none;
   }
@@ -51,7 +53,6 @@ button {
 
 .button {
   background-color: var(--btn-bg);
-  font-size: 0.875rem;
 
   &,
   svg {
@@ -88,7 +89,6 @@ button {
   border-radius: 0;
   background-color: transparent;
   padding: 0;
-  font-size: 1rem;
   gap: toRem(3);
   border-bottom: toRem(1.2) dashed var(--txt-m);
   padding-bottom: toRem(3);

@@ -196,15 +196,6 @@ To view the available components, create an app.vue file in the root of the proj
               </USpace>
             </UModal>
           </USpace>
-          <USpace display="col" mode="center" gap="sm">
-            <UText type="h2" text="— Notfication Ex. —" />
-            <UButton
-              title="Notf. Example"
-              :icon="exIcon"
-              name="Open modal"
-              @trigger="$setNotf('Hello from notification!')"
-            />
-          </USpace>
           <USpace display="col" mode="center" gap="sm" :full="true">
             <UText type="h2" text="— Tables—" />
             <UText :gray="true" text="Shows tips in your device's language" />

@@ -87,7 +87,7 @@ export default defineNuxtConfig({
         }
       ]
     },
-    layoutTransition: { name: 'slide', mode: 'out-in' },
+    layoutTransition: { name: 'main', mode: 'out-in' },
     pageTransition: { name: 'slide', mode: 'out-in' }
   }
 })
