@@ -1,7 +1,7 @@
 <template>
-  <USpace display="col" gap="sm">
+  <USpace display="col" gap="sm" :style="`width: ${width}`">
     <UText :text="label" :gray="true" />
-    <div ref="selectTarget" v-auto-animate :style="`width: ${width}`">
+    <div ref="selectTarget" v-auto-animate>
       <button
         ref="selected"
         :disabled="loading"
@@ -11,6 +11,7 @@
       >
         <USpace mode="center" style="position: relative; min-height: 1.5rem">
           <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
+          <UIcon v-else-if="!options.length" :name="ICON_EMPTY" style="position: absolute" />
           <USpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
             <USpace display="row" gap="sm">
               <UIcon v-if="icon" size="def" :name="icon" />
@@ -131,6 +132,7 @@ onClickOutside(selectTarget, (evt) => {
 
 .selected {
   @include option-styles;
+  width: 100%;
 
   &:active {
     #select-arrow {

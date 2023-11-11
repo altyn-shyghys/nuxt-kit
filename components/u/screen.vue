@@ -2,7 +2,7 @@
   <USpace mode="center" block="def" :full="true" style="height: 100%">
     <USpace display="row" gap="sm" style="max-width: 12rem; text-align: left">
       <template v-if="type === 'empty'">
-        <UIcon name="tabler:table-alias" size="md" />
+        <UIcon :name="ICON_EMPTY" size="md" />
         <UText :text="$t('ui.emptyTip')" />
       </template>
       <template v-else-if="type === 'loading'">
