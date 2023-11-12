@@ -8,7 +8,7 @@
             <UButton
               :title="$t('ui.close')"
               mode="icon"
-              icon="ep:close"
+              :icon="ICON_CLOSE"
               @trigger="emit('update:modelValue', !modelValue)"
             />
           </USpace>

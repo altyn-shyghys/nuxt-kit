@@ -9,7 +9,7 @@
         class="selected"
         @click="active = !active"
       >
-        <USpace mode="center" style="position: relative; min-height: 1.5rem">
+        <USpace mode="center" :full="true" style="position: relative; min-height: 1.5rem">
           <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
           <UIcon v-else-if="!options.length" :name="ICON_EMPTY" style="position: absolute" />
           <USpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
@@ -132,7 +132,9 @@ onClickOutside(selectTarget, (evt) => {
 
 .selected {
   @include option-styles;
-  width: 100%;
+  width: toRem(100);
+  max-width: 100%;
+  min-width: 100%;
 
   &:active {
     #select-arrow {

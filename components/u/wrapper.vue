@@ -1,8 +1,11 @@
 <template>
   <USpace class="action" :style="`background-color: var(--${block === 'def' ? 'fg-m' : 'auto'})`">
-    <USpace display="row" gap="sm" class="title">
-      <UText type="h4" :text="title" />
-      <UText v-if="tip" :gray="true" :text="tip" />
+    <USpace display="row" pos="between" style="padding: var(--space)" :full="true">
+      <USpace display="row" gap="sm" class="title">
+        <UText type="h4" :text="title" />
+        <UText v-if="tip" :gray="true" :text="tip" />
+      </USpace>
+      <slot name="option" />
     </USpace>
     <ULine />
     <USpace display="col" style="padding: var(--space)">
@@ -26,7 +29,6 @@ withDefaults(defineProps<{ title: string; tip?: string; block?: 'def' | 'alt' }>
 
 .title {
   align-items: flex-end;
-  padding: var(--space);
 
   @media (max-width: $zf) {
     align-items: flex-start;
