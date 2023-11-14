@@ -2,8 +2,8 @@
   <Teleport to="body">
     <Transition name="main" mode="out-in">
       <USpace v-if="modelValue" mode="center" class="modal">
-        <USpace ref="windowTarget" display="col" block="alt" class="window">
-          <USpace display="row" pos="between">
+        <USpace ref="windowTarget" block="alt" class="window">
+          <USpace display="row" pos="between" style="padding: var(--space)">
             <UText type="h3" :text="title" />
             <UButton
               :title="$t('ui.close')"
@@ -13,7 +13,9 @@
             />
           </USpace>
           <UScroll v-auto-animate dir="bottom" height="80dvh">
-            <slot />
+            <div class="padding">
+              <slot />
+            </div>
           </UScroll>
         </USpace>
       </USpace>
@@ -70,15 +72,28 @@ watch(
     opacity var(--tr);
   transform: translateY(toRem(400));
   opacity: 0;
+  padding: 0;
+  padding-bottom: var(--space-m);
   box-shadow: toRem(0) toRem(0) toRem(50) rgba(0, 0, 0, 0.2);
 
   @media (max-width: $mob) {
-    border: 0;
+    margin-bottom: var(--space-m);
     border-top: toRem(1) solid var(--br);
-    padding-bottom: calc(var(--space-l) * 1.5);
+  }
+
+  @media (max-width: $mob) {
+    border: 0;
     width: 100%;
     max-width: 100%;
     min-width: 100%;
+  }
+}
+
+.padding {
+  padding: 0 var(--space) var(--space-m) var(--space);
+
+  @media (max-width: $mob) {
+    padding-bottom: calc(var(--space-l) * 1.25);
   }
 
   @media (max-width: $zf) {

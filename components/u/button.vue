@@ -5,7 +5,7 @@
     :title="title"
     @click.prevent="$emit('trigger')"
   >
-    <USpace mode="center" style="position: relative">
+    <USpace mode="center" style="position: relative; pointer-events: none">
       <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <USpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
         <UIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'def'" :name="icon" />

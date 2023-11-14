@@ -19,7 +19,7 @@
         <div v-else class="table-container">
           <div class="hider"></div>
           <UScroll dir="right" :class="{ 'table-scroll': true, max: print }">
-            <table v-auto-animate>
+            <table>
               <slot name="table" />
             </table>
           </UScroll>
