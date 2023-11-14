@@ -19,14 +19,14 @@
 withDefaults(
   defineProps<{
     name: string
-    modelValue: string
-    placeholder: string
-    type?: 'text' | 'email' | 'password'
+    modelValue: string | number
+    placeholder?: string
+    type?: 'text' | 'email' | 'password' | 'datetime-local' | 'number'
     label?: string
     length?: number
     warn?: boolean
   }>(),
-  { type: 'text', length: 100, label: undefined }
+  { type: 'text', placeholder: '', length: 100, label: undefined }
 )
 
 defineEmits<{ (e: 'update:modelValue', value: string): void }>()

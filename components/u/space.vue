@@ -11,7 +11,7 @@ const props = withDefaults(
     pos?: 'between' | 'left'
     block?: 'def' | 'alt'
     layout?: 'container' | 'wrapper' | 'screen'
-    mode?: 'center' | 'mob'
+    mode?: 'center'
     full?: boolean
   }>(),
   {
@@ -152,11 +152,5 @@ const Block = () =>
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.mob {
-  @media (max-width: $sm) {
-    padding: 4.5rem 0 7.938rem 0;
-  }
 }
 </style>

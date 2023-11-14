@@ -1,12 +1,12 @@
 <template>
   <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="title">
-    <UIcon v-if="icon" :name="icon" :size="props.mode === 'page' ? 'ui' : 'def'" />
+    <UIcon v-if="icon" :name="icon" size="def" />
     <UText v-if="title && mode !== 'icon'" type="h4" :text="title" />
   </NuxtLink>
 </template>
 
 <script setup lang="ts">
-const props = withDefaults(
+withDefaults(
   defineProps<{
     to: string
     icon?: string
@@ -88,19 +88,16 @@ a.page {
     text-underline-offset: toRem(5);
   }
 
-  $width: 1.5rem;
   @media (max-width: $sm) {
     flex-direction: column;
     gap: toRem(3);
     justify-content: center;
     text-decoration: none !important;
-    font-size: 0.6rem;
-    max-width: $width;
+    font-size: 0.5rem;
+    max-width: 2rem;
 
-    svg {
-      min-width: $width !important;
-      width: $width !important;
-      height: $width !important;
+    h4 {
+      font-weight: normal;
     }
 
     &:hover,
