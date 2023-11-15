@@ -21,7 +21,7 @@ withDefaults(
     name: string
     modelValue: string | number
     placeholder?: string
-    type?: 'text' | 'email' | 'password' | 'datetime-local' | 'number'
+    type?: 'text' | 'email' | 'password' | 'datetime-local' | 'number' | 'date'
     label?: string
     length?: number
     warn?: boolean

@@ -2,7 +2,7 @@
   <ClientOnly>
     <USpace display="col" :block="print ? undefined : 'alt'" :full="true" style="padding-bottom: 0">
       <USpace display="row" pos="between">
-        <USpace display="row" gap="sm">
+        <USpace display="row" gap="sm" class="table-head">
           <UIcon name="tabler:table-filled" size="md" class="hide" />
           <USpace display="col" gap="bit">
             <UText type="h4" :text="title" />
@@ -53,6 +53,24 @@ defineSlots<{ options(): any; table(): any }>()
   width: 100%;
   max-width: 100%;
   position: relative;
+}
+
+.table-head {
+  h4,
+  div {
+    pointer-events: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  @media (max-width: $mob) {
+    width: toRem(210);
+  }
+
+  @media (max-width: $zf) {
+    width: toRem(120);
+  }
 }
 
 .hider {
