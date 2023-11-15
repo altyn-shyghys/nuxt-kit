@@ -1,7 +1,7 @@
 <template>
   <USpace display="col" gap="sm" :style="`width: ${width}`">
     <UText :text="label" :gray="true" />
-    <div ref="selectTarget" v-auto-animate>
+    <div ref="selectTarget" style="position: relative">
       <button
         ref="selected"
         :disabled="loading"
@@ -21,26 +21,33 @@
           </USpace>
         </USpace>
       </button>
-      <USpace v-if="active" display="col" gap="none" class="options" @click="optionsHandler">
-        <USpace v-if="options.length >= 10" display="row" gap="sm" style="padding: var(--space-m)">
-          <UIcon name="gg:search" class="search-icon" />
-          <input id="option-search" v-model="search" type="text" placeholder="Search" />
-        </USpace>
-        <UScroll height="10rem" :trigger="search.length">
-          <USpace v-auto-animate display="col" gap="bit">
-            <button
-              v-for="(opt, idx) in printArr"
-              :key="idx"
-              class="option"
-              :data-opt="idx"
-              :title="opt"
-            >
-              <UText type="h4" :text="opt" />
-            </button>
-            <UScreen v-if="!printArr.length" type="empty" style="border-width: 0.063rem 0 0 0" />
+      <Transition name="select" mode="out-in">
+        <USpace v-if="active" display="col" gap="none" class="options" @click="optionsHandler">
+          <USpace
+            v-if="options.length >= 10"
+            display="row"
+            gap="sm"
+            style="padding: var(--space-m)"
+          >
+            <UIcon name="gg:search" class="search-icon" />
+            <input id="option-search" v-model="search" type="text" placeholder="Search" />
           </USpace>
-        </UScroll>
-      </USpace>
+          <UScroll height="10rem" :trigger="search.length">
+            <USpace v-auto-animate display="col" gap="bit">
+              <button
+                v-for="(opt, idx) in printArr"
+                :key="idx"
+                class="option"
+                :data-opt="idx"
+                :title="opt"
+              >
+                <UText type="h4" :text="opt" />
+              </button>
+              <UScreen v-if="!printArr.length" type="empty" style="border-width: 0.063rem 0 0 0" />
+            </USpace>
+          </UScroll>
+        </USpace>
+      </Transition>
     </div>
   </USpace>
 </template>
@@ -169,5 +176,20 @@ input {
   width: 100%;
   background-color: transparent;
   color: var(--txt-m);
+}
+
+.select {
+  &-enter-active,
+  &-leave-active {
+    transition:
+      opacity var(--tr),
+      transform var(--tr);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateY(toRem(-2));
+  }
 }
 </style>
