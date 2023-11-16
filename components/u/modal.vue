@@ -78,11 +78,8 @@ watch(
 
   @media (max-width: $mob) {
     margin-bottom: var(--space-m);
-    border-top: toRem(1) solid var(--br);
-  }
-
-  @media (max-width: $mob) {
     border: 0;
+    border-top: toRem(1) solid var(--br);
     width: 100%;
     max-width: 100%;
     min-width: 100%;
