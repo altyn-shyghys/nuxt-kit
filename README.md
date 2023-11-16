@@ -247,13 +247,13 @@ To view the available components, create an app.vue file in the root of the proj
                 v-model="selOneModel"
                 :options="selOne"
                 label="Without search and Icon"
-                width="10rem"
+                width="15rem"
               />
               <USelect
                 v-model="selOneModel"
                 :options="selOne"
                 label="Infinite loading"
-                width="10rem"
+                width="15rem"
                 :loading="true"
               />
               <USelect
@@ -261,14 +261,14 @@ To view the available components, create an app.vue file in the root of the proj
                 :options="selOne"
                 label="Without search"
                 :icon="exIcon"
-                width="10rem"
+                width="15rem"
               />
               <USelect
                 v-model="selTwoModel"
                 :options="selTwo"
                 label="With search"
                 :icon="exIcon"
-                width="10rem"
+                width="15rem"
               />
             </USpace>
           </USpace>
