@@ -5,7 +5,7 @@
         <USpace display="row" gap="sm" class="table-head">
           <UIcon name="tabler:table-filled" size="md" class="hide" />
           <USpace display="col" gap="bit">
-            <UText type="h4" :text="title" />
+            <UText type="span" :text="title" style="font-size: 0.813rem" />
             <UText :gray="true" :text="$t('ui.tableName')" />
           </USpace>
         </USpace>

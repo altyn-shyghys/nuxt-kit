@@ -15,7 +15,7 @@
           <USpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
             <USpace display="row" gap="sm">
               <UIcon v-if="icon" size="def" :name="icon" />
-              <UText type="h4" :text="modelValue" />
+              <UText type="span" :text="modelValue" style="font-size: 0.875rem" />
             </USpace>
             <UIcon id="select-arrow" name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
           </USpace>
@@ -27,23 +27,25 @@
             v-if="options.length >= 10"
             display="row"
             gap="sm"
-            style="padding: var(--space-m)"
+            pos="between"
+            style="padding: var(--space-m) var(--space)"
           >
-            <UIcon name="gg:search" class="search-icon" />
             <input id="option-search" v-model="search" type="text" placeholder="Search" />
+            <UIcon name="gg:search" class="search-icon" size="sm" />
           </USpace>
+          <ULine />
           <UScroll height="10rem" :trigger="search.length">
-            <USpace v-auto-animate display="col" gap="bit">
+            <USpace v-auto-animate display="col" gap="none">
               <button
                 v-for="(opt, idx) in printArr"
                 :key="idx"
                 class="option"
-                :data-opt="idx"
+                :data-opt="opt"
                 :title="opt"
               >
-                <UText type="h4" :text="opt" />
+                <UText type="span" :text="opt" />
               </button>
-              <UScreen v-if="!printArr.length" type="empty" style="border-width: 0.063rem 0 0 0" />
+              <UScreen v-if="!printArr.length" type="empty" style="border: none" />
             </USpace>
           </UScroll>
         </USpace>
@@ -98,8 +100,8 @@ watch(
 
 const optionsHandler = (evt: MouseEvent) => {
   if ((evt.target as HTMLElement).closest(optionTarget)) {
-    const optionIdx = +(evt.target as HTMLButtonElement).dataset.opt!
-    emit('update:modelValue', props.options[optionIdx])
+    const option = (evt.target as HTMLButtonElement).dataset.opt!
+    emit('update:modelValue', option)
     selected.value?.focus()
     active.value = false
   }
@@ -116,9 +118,6 @@ onClickOutside(selectTarget, (evt) => {
   cursor: pointer;
   width: 100%;
   text-align: left;
-  background-color: var(--fg-m);
-  font-size: 0.875rem;
-  border: toRem(1) solid var(--br);
   color: var(--txt-m);
 
   h4,
@@ -131,15 +130,16 @@ onClickOutside(selectTarget, (evt) => {
     overflow: hidden;
   }
 
-  &:hover,
-  &:focus {
-    border-color: var(--m);
+  span {
+    font-weight: normal;
   }
 }
 
 .selected {
   @include option-styles;
   width: toRem(100);
+  background-color: var(--fg-m);
+  border: toRem(1) solid var(--br);
   max-width: 100%;
   min-width: 100%;
 
@@ -148,15 +148,10 @@ onClickOutside(selectTarget, (evt) => {
       transform: scale(1.3);
     }
   }
-}
 
-.option {
-  @include option-styles;
-  background-color: var(--fg-s);
-  min-height: var(--ui-size);
-
-  &:active {
-    transform: var(--scale);
+  &:hover,
+  &:focus {
+    border-color: var(--m);
   }
 }
 
@@ -169,6 +164,31 @@ onClickOutside(selectTarget, (evt) => {
   background-color: var(--fg-m);
   border-radius: var(--br-rad);
   border: toRem(1) solid var(--br);
+}
+
+.option {
+  @include option-styles;
+  background-color: var(--fg-m);
+  min-height: var(--ui-size);
+  border-radius: 0;
+  transition:
+    background-color var(--tr),
+    transform var(--tr);
+
+  span {
+    transition: color var(--tr);
+  }
+
+  &:active {
+    span {
+      color: var(--m);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--fg-s);
+  }
 }
 
 input {
