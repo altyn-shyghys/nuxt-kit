@@ -29,7 +29,7 @@ const slots = defineSlots<{ default(): any }>()
 
 const gapConfig: Record<Gap, string> = {
   none: '0',
-  bit: '0.125rem', // 2px
+  bit: '0.188rem', // 3px
   sm: 'var(--space-m)', // see in 'assets/base.scss'
   base: 'var(--space)', // see in 'assets/base.scss'
   lg: 'var(--space-l)' // see in 'assets/base.scss'

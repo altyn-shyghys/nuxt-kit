@@ -7,8 +7,8 @@
   >
     <USpace mode="center" style="position: relative; pointer-events: none">
       <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
-      <USpace display="row" gap="sm" :style="loading ? `visibility: hidden` : null">
-        <UIcon v-if="icon" :size="mode === 'icon' ? 'ui' : 'def'" :name="icon" />
+      <USpace display="row" gap="bit" :style="loading ? `visibility: hidden` : null">
+        <UIcon v-if="icon" :name="icon" />
         <UText v-if="title && mode !== 'icon'" type="h4" :text="title" />
       </USpace>
     </USpace>
@@ -19,9 +19,9 @@
 withDefaults(
   defineProps<{
     title: string
-    mode?: 'button' | 'icon' | 'link'
+    mode?: 'button' | 'icon' | 'link' | 'min'
     disabled?: boolean
-    state?: 'active'
+    state?: 'active' | 'solid'
     loading?: boolean
     icon?: string
   }>(),
@@ -83,19 +83,29 @@ button {
   &:focus {
     filter: drop-shadow(0 0 toRem(5) var(--m));
   }
+
+  &.active {
+    svg {
+      color: var(--m);
+    }
+  }
+
+  &.solid {
+    width: var(--ui-size);
+    height: var(--ui-size);
+    border: toRem(1) solid var(--br);
+  }
 }
 
 .link {
   border-radius: 0;
   background-color: transparent;
   padding: 0;
-  gap: toRem(3);
   border-bottom: toRem(1.2) dashed var(--txt-m);
   padding-bottom: toRem(3);
   transition: transform var(--tr);
 
   .row {
-    gap: toRem(3) !important;
     align-items: flex-end;
   }
 
@@ -108,6 +118,22 @@ button {
   &:hover,
   &:focus {
     border-bottom-style: solid;
+  }
+}
+
+.min {
+  border-radius: 0;
+  background-color: transparent;
+  padding: 0;
+
+  &,
+  svg {
+    color: var(--m);
+  }
+
+  &:hover,
+  &:focus {
+    filter: drop-shadow(0 0 toRem(5) var(--m));
   }
 }
 </style>

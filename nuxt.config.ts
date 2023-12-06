@@ -50,18 +50,18 @@ export default defineNuxtConfig({
       {
         code: 'en',
         name: 'English',
-        iso: 'en-US',
+        iso: 'en',
         file: 'en.ts'
       },
       {
-        code: 'kz',
+        code: 'kk',
         name: 'Қазақ',
-        iso: 'kz-KZ',
+        iso: 'kk',
         file: 'kz.ts'
       },
       {
         code: 'ru',
-        iso: 'ru-RU',
+        iso: 'ru',
         name: 'Русский',
         file: 'ru.ts'
       }

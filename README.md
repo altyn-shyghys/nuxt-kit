@@ -29,7 +29,7 @@ To view the available components, create an app.vue file in the root of the proj
         <USpace layout="wrapper">
           <USpace display="col" mode="center" gap="sm">
             <UText type="h2" text="— Buttons —" />
-            <UText :gray="true" text="Icon mode (hover to see more details)" />
+            <UText gray text="Icon mode (hover to see more details)" />
             <USpace display="row" mode="center" gap="sm" style="flex-wrap: wrap">
               <UButton title="Default icon-button" :icon="exIcon" mode="icon" />
               <UButton title="Disabled icon-button" :icon="exIcon" mode="icon" :disabled="button" />
@@ -40,8 +40,9 @@ To view the available components, create an app.vue file in the root of the proj
                 :loading="button"
               />
               <UButton title="Active icon-button" :icon="exIcon" mode="icon" state="active" />
+              <UButton title="Active icon-button" :icon="exIcon" mode="icon" state="solid" />
             </USpace>
-            <UText :gray="true" text="Button & Link modes" />
+            <UText gray text="Button, Min & Link modes" />
             <USpace display="row" gap="sm" mode="center" style="flex-wrap: wrap">
               <UButton title="Default" />
               <UButton title="With Icon" :icon="exIcon" />
@@ -49,6 +50,9 @@ To view the available components, create an app.vue file in the root of the proj
               <UButton title="Disabled" :icon="exIcon" :disabled="button" />
               <UButton title="Active" :icon="exIcon" state="active" />
               <UButton title="Link-style" :icon="exIcon" state="active" mode="link" />
+              <UButton mode="min" title="Min mode" />
+              <UButton mode="min" title="Min mode" state="solid" />
+              <UButton mode="min" :icon="exIcon" title="Min with Icon" />
             </USpace>
           </USpace>
           <USpace display="col" mode="center" gap="sm" :full="true">
