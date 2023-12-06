@@ -1,6 +1,6 @@
 <template>
-  <USpace display="col" gap="sm" :full="true">
-    <UText v-if="label" type="label" :gray="true" :for="name" :text="label" />
+  <USpace display="col" gap="sm" full>
+    <UText v-if="label" type="label" gray :for="name" :text="label" />
     <input
       :id="name"
       :name="name"

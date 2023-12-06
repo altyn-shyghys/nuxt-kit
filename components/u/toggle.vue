@@ -1,8 +1,8 @@
 <template>
   <USpace display="row" pos="between" block="def" style="position: relative">
     <USpace display="col" gap="bit">
-      <UText type="h4" :for="name" :text="label" />
-      <UText v-if="desc" :gray="true" :text="desc" />
+      <UText type="span" :text="label" style="font-size: 0.813rem" />
+      <UText type="label" :for="name" gray :text="desc" />
     </USpace>
     <input
       :id="name"
@@ -20,7 +20,7 @@ defineProps<{
   name: string
   modelValue: boolean
   label: string
-  desc?: string
+  desc: string
   disabled?: boolean
 }>()
 defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()

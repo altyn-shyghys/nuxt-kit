@@ -4,7 +4,7 @@
 const props = withDefaults(
   defineProps<{
     text: string
-    type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'small' | 'label'
+    type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'small' | 'label' | 'span'
     for?: string
     gray?: boolean
   }>(),
@@ -77,5 +77,9 @@ h6 {
 label,
 small {
   font-size: small;
+}
+
+span {
+  font-weight: bold;
 }
 </style>

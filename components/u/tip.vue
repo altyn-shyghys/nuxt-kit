@@ -3,9 +3,9 @@
     <USpace display="grid" gap="sm" class="tip">
       <UIcon name="ep:info-filled" size="ui" />
       <div class="mark"></div>
-      <USpace display="col" gap="sm">
-        <UText type="h4" :text="title" />
-        <UText :text="message" />
+      <USpace display="col" gap="bit">
+        <UText type="span" :text="title" style="font-size: 0.813rem" />
+        <UText gray :text="message" />
       </USpace>
     </USpace>
     <TipWave v-if="wave" />

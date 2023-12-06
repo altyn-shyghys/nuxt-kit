@@ -2,8 +2,8 @@
   <USpace class="action" :style="`background-color: var(--${block === 'def' ? 'fg-m' : 'auto'})`">
     <USpace display="row" pos="between" style="padding: var(--space)" :full="true">
       <USpace display="row" gap="sm" class="title">
-        <UText type="h4" :text="title" />
-        <UText v-if="tip" :gray="true" :text="tip" />
+        <UText type="span" :text="title" />
+        <UText v-if="tip" gray :text="tip" />
       </USpace>
       <slot name="option" />
     </USpace>
@@ -29,6 +29,12 @@ withDefaults(defineProps<{ title: string; tip?: string; block?: 'def' | 'alt' }>
 
 .title {
   align-items: flex-end;
+
+  span {
+    @media (max-width: $mob) {
+      font-size: 0.875rem;
+    }
+  }
 
   @media (max-width: $zf) {
     align-items: flex-start;

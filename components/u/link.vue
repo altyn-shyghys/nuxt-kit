@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="title">
     <UIcon v-if="icon" :name="icon" size="def" />
-    <UText v-if="title && mode !== 'icon'" type="h4" :text="title" />
+    <UText v-if="title && mode !== 'icon'" type="span" :text="title" />
   </NuxtLink>
 </template>
 
@@ -96,7 +96,7 @@ a.page {
     font-size: 0.5rem;
     max-width: 2rem;
 
-    h4 {
+    span {
       font-weight: normal;
     }
 
@@ -116,12 +116,6 @@ a.page {
   &:hover,
   &:focus {
     filter: drop-shadow(0 0 toRem(5) var(--m));
-  }
-
-  svg {
-    min-width: 2rem !important;
-    width: 2rem !important;
-    height: 2rem !important;
   }
 }
 </style>

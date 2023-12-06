@@ -24,7 +24,6 @@ To view the available components, create an app.vue file in the root of the proj
   <div id="kit">
     <AppOffline v-if="!isOnline" />
     <div v-else id="layout">
-      <AppNotifications />
       <USpace layout="container">
         <USpace layout="wrapper">
           <USpace display="col" mode="center" gap="sm">

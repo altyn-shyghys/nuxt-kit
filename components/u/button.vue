@@ -9,7 +9,7 @@
       <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <USpace display="row" gap="bit" :style="loading ? `visibility: hidden` : null">
         <UIcon v-if="icon" :name="icon" />
-        <UText v-if="title && mode !== 'icon'" type="h4" :text="title" />
+        <UText v-if="title && mode !== 'icon'" type="span" :text="title" />
       </USpace>
     </USpace>
   </button>
@@ -35,7 +35,6 @@ defineEmits<{ (e: 'trigger'): void }>()
 button {
   @include ui-styles;
   cursor: pointer;
-  font-size: 0.875rem;
 
   svg {
     pointer-events: none;
