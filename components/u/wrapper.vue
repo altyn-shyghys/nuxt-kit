@@ -4,7 +4,6 @@
       <USpace display="row" gap="sm" class="title">
         <UIcon v-if="icon" :name="icon" />
         <UText type="span" :text="title" />
-        <UText v-if="tip" gray :text="tip" />
       </USpace>
       <slot name="option" />
     </USpace>
@@ -16,8 +15,7 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{ title: string; tip?: string; block?: 'def' | 'alt'; icon?: string }>(), {
-  tip: undefined,
+withDefaults(defineProps<{ title: string; block?: 'def' | 'alt'; icon?: string }>(), {
   block: 'alt',
   icon: undefined
 })
@@ -34,11 +32,6 @@ withDefaults(defineProps<{ title: string; tip?: string; block?: 'def' | 'alt'; i
     @media (max-width: $mob) {
       font-size: 0.875rem;
     }
-  }
-
-  @media (max-width: $zf) {
-    align-items: flex-start;
-    flex-direction: column;
   }
 }
 </style>

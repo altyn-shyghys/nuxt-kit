@@ -77,6 +77,7 @@ button {
   background-color: transparent;
   padding: 0;
   color: var(--txt-m);
+  height: auto;
 
   &:hover,
   &:focus {
@@ -124,6 +125,7 @@ button {
   border-radius: 0;
   background-color: transparent;
   padding: 0;
+  height: auto;
 
   &,
   svg {
