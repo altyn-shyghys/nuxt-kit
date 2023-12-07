@@ -8,7 +8,7 @@
     <USpace mode="center" style="position: relative; pointer-events: none">
       <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <USpace display="row" gap="bit" :style="loading ? `visibility: hidden` : null">
-        <UIcon v-if="icon" :name="icon" />
+        <UIcon v-if="icon" :name="icon" :size="state === 'action' ? 'sm' : 'def'" />
         <UText v-if="title && mode !== 'icon'" type="span" :text="title" />
       </USpace>
     </USpace>
@@ -21,7 +21,7 @@ withDefaults(
     title: string
     mode?: 'button' | 'icon' | 'link' | 'min'
     disabled?: boolean
-    state?: 'active' | 'solid'
+    state?: 'active' | 'action'
     loading?: boolean
     icon?: string
   }>(),
@@ -90,10 +90,10 @@ button {
     }
   }
 
-  &.solid {
-    width: var(--ui-size);
-    height: var(--ui-size);
-    border: toRem(1) solid var(--br);
+  &.action {
+    svg {
+      color: var(--txt-s);
+    }
   }
 }
 
