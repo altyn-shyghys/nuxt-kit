@@ -1,23 +1,22 @@
 <template>
   <ClientOnly>
-    <USpace display="col" :block="print ? undefined : 'alt'" :full="true" style="padding-bottom: 0">
+    <USpace display="col" :block="print ? undefined : 'alt'" full style="padding-bottom: 0">
       <USpace display="row" pos="between">
         <USpace display="row" gap="sm" class="table-head">
           <UIcon name="tabler:table-filled" size="md" class="hide" />
           <USpace display="col" gap="bit">
             <UText type="span" :text="title" style="font-size: 0.813rem" />
-            <UText :gray="true" :text="$t('ui.tableName')" />
+            <UText gray :text="$t('ui.tableName')" />
           </USpace>
         </USpace>
         <USpace display="row" class="options" :style="`display: ${print ? 'none' : 'flex'}`">
           <slot name="options" />
         </USpace>
       </USpace>
-      <USpace v-auto-animate :full="true">
+      <USpace v-auto-animate full>
         <div v-if="lenght === 0" class="table-screen"><UScreen type="empty" /></div>
         <div v-else-if="error" class="table-screen"><UScreen type="error" /></div>
         <div v-else class="table-container">
-          <div class="hider"></div>
           <UScroll dir="right" :class="{ 'table-scroll': true, max: print }">
             <table>
               <slot name="table" />
@@ -73,14 +72,6 @@ defineSlots<{ options(): any; table(): any }>()
   }
 }
 
-.hider {
-  position: absolute;
-  width: 100%;
-  height: 1.8rem;
-  z-index: 2;
-  background: linear-gradient(180deg, var(--bg) 50%, transparent 100%);
-}
-
 .table-scroll {
   overflow-y: scroll;
   height: fit-content;
@@ -88,6 +79,7 @@ defineSlots<{ options(): any; table(): any }>()
   max-height: 50vh;
   position: inherit;
   z-index: 5;
+  border-radius: var(--br-rad) var(--br-rad) 0 0;
 }
 
 .table-screen {

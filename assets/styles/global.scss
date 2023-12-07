@@ -19,13 +19,27 @@ table {
   position: relative;
   border-collapse: separate;
   min-width: min-content;
-  border-spacing: toRem(1);
+  border-spacing: 0;
   text-align: left;
+
+  tr:first-child {
+    position: relative;
+  }
 
   th,
   td {
-    border-radius: calc(var(--br-rad) / 2);
     padding: toRem(5.5) var(--space-m);
+    border-bottom: toRem(1) solid var(--br);
+  }
+
+  tr td:first-child,
+  tr th:first-child {
+    border-left: toRem(1) solid var(--br);
+  }
+
+  tr td:last-child,
+  tr th:last-child {
+    border-right: toRem(1) solid var(--br);
   }
 
   th {
@@ -34,16 +48,32 @@ table {
     top: toRem(0);
     z-index: 3;
     font-weight: bold;
-    background-color: var(--btn-bg);
-    border: toRem(1) solid var(--btn-bg);
-    color: var(--fg-m);
+    min-height: var(--ui-size);
+    background-color: var(--fg-m);
+    border-top: toRem(1) solid var(--br);
+  }
+
+  tr th:first-child {
+    border-radius: var(--br-rad) 0 0 0;
+  }
+
+  tr th:last-child {
+    border-radius: 0 var(--br-rad) 0 0;
+  }
+
+  tr:last-child td:first-child {
+    border-radius: 0 0 0 var(--br-rad);
+  }
+
+  tr:last-child td:last-child {
+    border-radius: 0 0 var(--br-rad) 0;
   }
 
   td {
     color: var(--txt-s);
-    position: inherit;
-    border: toRem(1) solid var(--br);
-    z-index: 1;
+    position: relative !important;
+    vertical-align: top;
+    z-index: 1 !important;
   }
 
   tr:hover {

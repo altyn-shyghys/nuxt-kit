@@ -173,16 +173,12 @@ onClickOutside(selectTarget, (evt) => {
   border-radius: 0;
   transition:
     background-color var(--tr),
+    border-radius var(--tr),
     transform var(--tr);
 
-  span {
-    transition: color var(--tr);
-  }
-
   &:active {
-    span {
-      color: var(--m);
-    }
+    transform: var(--scale);
+    border-radius: var(--br-rad);
   }
 
   &:hover,

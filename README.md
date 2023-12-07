@@ -120,6 +120,12 @@ To view the available components, create an app.vue file in the root of the proj
                   <UText text="Here's an example wrapper!" />
                 </USpace>
               </UWrapper>
+              <UWrapper title="With tip and Color" block="def">
+                <USpace display="row" gap="sm" style="max-width: 15rem">
+                  <UIcon :name="exIcon" size="md" />
+                  <UText text="Here's an example wrapper!" />
+                </USpace>
+              </UWrapper>
               <UWrapper title="With tip" tip="(Any important info)">
                 <USpace display="row" gap="sm" style="max-width: 15rem">
                   <UIcon :name="exIcon" size="md" />
@@ -200,7 +206,7 @@ To view the available components, create an app.vue file in the root of the proj
             </UModal>
           </USpace>
           <USpace display="col" mode="center" gap="sm" :full="true">
-            <UText type="h2" text="— Tables—" />
+            <UText type="h2" text="— Tables —" />
             <UText :gray="true" text="Shows tips in your device's language" />
             <USpace display="row" style="flex-wrap: wrap">
               <UTable title="Table With Options">
@@ -286,10 +292,9 @@ To view the available components, create an app.vue file in the root of the proj
           </USpace>
           <USpace display="col" mode="center" :full="true" gap="sm" style="max-width: 25rem">
             <UText type="h2" text="— Togglers —" />
-            <UToggle v-model="toggleOne" name="toggleOne" label="Default toggler" />
             <UToggle
-              v-model="toggleTwo"
-              name="toggleTwo"
+              v-model="toggle"
+              name="toggle"
               label="Toggler with description"
               desc="Any important info"
             />
