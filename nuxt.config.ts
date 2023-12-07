@@ -50,24 +50,10 @@ export default defineNuxtConfig({
     },
     langDir: './locale/lang',
     locales: [
-      {
-        code: 'en',
-        name: 'English',
-        iso: 'en',
-        file: 'en.ts'
-      },
-      {
-        code: 'kk',
-        name: 'Қазақ',
-        iso: 'kk',
-        file: 'kz.ts'
-      },
-      {
-        code: 'ru',
-        iso: 'ru',
-        name: 'Русский',
-        file: 'ru.ts'
-      }
+      { code: 'en', name: 'English', iso: 'en', file: 'en.ts' },
+      { code: 'kz', name: 'Қазақ', iso: 'kk', file: 'kz.ts' },
+      { code: 'ru', name: 'Русский', iso: 'ru', file: 'ru.ts' },
+      { code: 'uk', name: 'Українська', iso: 'uk', file: 'uk.ts' }
     ],
     detectBrowserLanguage: {
       useCookie: true,
