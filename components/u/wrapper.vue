@@ -30,8 +30,6 @@ withDefaults(defineProps<{ title: string; tip?: string; block?: 'def' | 'alt'; i
 }
 
 .title {
-  align-items: flex-end;
-
   span {
     @media (max-width: $mob) {
       font-size: 0.875rem;
