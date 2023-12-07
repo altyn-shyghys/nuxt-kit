@@ -8,7 +8,7 @@
     <USpace mode="center" style="position: relative; pointer-events: none">
       <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <USpace display="row" gap="bit" :style="loading ? `visibility: hidden` : null">
-        <UIcon v-if="icon" :name="icon" :size="state === 'action' ? 'sm' : 'def'" />
+        <UIcon v-if="icon" :name="icon" />
         <UText v-if="title && mode !== 'icon'" type="span" :text="title" />
       </USpace>
     </USpace>
