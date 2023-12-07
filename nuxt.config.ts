@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@vite-pwa/nuxt'
   ],
+  nitro: {
+    compressPublicAssets: true
+  },
   devtools: {
     enabled: false
   },
