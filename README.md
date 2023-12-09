@@ -39,7 +39,6 @@ To view the available components, create an app.vue file in the root of the proj
                 :loading="button"
               />
               <UButton title="Active icon-button" :icon="exIcon" mode="icon" state="active" />
-              <UButton title="Active icon-button" :icon="exIcon" mode="icon" state="solid" />
             </USpace>
             <UText gray text="Button, Min & Link modes" />
             <USpace display="row" gap="sm" mode="center" style="flex-wrap: wrap">
@@ -50,7 +49,6 @@ To view the available components, create an app.vue file in the root of the proj
               <UButton title="Active" :icon="exIcon" state="active" />
               <UButton title="Link-style" :icon="exIcon" state="active" mode="link" />
               <UButton mode="min" title="Min mode" />
-              <UButton mode="min" title="Min mode" state="solid" />
               <UButton mode="min" :icon="exIcon" title="Min with Icon" />
             </USpace>
           </USpace>
@@ -121,12 +119,6 @@ To view the available components, create an app.vue file in the root of the proj
                 </USpace>
               </UWrapper>
               <UWrapper title="With tip and Color" block="def">
-                <USpace display="row" gap="sm" style="max-width: 15rem">
-                  <UIcon :name="exIcon" size="md" />
-                  <UText text="Here's an example wrapper!" />
-                </USpace>
-              </UWrapper>
-              <UWrapper title="With tip" tip="(Any important info)">
                 <USpace display="row" gap="sm" style="max-width: 15rem">
                   <UIcon :name="exIcon" size="md" />
                   <UText text="Here's an example wrapper!" />
@@ -301,7 +293,7 @@ To view the available components, create an app.vue file in the root of the proj
           </USpace>
           <USpace display="col" mode="center" gap="sm">
             <UText type="h2" text="— Links —" />
-            <UText :gray="true" text="Hover to see more details" />
+            <UText gray text="Hover to see more details" />
             <USpace display="row" mode="center" style="flex-wrap: wrap">
               <ULink to="#" title="Default" />
               <ULink to="#" title="Icon" :icon="exIcon" mode="icon" />
@@ -311,6 +303,10 @@ To view the available components, create an app.vue file in the root of the proj
               <ULink to="/" title="Page" :icon="exIcon" mode="page" />
               <ULink to="/" title="Index" :icon="exIcon" mode="index" />
             </USpace>
+          </USpace>
+          <USpace display="col" mode="center" gap="sm">
+            <UText type="h2" text="— Tabs —" />
+            <UTabs v-model="tab" :tabs="tabs" />
           </USpace>
         </USpace>
       </USpace>
@@ -337,8 +333,13 @@ const selOne: string[] = ['One', 'Two', 'Three', 'Four', 'Five']
 const selOneModel = ref<string>(selOne[0])
 const selTwo: string[] = [...selOne, 'Six', 'Seven', 'Eight', 'Nine', 'Ten']
 const selTwoModel = ref<string>(selTwo[0])
+const toggle = ref<boolean>(false)
 
-const toggleOne = ref<boolean>(false)
-const toggleTwo = ref<boolean>(false)
+const tabs: UTab[] = [
+  { name: 'Tab one', icon: exIcon },
+  { name: 'Tab two', icon: exIcon }
+]
+
+const tab = ref<string>(tabs[0].name)
 </script>
 ```

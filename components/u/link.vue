@@ -1,8 +1,7 @@
 <template>
   <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="title">
     <UIcon v-if="icon" :name="icon" size="def" />
-    {{ title }}
-    <!-- <UText v-if="title && mode !== 'icon'" type="span" :text="title" /> -->
+    {{ mode !== 'icon' ? title : null }}
   </NuxtLink>
 </template>
 
