@@ -4,7 +4,7 @@
 const props = withDefaults(
   defineProps<{
     text: string
-    type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'small' | 'label' | 'span'
+    type?: 'h1' | 'h2' | 'h3' | 'p' | 'small' | 'label' | 'span'
     for?: string
     gray?: boolean
   }>(),
@@ -53,10 +53,14 @@ h3 {
   @media (max-width: $sm) {
     font-size: 1.3rem;
   }
+
+  @media (max-width: $zf) {
+    font-size: 1rem;
+  }
 }
 
 p,
-h4 {
+span {
   @media (max-width: $mob) {
     font-size: 0.875rem;
   }

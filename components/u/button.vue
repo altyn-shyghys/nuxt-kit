@@ -8,7 +8,7 @@
     <USpace mode="center" style="position: relative; pointer-events: none">
       <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <USpace display="row" gap="bit" :style="loading ? `visibility: hidden` : null">
-        <UIcon v-if="icon" :name="icon" />
+        <UIcon v-if="icon" :name="icon" :size="mode === 'min' ? 'sm' : 'def'" />
         <UText v-if="title && mode !== 'icon'" type="span" :text="title" />
       </USpace>
     </USpace>
@@ -45,22 +45,23 @@ button {
   }
 
   &:disabled {
-    filter: brightness(0.5);
+    filter: grayscale(100);
     cursor: not-allowed !important;
   }
 }
 
 .button {
-  background-color: var(--btn-bg);
+  background-color: var(--fg-m);
+  border: toRem(1) solid var(--br);
 
   &,
   svg {
-    color: var(--fg-m);
+    color: var(--txt-m);
   }
 
   &:hover,
   &:focus {
-    box-shadow: 0 0 var(--space-m) var(--btn-bg);
+    border: toRem(1) solid var(--m);
   }
 
   &.active {

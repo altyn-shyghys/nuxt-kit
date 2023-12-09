@@ -4,7 +4,7 @@
       <USpace v-if="modelValue" mode="center" class="modal">
         <USpace ref="windowTarget" block="alt" class="window">
           <USpace display="row" pos="between" style="padding: var(--space)">
-            <UText type="h3" :text="title" />
+            <UText type="h3" :text="title" style="text-align: left" />
             <UButton
               :title="$t('ui.close')"
               mode="icon"
@@ -12,9 +12,14 @@
               @trigger="emit('update:modelValue', !modelValue)"
             />
           </USpace>
-          <UScroll v-auto-animate dir="bottom" height="80dvh">
+          <ULine />
+          <UScroll dir="bottom" height="80dvh">
             <div class="padding">
-              <slot />
+              <div class="subpadding"><slot /></div>
+              <USpace v-if="slots.action" display="col" style="padding-top: var(--space)">
+                <ULine />
+                <div class="action"><slot name="action" /></div>
+              </USpace>
             </div>
           </UScroll>
         </USpace>
@@ -26,6 +31,7 @@
 <script setup lang="ts">
 const props = defineProps<{ modelValue: boolean; title: string }>()
 const emit = defineEmits<{ (evt: 'update:modelValue', val: boolean): void }>()
+const slots = defineSlots<{ default: any; action?: any }>()
 
 const windowTarget = ref<HTMLDivElement>()
 onClickOutside(windowTarget, () => emit('update:modelValue', !props.modelValue))
@@ -78,20 +84,29 @@ watch(
 
   @media (max-width: $mob) {
     margin-bottom: var(--space-m);
-    border: 0;
-    border-top: toRem(1) solid var(--br);
-    width: 100%;
-    max-width: 100%;
-    min-width: 100%;
+    border-bottom: 0;
+    width: calc(100% - var(--space-l));
+    max-width: calc(100% - var(--space-l));
+    min-width: calc(100% - var(--space-l));
+  }
+
+  @media (max-width: $zf) {
+    width: calc(100% - toRem(10));
+    max-width: calc(100% - toRem(10));
+    min-width: calc(100% - toRem(10));
   }
 }
 
 .padding {
-  padding: 0 var(--space) var(--space-m) var(--space);
+  padding: var(--space) 0 var(--space-m) 0;
 
   @media (max-width: $mob) {
     padding-bottom: calc(var(--space-l) * 1.25);
   }
+}
+
+.subpadding {
+  padding: 0 var(--space);
 
   @media (max-width: $zf) {
     padding-left: toRem(10);
@@ -108,6 +123,12 @@ watch(
     animation: mobBounce var(--tr);
     transform: translateY(var(--space));
   }
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--space);
 }
 
 @keyframes bounce {
@@ -127,7 +148,7 @@ watch(
 @keyframes mobBounce {
   0% {
     opacity: 0;
-    transform: translateY(toRem(400));
+    transform: translateY(toRem(380));
   }
   60% {
     opacity: 1;

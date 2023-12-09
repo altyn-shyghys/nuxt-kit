@@ -1,6 +1,6 @@
 <template>
   <USpace display="col" gap="sm" :style="`width: ${width}`">
-    <UText :text="label" :gray="true" />
+    <UText :text="label" gray />
     <div ref="selectTarget" style="position: relative">
       <button
         ref="selected"
@@ -9,7 +9,7 @@
         class="selected"
         @click="active = !active"
       >
-        <USpace mode="center" :full="true" style="position: relative; min-height: 1.5rem">
+        <USpace mode="center" full style="position: relative; min-height: 1.5rem">
           <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
           <UIcon v-else-if="!options.length" :name="ICON_EMPTY" style="position: absolute" />
           <USpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
@@ -23,17 +23,18 @@
       </button>
       <Transition name="select" mode="out-in">
         <USpace v-if="active" display="col" gap="none" class="options" @click="optionsHandler">
-          <USpace
-            v-if="options.length >= 10"
-            display="row"
-            gap="sm"
-            pos="between"
-            style="padding: var(--space-m) var(--space)"
-          >
-            <input id="option-search" v-model="search" type="text" placeholder="Search" />
-            <UIcon name="gg:search" class="search-icon" size="sm" />
+          <USpace v-if="options.length >= 10" display="col" gap="none">
+            <USpace
+              display="row"
+              gap="sm"
+              pos="between"
+              style="padding: var(--space-m) var(--space)"
+            >
+              <input id="option-search" v-model="search" type="text" placeholder="Search" />
+              <UIcon name="gg:search" class="search-icon" size="sm" />
+            </USpace>
+            <ULine />
           </USpace>
-          <ULine />
           <UScroll height="10rem" :trigger="search.length">
             <USpace v-auto-animate display="col" gap="none">
               <button
@@ -120,7 +121,7 @@ onClickOutside(selectTarget, (evt) => {
   text-align: left;
   color: var(--txt-m);
 
-  h4,
+  span,
   div,
   svg {
     pointer-events: none;

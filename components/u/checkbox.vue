@@ -10,7 +10,7 @@
     <USpace block="def" class="box">
       <UIcon name="lucide:check" size="cb" />
     </USpace>
-    <UText type="label" :gray="true" :for="name" :text="label" />
+    <UText type="label" gray :for="name" :text="label" />
   </USpace>
 </template>
 

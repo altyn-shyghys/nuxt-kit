@@ -5,7 +5,7 @@
         <USpace display="row" gap="sm" class="table-head">
           <UIcon name="tabler:table-filled" size="md" class="hide" />
           <USpace display="col" gap="bit">
-            <UText type="span" :text="title" style="font-size: 0.813rem" />
+            <UText type="span" :text="title" />
             <UText gray :text="$t('ui.tableName')" />
           </USpace>
         </USpace>
@@ -55,7 +55,7 @@ defineSlots<{ options(): any; table(): any }>()
 }
 
 .table-head {
-  h4,
+  span,
   div {
     pointer-events: none;
     text-overflow: ellipsis;
@@ -64,11 +64,11 @@ defineSlots<{ options(): any; table(): any }>()
   }
 
   @media (max-width: $mob) {
-    width: toRem(210);
+    min-width: toRem(250);
   }
 
   @media (max-width: $zf) {
-    width: toRem(120);
+    min-width: toRem(150);
   }
 }
 

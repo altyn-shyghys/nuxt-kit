@@ -4,7 +4,7 @@
       <UIcon name="ep:info-filled" size="ui" />
       <div class="mark"></div>
       <USpace display="col" gap="bit">
-        <UText type="span" :text="title" style="font-size: 0.813rem" />
+        <UText type="span" :text="title" />
         <UText gray :text="message" />
       </USpace>
     </USpace>

@@ -197,7 +197,7 @@ To view the available components, create an app.vue file in the root of the proj
             <UModal v-model="modal" title="Modal Ex">
               <USpace display="col" gap="sm" block="def" mode="center">
                 <UIcon :name="exIcon" size="lg" />
-                <UText type="h4" text="Welcome to modal example!" />
+                <UText type="span" text="Welcome to modal example!" />
                 <UText
                   :gray="true"
                   text="Click on the cross button or on the space outside the window to close"

@@ -1,7 +1,7 @@
 <template>
-  <USpace display="row" pos="between" block="def" style="position: relative">
+  <USpace display="row" pos="between" style="position: relative">
     <USpace display="col" gap="bit">
-      <UText type="span" :text="label" style="font-size: 0.813rem" />
+      <UText type="span" :text="label" />
       <UText type="label" :for="name" gray :text="desc" />
     </USpace>
     <input
@@ -55,7 +55,7 @@ input {
   border-radius: var(--space);
   width: calc(var(--ui-size) * 2);
   min-width: calc(var(--ui-size) * 2);
-  background-color: var(--bg);
+  background-color: var(--fg-m);
   border: toRem(1) solid var(--br);
 
   &::before {

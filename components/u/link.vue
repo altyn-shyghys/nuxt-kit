@@ -1,7 +1,8 @@
 <template>
   <NuxtLink :to="to" :class="[mode]" :target="global ? '_blank' : null" :title="title">
     <UIcon v-if="icon" :name="icon" size="def" />
-    <UText v-if="title && mode !== 'icon'" type="span" :text="title" />
+    {{ title }}
+    <!-- <UText v-if="title && mode !== 'icon'" type="span" :text="title" /> -->
   </NuxtLink>
 </template>
 
@@ -28,6 +29,7 @@ a {
       transform var(--tr);
     color: var(--txt-m);
     font-size: 0.875rem;
+    font-weight: bold;
   }
 
   &:active {
@@ -113,9 +115,23 @@ a.page {
   gap: toRem(5);
   max-width: var(--ui-size);
 
+  svg {
+    min-width: 2rem !important;
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
   &:hover,
   &:focus {
     filter: drop-shadow(0 0 toRem(5) var(--m));
+  }
+
+  @media (max-width: $zf) {
+    svg {
+      min-width: 1.5rem !important;
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+    }
   }
 }
 </style>

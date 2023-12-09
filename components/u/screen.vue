@@ -1,5 +1,5 @@
 <template>
-  <USpace mode="center" block="def" :full="true" style="height: 100%">
+  <USpace mode="center" block="def" full style="height: 100%">
     <USpace display="row" gap="sm" style="max-width: 12rem; text-align: left">
       <template v-if="type === 'empty'">
         <UIcon :name="ICON_EMPTY" size="md" />
