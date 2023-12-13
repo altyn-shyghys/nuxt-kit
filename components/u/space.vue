@@ -8,7 +8,7 @@ const props = withDefaults(
     type?: 'div' | 'section' | 'nav' | 'form'
     display?: 'row' | 'col' | 'grid'
     gap?: Gap
-    pos?: 'between' | 'left'
+    pos?: 'between' | 'left' | 'right'
     block?: 'def' | 'alt'
     layout?: 'container' | 'wrapper' | 'screen'
     mode?: 'center'
@@ -78,6 +78,13 @@ const Block = () =>
 .left {
   align-items: flex-start;
   justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.right {
+  align-items: flex-start;
+  justify-content: flex-end;
   text-align: left;
   width: 100%;
 }

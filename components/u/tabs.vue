@@ -8,7 +8,7 @@
     <UButton
       v-for="tab in tabs"
       :key="tab.name"
-      :title="tab.name"
+      :title="$t(tab.name)"
       :state="modelValue === tab.name ? 'active' : undefined"
       :icon="tab.icon || undefined"
       @trigger="$emit('update:modelValue', tab.name)"
