@@ -5,7 +5,8 @@ export default defineI18nLocale(() => {
       errorTip: 'Failed to load data...',
       tableName: 'Table name',
       reload: 'Reload',
-      close: 'Close'
+      close: 'Close',
+      search: 'Search'
     },
     app: {
       offline: {

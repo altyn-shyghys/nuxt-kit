@@ -64,11 +64,11 @@ defineSlots<{ options(): any; table(): any }>()
   }
 
   @media (max-width: $mob) {
-    min-width: toRem(250);
+    max-width: toRem(250);
   }
 
   @media (max-width: $zf) {
-    min-width: toRem(150);
+    max-width: toRem(150);
   }
 }
 

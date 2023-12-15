@@ -5,7 +5,8 @@ export default defineI18nLocale(() => {
       errorTip: 'Неможливо завантажити дані...',
       tableName: 'Назва',
       reload: 'Перезавантажити',
-      close: 'Закрити'
+      close: 'Закрити',
+      search: 'Пошук'
     },
     app: {
       offline: {

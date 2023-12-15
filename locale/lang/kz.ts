@@ -5,7 +5,8 @@ export default defineI18nLocale(() => {
       errorTip: 'Деректер жүктелмеді...',
       tableName: 'Кесте атауы',
       reload: 'Қайта жүктеңіз',
-      close: 'Жабық'
+      close: 'Жабық',
+      search: 'Іздеу'
     },
     app: {
       offline: {

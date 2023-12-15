@@ -1,7 +1,14 @@
 <template>
   <button
     :disabled="disabled || loading"
-    :class="[mode, state]"
+    :class="{
+      button: mode === 'button',
+      icon: mode === 'icon',
+      link: mode === 'link',
+      min: mode === 'min',
+      action: state === 'action',
+      active: active
+    }"
     :title="title"
     @click.prevent="$emit('trigger')"
   >
@@ -21,11 +28,12 @@ withDefaults(
     title: string
     mode?: 'button' | 'icon' | 'link' | 'min'
     disabled?: boolean
-    state?: 'active' | 'action'
+    state?: 'action'
+    active?: boolean
     loading?: boolean
     icon?: string
   }>(),
-  { mode: 'button', icon: undefined, state: undefined }
+  { title: undefined, mode: 'button', icon: undefined, state: undefined }
 )
 
 defineEmits<{ (e: 'trigger'): void }>()

@@ -30,7 +30,12 @@
               pos="between"
               style="padding: var(--space-m) var(--space)"
             >
-              <input id="option-search" v-model="search" type="text" placeholder="Search" />
+              <input
+                id="option-search"
+                v-model="search"
+                type="text"
+                :placeholder="$t('ui.search')"
+              />
               <UIcon name="gg:search" class="search-icon" size="sm" />
             </USpace>
             <ULine />

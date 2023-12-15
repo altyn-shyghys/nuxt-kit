@@ -5,7 +5,8 @@ export default defineI18nLocale(() => {
       errorTip: 'Не удалось загрузить данные...',
       tableName: 'Название',
       reload: 'Перезагрузить',
-      close: 'Закрыть'
+      close: 'Закрыть',
+      search: 'Поиск'
     },
     app: {
       offline: {

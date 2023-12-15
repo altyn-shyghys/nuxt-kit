@@ -10,12 +10,12 @@
     <USpace block="def" class="box">
       <UIcon name="lucide:check" size="cb" />
     </USpace>
-    <UText type="label" gray :for="name" :text="label" />
+    <UText v-if="label" type="label" gray :for="name" :text="label" />
   </USpace>
 </template>
 
 <script setup lang="ts">
-defineProps<{ name: string; modelValue: boolean; label: string; disabled?: boolean }>()
+defineProps<{ name: string; modelValue: boolean; label?: string; disabled?: boolean }>()
 defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
 </script>
 
