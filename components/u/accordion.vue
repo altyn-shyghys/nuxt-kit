@@ -1,5 +1,5 @@
 <template>
-  <USpace ref="target" v-auto-animate display="col" gap="sm" full>
+  <USpace v-auto-animate display="col" gap="sm" full>
     <button :title="title" class="accordion" @click="active = !active">
       <USpace display="row" full pos="between">
         <USpace display="row" gap="bit">
@@ -18,11 +18,8 @@
 <script setup lang="ts">
 defineProps<{ title: string; icon?: string }>()
 
-const target = ref<HTMLDivElement>()
 const active = ref<boolean>(false)
 const rotateHandler = computed(() => (active.value ? 'transform: rotate(180deg);' : null))
-
-onClickOutside(target, () => (active.value = false))
 </script>
 
 <style scoped lang="scss">
