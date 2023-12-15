@@ -13,7 +13,7 @@
           <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
           <UIcon v-else-if="!options.length" :name="ICON_EMPTY" style="position: absolute" />
           <USpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
-            <USpace display="row" gap="sm">
+            <USpace display="row" gap="bit">
               <UIcon v-if="icon" size="def" :name="icon" />
               <UText type="span" :text="modelValue" style="font-size: 0.875rem" />
             </USpace>

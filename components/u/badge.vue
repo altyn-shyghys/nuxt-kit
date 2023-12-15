@@ -14,6 +14,7 @@ defineProps<{ text: string; icon?: string; color?: 'red' | 'yesllow' | 'green' }
 .badge {
   border: toRem(1) solid var(--br);
   border-radius: var(--br-rad);
+  height: toRem(28);
   padding: toRem(5) var(--space-m);
 }
 
@@ -21,6 +22,6 @@ defineProps<{ text: string; icon?: string; color?: 'red' | 'yesllow' | 'green' }
   width: toRem(16);
   height: toRem(16);
   border: toRem(1) solid var(--br);
-  border-radius: toRem(5);
+  border-radius: 50%;
 }
 </style>
