@@ -38,7 +38,7 @@ To view the available components, create an app.vue file in the root of the proj
                 mode="icon"
                 :loading="button"
               />
-              <UButton title="Active icon-button" :icon="exIcon" mode="icon" state="active" />
+              <UButton title="Active icon-button" :icon="exIcon" mode="icon" active />
             </USpace>
             <UText gray text="Button, Min & Link modes" />
             <USpace display="row" gap="sm" mode="center" style="flex-wrap: wrap">
@@ -46,11 +46,32 @@ To view the available components, create an app.vue file in the root of the proj
               <UButton title="With Icon" :icon="exIcon" />
               <UButton title="Loading state" :icon="exIcon" :loading="button" />
               <UButton title="Disabled" :icon="exIcon" :disabled="button" />
-              <UButton title="Active" :icon="exIcon" state="active" />
-              <UButton title="Link-style" :icon="exIcon" state="active" mode="link" />
+              <UButton title="Active" :icon="exIcon" active />
+              <UButton title="Link-style" :icon="exIcon" active mode="link" />
               <UButton mode="min" title="Min mode" />
               <UButton mode="min" :icon="exIcon" title="Min with Icon" />
             </USpace>
+          </USpace>
+          <USpace display="col" mode="center" gap="sm">
+            <UText type="h2" text="— Badges —" />
+            <USpace display="row" mode="center" gap="sm" style="flex-wrap: wrap">
+              <UBadge text="Default" />
+              <UBadge :icon="exIcon" text="With icon" />
+              <UBadge color="green" text="With color" />
+            </USpace>
+          </USpace>
+          <USpace display="col" mode="center" gap="sm">
+            <UText type="h2" text="— Accordions —" />
+            <UAccordion title="Default">
+              <USpace block="alt" full>
+                <UText text="Some content" />
+              </USpace>
+            </UAccordion>
+            <UAccordion title="With icon" :icon="exIcon">
+              <USpace block="alt" full>
+                <UText text="Some content" />
+              </USpace>
+            </UAccordion>
           </USpace>
           <USpace display="col" mode="center" gap="sm" :full="true">
             <UText type="h2" text="— Scrolls —" />
@@ -180,12 +201,14 @@ To view the available components, create an app.vue file in the root of the proj
           <USpace display="col" mode="center" gap="sm">
             <UText type="h2" text="— Modal Ex. —" />
             <UText :gray="true" text="Includes different modes in Desktop & Mobile" />
-            <UButton
-              title="Open modal"
-              :icon="exIcon"
-              name="Open modal"
-              @trigger="modal = !modal"
-            />
+            <USpace display="row" gap="sm" mode="center" style="flex-wrap: wrap">
+              <UButton title="Default modal" :icon="exIcon" @trigger="modal = !modal" />
+              <UButton
+                title="Modal with action"
+                :icon="exIcon"
+                @trigger="actionModal = !actionModal"
+              />
+            </USpace>
             <UModal v-model="modal" title="Modal Ex">
               <USpace display="col" gap="sm" block="def" mode="center">
                 <UIcon :name="exIcon" size="lg" />
@@ -195,6 +218,19 @@ To view the available components, create an app.vue file in the root of the proj
                   text="Click on the cross button or on the space outside the window to close"
                 />
               </USpace>
+            </UModal>
+            <UModal v-model="actionModal" title="Modal Ex">
+              <USpace display="col" gap="sm" mode="center">
+                <UIcon :name="exIcon" size="lg" />
+                <UText type="span" text="Welcome to modal example!" />
+                <UText
+                  :gray="true"
+                  text="Click on the cross button or on the space outside the window to close"
+                />
+              </USpace>
+              <template #action>
+                <UButton title="Close" :icon="exIcon" @trigger="actionModal = !actionModal" />
+              </template>
             </UModal>
           </USpace>
           <USpace display="col" mode="center" gap="sm" :full="true">
@@ -328,6 +364,7 @@ const inputTwo = ref<string>('')
 const inputThree = ref<string>('')
 
 const modal = ref<boolean>(false)
+const actionModal = ref<boolean>(false)
 
 const selOne: string[] = ['One', 'Two', 'Three', 'Four', 'Five']
 const selOneModel = ref<string>(selOne[0])
