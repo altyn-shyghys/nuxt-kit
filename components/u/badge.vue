@@ -23,7 +23,7 @@ withDefaults(
   border: toRem(1) solid var(--br);
   background-color: var(--fg-m);
   border-radius: var(--br-rad);
-  height: toRem(28);
+  min-height: toRem(28);
   padding: toRem(5) var(--space-m);
 }
 
