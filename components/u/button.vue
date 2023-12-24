@@ -12,7 +12,7 @@
     :title="title"
     @click.prevent="$emit('trigger')"
   >
-    <USpace mode="center" style="position: relative; pointer-events: none">
+    <USpace mode="center" style="position: relative; pointer-events: none; text-align: left">
       <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <USpace display="row" gap="bit" :style="loading ? `visibility: hidden` : null">
         <UIcon v-if="icon" :name="icon" :size="mode === 'min' ? 'sm' : 'def'" />
@@ -43,7 +43,6 @@ defineEmits<{ (e: 'trigger'): void }>()
 button {
   @include ui-styles;
   cursor: pointer;
-  text-align: left;
 
   svg {
     pointer-events: none;
