@@ -43,6 +43,7 @@ defineEmits<{ (e: 'trigger'): void }>()
 button {
   @include ui-styles;
   cursor: pointer;
+  text-align: left;
 
   svg {
     pointer-events: none;
