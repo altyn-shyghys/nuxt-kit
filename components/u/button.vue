@@ -157,6 +157,11 @@ button {
     border: toRem(1) solid var(--m);
   }
 
+  &,
+  svg {
+    color: var(--txt-m);
+  }
+
   &.active {
     background-color: var(--bg);
 
