@@ -2,7 +2,7 @@
   <USpace v-auto-animate display="col" gap="sm" full>
     <button :title="title" class="accordion" @click="active = !active">
       <USpace display="row" full pos="between">
-        <USpace display="row" gap="bit">
+        <USpace display="row" gap="sm">
           <UIcon v-if="icon" size="def" :name="icon" />
           <UText type="span" :text="title" style="font-size: 0.875rem" />
         </USpace>
