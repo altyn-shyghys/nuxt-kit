@@ -6,6 +6,7 @@
       icon: mode === 'icon',
       link: mode === 'link',
       min: mode === 'min',
+      tab: mode === 'tab',
       action: state === 'action',
       active: active
     }"
@@ -26,7 +27,7 @@
 withDefaults(
   defineProps<{
     title: string
-    mode?: 'button' | 'icon' | 'link' | 'min'
+    mode?: 'button' | 'icon' | 'link' | 'min' | 'tab'
     disabled?: boolean
     state?: 'action'
     active?: boolean
@@ -144,6 +145,25 @@ button {
   &:hover,
   &:focus {
     filter: drop-shadow(0 0 toRem(5) var(--m));
+  }
+}
+
+.tab {
+  background-color: var(--fg-m);
+  border: toRem(1) solid var(--fg-m);
+
+  &:hover,
+  &:focus {
+    border: toRem(1) solid var(--m);
+  }
+
+  &.active {
+    background-color: var(--bg);
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 var(--space-m) var(--fg-m);
+    }
   }
 }
 </style>

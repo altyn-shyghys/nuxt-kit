@@ -8,6 +8,7 @@
     <UButton
       v-for="tab in tabs"
       :key="tab.name"
+      mode="tab"
       :title="$t(tab.name)"
       :active="modelValue === tab.name"
       :icon="tab.icon || undefined"
@@ -24,7 +25,7 @@ defineEmits<{ (e: 'update:modelValue', value: string): void }>()
 <style scoped lang="scss">
 .tabs {
   border-radius: var(--br-rad);
-  background-color: var(--fg-s);
+  background-color: var(--fg-m);
   padding: toRem(1);
 }
 </style>
