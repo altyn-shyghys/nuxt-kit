@@ -16,7 +16,7 @@
     <USpace mode="center" style="position: relative; pointer-events: none; text-align: left">
       <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
       <USpace display="row" gap="bit" :style="loading ? `visibility: hidden` : null">
-        <UIcon v-if="icon" :name="icon" :size="mode === 'min' ? 'sm' : 'def'" />
+        <UIcon v-if="icon" :name="icon" :size="mode === 'min' || mini ? 'sm' : 'def'" />
         <UText v-if="title && mode !== 'icon'" type="span" :text="title" />
       </USpace>
     </USpace>
@@ -33,6 +33,7 @@ withDefaults(
     active?: boolean
     loading?: boolean
     icon?: string
+    mini?: boolean
   }>(),
   { title: undefined, mode: 'button', icon: undefined, state: undefined }
 )
