@@ -3,6 +3,7 @@
     <UIcon v-if="icon" size="sm" :name="icon" :style="color ? `color: var(--${color})` : ''" />
     <div v-if="mode === 'mark'" :style="`background-color: var(--${color})`" class="mark"></div>
     <UText gray :text="text" />
+    <slot />
   </USpace>
 </template>
 
