@@ -15,7 +15,13 @@
           <USpace display="row" pos="between" :style="loading ? `visibility: hidden` : null">
             <USpace display="row" gap="bit">
               <UIcon v-if="icon" size="def" :name="icon" />
-              <UText type="span" :text="modelValue" style="font-size: 0.875rem" />
+              <UText
+                v-if="translate"
+                type="span"
+                :text="$t(modelValue)"
+                style="font-size: 0.875rem"
+              />
+              <UText v-else type="span" :text="modelValue" style="font-size: 0.875rem" />
             </USpace>
             <UIcon id="select-arrow" name="ep:arrow-down-bold" size="sm" :style="rotateHandler" />
           </USpace>
@@ -41,7 +47,19 @@
             <ULine />
           </USpace>
           <UScroll height="10rem" :trigger="search.length">
-            <USpace v-auto-animate display="col" gap="none">
+            <USpace v-if="translate" v-auto-animate display="col" gap="none">
+              <button
+                v-for="(opt, idx) in printArr"
+                :key="idx"
+                class="option"
+                :data-opt="opt"
+                :title="$t(opt)"
+              >
+                <UText type="span" :text="$t(opt)" />
+              </button>
+              <UScreen v-if="!printArr.length" type="empty" style="border: none" />
+            </USpace>
+            <USpace v-else v-auto-animate display="col" gap="none">
               <button
                 v-for="(opt, idx) in printArr"
                 :key="idx"
@@ -69,6 +87,7 @@ const props = withDefaults(
     label: string
     loading?: boolean
     width?: string
+    translate?: boolean
   }>(),
   { icon: undefined, width: '100%' }
 )
